@@ -7,3 +7,5 @@ TD6/__pycache__/
 TestEtudiants/
 *.synctex.gz
 TD*.pdf
+.vscode/
+~$*
