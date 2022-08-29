@@ -4,5 +4,6 @@
 TD6/Corrige/*.csv
 TD1/Corrige/credentials.json
 TD6/__pycache__/
-TestEtudiants/*.synctex.gz
+TestEtudiants/
+*.synctex.gz
 TD*.pdf
