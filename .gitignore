@@ -1,6 +1,7 @@
 *.out
 *.aux
 *.log
+_build
 TD6/Corrige/*.csv
 TD1/Corrige/credentials.json
 TD6/__pycache__/
