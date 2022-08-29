@@ -1,0 +1,198 @@
+% ----- tlp.sty  =  tp.sty sauf la ligne sur babel, pour LyX !
+% DEFINITION DES ENVIRONNEMENTS POUR LES SUJETS DE TP
+% Octobre 1989 : = u.sty + listenum
+% Fe'vrier 1990 : + \mois pour la date, 
+% Juin 90 : Changement de format
+% Fe'vrier 1991 : ajout de la commande \pour qui parame^tre un stage de FC
+%     LA SUITE EST MODIFIÉE : VOIR SEPTEMBRE 96
+% Septembre 1991 : commande \ladate
+% novembre 1991 : commande arond (aussi : \chapeau, \contrebarre)
+% mai 1992 : commande \bverticale pour |
+% de'cembre 1992 : retrait apr`es [sub]section
+% mai 1993 : commande \hautbas
+% janvier 1996 : \petitlogoifsic
+%
+% septembre 1996 : passage à LaTeX2e
+% Séparation de tp.sty et création de glossaire.sty
+% janvier 2001 : LyX engendre le [french]{babel} qd on est en LANG=fr
+% juin 2003 : \AtBeginDocument dans le style, pour ne pas oublier
+%     le \mettreletitre en début de document (du coup, le retirer des
+%     anciens sujets...
+% janv 2004 : \com{} pour une commande (attention, définie un peu partout !)
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}    % ATTENTION : ne va pas pour LyX de 01/2001
+
+\usepackage{indentfirst}
+%    Les 5 lignes suivantes : pour texte TD,TP, pas pour polys !
+\setlength{\textwidth}{18cm}
+%\setlength{\topmargin}{-2cm}
+\setlength{\topmargin}{-2.8cm}
+%\setlength{\textheight}{25.5cm}
+\setlength{\textheight}{26.5cm}
+\oddsidemargin -1cm
+\evensidemargin -1cm
+%
+% Pour raccourcir les espaces entres paragraphes enumérés :
+\newcommand{\racitem}{\setlength{\itemsep}{4pt plus 2pt minus 1pt}}
+
+%\newfont {\sltt}{cmsltt10}   % pour utiliser la police \sltt, chasse
+                             % fixe et penche'e en LATEX209
+%\def\sltt{\ttfamily\slshape}  % ou en LaTeX2e
+\def\sltt{\ttfamily}  % ou en LaTeX2e pas penché
+
+\def\nfs{\catcode`\;=12
+\catcode`\:=12
+\catcode`\!=12
+\catcode`\?=12}
+\def\fnfs{\catcode`\;=13
+\catcode`\:=13
+\catcode`\!=13
+\catcode`\?=13}
+
+% Extensions
+% Entête et pieds : voir plus bas
+
+
+% Environnement LISTENUM, e'nume'ration avec des titres non
+%    nume'rote's
+
+%\newcounter{sauve}[chapter]\setcounter{sauve}{0}
+\newcounter{sauve}[section]\setcounter{sauve}{0}
+\newenvironment{listenum}[1]%
+{\subsection*{#1}\begin{enumerate}\setcounter{enumi}{\value{sauve}}}%
+{\setcounter{sauve}{\value{enumi}} \end{enumerate}}
+
+% Environnement RETRAIT
+\def\retrait{\list{}{\rightmargin=0pt\leftmargin=5em}\item[]}
+\let\endretrait=\endlist
+
+
+\def\descriptionitlabel#1{\hspace\labelsep \it #1}
+\def\descriptionit{\list{}{\labelwidth\z@ 
+ \leftmargin=5em \rightmargin=0em \itemindent=-3em
+ \let\makelabel\descriptionitlabel}}
+\let\enddescriptionit\endlist
+%\newdimen\descriptionmargin
+%\descriptionmargin=3em
+
+% Environnement de liste VL de nroff -mm, version italique
+% Appel : \begin{vlit}{taille} ... \end{vlit}
+\def\vlitlabel#1{\hspace\labelsep {\it \mbox{#1}}}
+\def\vlit#1{\list{}{\labelwidth#1 \leftmargin#1 \rightmargin0pt
+ \let\makelabel\vlitlabel}}
+\let\endvlit=\endlist
+
+% Environnement de liste VL de nroff -mm, version romain
+% Appel : \begin{vlrm}{taille} ... \end{vlrm}
+\def\vlrmlabel#1{\hspace\labelsep {\rm \mbox{#1}}}
+\def\vlrm#1{\list{}{\labelwidth#1 \leftmargin#1 \rightmargin0pt
+ \let\makelabel\vlrmlabel}}
+\let\endvlrm=\endlist
+
+% Environnement de liste VL de nroff -mm, version programme
+% Appel : \begin{vltt}{taille} ... \end{vltt}
+\def\vlttlabel#1{\hspace\labelsep {\sltt \mbox{#1}}}
+\def\vltt#1{\list{}{\labelwidth#1 \leftmargin#1 \rightmargin0pt
+ \let\makelabel\vlttlabel}}
+\let\endvltt=\endlist
+
+% Environnement EXEMPLE
+\def\exemple{\list{}{\rightmargin=0pt}\item[]
+%  \vspace{1ex}{\bf Exemple~:}\vspace{0.25ex}\leftmargin=3em}}
+  \vspace{1ex}{\bf Exemple~:}\leftmargin=3em}
+  \let\endexemple=\endlist
+
+% Environnement pour les programmes PROG pre'ce'de's de EXEMPLE
+%
+\def\exprog{\trivlist \item[] {\bf Exemple~:}\vspace{0.5em}
+\parindent1pt\parskip\z@
+\def\par{\hbox{}\@@par}\obeylines % \newfont {\sltt}{cmsltt10}
+\sltt
+\catcode``=13\catcode`\^^M=13
+\frenchspacing\@vobeyspaces}
+\let\endexprog=\endtrivlist
+
+% Environnement pour les programmes PROG non pre'ce'de's de EXEMPLE
+%
+\def\prog{\trivlist \item[]
+\parindent1pt\parskip\z@
+\def\par{\hbox{}\@@par}\obeylines % \newfont {\sltt}{cmsltt10}
+\sltt
+\catcode``=13\catcode`\^^M=13
+\frenchspacing\@vobeyspaces}
+\let\endprog=\endtrivlist
+
+% Environnement REGLE (Provisoirement ...)
+\def\regle{\trivlist \item[] % {\sc R\'egle}
+\parindent1pt\parskip\z@
+\def\par{\hbox{}\@@par}\obeylines % \newfont {\sltt}{cmsltt10}
+\sf
+{\sc R\`egle}\catcode``=13\catcode`\^^M=13
+\frenchspacing\@vobeyspaces}
+\let\endregle=\endtrivlist
+
+%\def\mois{\ifcase\month\or Janvier\or F\'evrier\or Mars\or
+%Avril\or Mai\or Juin\or Juillet\or Ao\^ut\or Septembre\or Octobre\or
+%Novembre\or D\'ecembre\fi \space\number\year}
+
+\def\mois{2022/2023}
+
+% Retrait de de'but de section, sub...
+% Je retire ce qui suit le 4/07/94 : pb pour epoly en book
+% \def\section{\@startsection{section}{1}{\z@}%
+% 	{5ex plus 1.5ex minus .5ex}%
+% 	{4ex plus .2ex}{\vskip -1ex \vglue 1ex \Large\bf}}
+% \def\subsection{\@startsection{subsection}{2}{\z@}%
+% 	{4.2ex plus 1ex minus .2ex}%
+% 	{3ex plus .2ex}{\vskip -.3ex\vglue .3ex\large\bf}}
+% \def\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+% 	{2.2ex plus 1ex minus .2ex}%
+% 	{2ex plus .2ex}{\vskip -.2ex\vglue .2ex\onze\bf}}
+
+\def\petitlogoifsic{\psfig{figure=/udd/nebut/tex/mon-Logo-IFSIC-couleur.eps,height=2.4cm}}
+
+% EN-TÊTE ET PIEDS DE PAGE
+%\usepackage[dvips]{graphicx}  % retiré car pb avec LyX par défaut, pas grave
+\usepackage{graphicx}
+ 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\addtolength{\headheight}{2.5cm}
+\addtolength{\textheight}{-2.5cm}
+\newcommand*{\quand}[1]{\def\lequand{#1}}
+\newcommand*{\sorte}[1]{\def\lasorte{#1}}
+\newcommand*{\siglemat}[1]{\def\lesiglemat{#1}}
+\newcommand*{\formation}[1]{\def\laformation{#1}}
+\newcommand*{\titre}[1]{\def\letitre{#1}}
+\quand{} \sorte{} \siglemat{} \formation{} \titre{}
+\newcommand{\mettreletitre}{%
+  \vspace*{1ex}
+  \begin{center}
+  \begin{Large}
+  \textbf{\letitre}
+  \end{Large}
+  \end{center}
+  \vspace{4ex}
+}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyhead[L]{\includegraphics[width=2cm]{logo-UNIV.jpg}}
+\fancyhead[C]{\textbf{\laformation} \\ \lesiglemat~- \mois}
+\fancyhead[R]{}%\includegraphics[width=2.5cm]{ifsic_rvb.jpg}} %/udd/nebut/tex/mon-Logo-IFSIC-couleur.jpg}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{\lasorte\ \lesiglemat\ - \mois}
+\fancyfoot[R]{\lequand}
+}
+\fancyhead{}\fancyhead[L]{\laformation}
+\fancyhead[R]{\letitre}
+\renewcommand{\footrulewidth}{0.4pt}
+\lfoot{\lasorte\ \lesiglemat\ - \mois}
+\cfoot{\thepage}
+\rfoot{\lequand}
+
+\AtBeginDocument{\thispagestyle{plain}\mettreletitre}
+%--------------------- fin de tp.sty ----------------------
+
+

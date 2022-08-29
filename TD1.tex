@@ -1,0 +1,110 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+\renewcommand\thesection{Exercice \arabic{section} : }
+
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L1 MIASHS}
+\titre{TD1 : API de calcul de trajets}
+\begin{document}
+
+\section*{Travail à préparer avant la séance}
+\begin{itemize}
+    \item Créez-vous un compte GraphHopper en cliquant ici (vous utiliserez l’URL \url{http://www.univ-rennes2.fr} pour le champ “site web”)
+\item Créez-vous une clé d’API en vous rendant, connecté avec votre compte, à l’adresse \url{https://graphhopper.com/dashboard/#/api-keys}
+\item Sauvegarder la clé d'API créée.
+\end{itemize}
+
+\section*{Préambule}
+\begin{enumerate}
+    \item Créer sur votre disque un dossier PythonOpenData dans lequel vous réaliserez l'ensemble des travaux. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD1.
+    \item Décompresser cette archive sur votre disque. 
+    Les fichiers doivent se trouver dans PythonOpenData/TD1.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData. 
+\end{enumerate}
+
+\section*{Installation du module graphh}
+
+Par défaut, le module graphh n’est pas installé sur votre ordinateur ni sur les machines de l’université. Pour pouvoir l’utiliser, il va donc falloir commencer par l’installer. 
+
+Avec Visual Studio Code : 
+\begin{itemize}
+    \item Ouvrir une fenêtre de terminal par le menu "Affichage - Terminal".
+    \item Taper la commande \verb+pip install graphh+.
+\end{itemize}
+
+Note : cette action est à effectuer une fois pour toutes sur votre machine personnelle, si vous l’utilisez en TD, ou à chaque début de TD sur une machine de l’université si vous travaillez sur un poste de l’université.
+
+\section{Préparation de la clé d'API}
+\begin{enumerate}
+    \item Dans le fichier credentials.json, insérer votre clé d'API préalablement créée.
+    \item Dans le fichier td2.py, la fonction fournie \verb+acces_cle_api+ permet de lire la clé API dans le fichier credentials.json. 
+    Utiliser cette fonction pour afficher votre clé d'API.
+\end{enumerate}
+        
+\section{Prise en main de GraphHopper}
+\begin{enumerate}
+    \item Créer un clien GraphHopper en utilisant votre clé d'API.
+    \item Obtenir les coordonnées GPS de "Rennes Beaulieu" ainsi que de "Rennes Villejean".
+    \item Afficher la distance par la route pour relier les deux campus, de Beaulieu vers Villejean, puis dans le sens inverse.
+    \item Afficher la durée pour relier les deux campus, dans un sens puis dans l'autre.
+\end{enumerate}
+
+\section{Définition de fonctions}
+\begin{enumerate}
+    \item Créer une fonction \verb+distance_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la distance entre ces deux lieux.
+    \item Tester cette fonction pour calculer la distance de Nantes à Rennes.
+    \item Créer une fonction \verb+duree_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la duree du trajet entre ces deux lieux.
+    \item Tester cette fonction pour calculer la duree du trajet de Nantes à Rennes.
+\end{enumerate}
+
+
+\section{Voyage à étapes}
+On définit un voyage comme une liste de lieux (chaines de caractère). Chaque lieu de la liste est une étape du voyage.
+
+Pour toutes les fonctions demandées, penser à chaque fois à utiliser d'autres fonctions existantes !
+
+\begin{enumerate}
+    \item Une variable \verb+voyage1+ est définie dans le fichier source. Définir un second voyage de votre choix.
+    \item Définir une fonction \verb+distance_etapes+ qui prend en entrée un voyage, un client GraphHopper, et renvoie la liste des distances de chaque étape. Tester sur les deux voyages.
+    \item Définir une fonction \verb+distance_totale+ qui prend en entrée un voyageun client GraphHopper, et renvoie la distance totale du trajet en passant par chacune des étapes.
+\end{enumerate}
+
+\section{Quel co-voiturage ?}
+
+Dans cette partie, on suppose que l’on cherche à déterminer, parmi plusieurs choix possibles, un trajet optimal avec les contraintes suivantes :
+\begin{itemize}
+    \item les points de départ et d’arrivée sont fixés
+    \item on doit récupérer, sur le trajet, une personne en covoiturage et l’on peut choisir entre plusieurs personnes situées à des positions différentes.
+\end{itemize}
+
+La question peut par exemple être posée sous la forme suivante : \og 
+    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? \fg
+
+\begin{enumerate}
+    \item Écrire une fonction qui prend en entrée :
+    \begin{itemize}
+        \item un lieu d’origine (sous la forme d’une chaîne de caractères)
+        \item une destination (sous la forme d’une chaîne de caractères)
+        \item une liste d’options sur le trajet (sous la forme d’une liste de chaînes de caractères)
+        \item un client d’API GraphHopper
+    \end{itemize}
+    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera l’une des options correspondant au trajet le plus court (en temps).
+
+\end{enumerate}
+
+\end{document}

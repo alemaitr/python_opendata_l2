@@ -1,0 +1,141 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+\renewcommand\thesection{Exercice \arabic{section} : }
+
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L1 MIASHS}
+\titre{TD1 : Données CSV des transports bretons}
+\begin{document}
+
+La région Bretagne fournit des données sur les lignes de transports en communs.
+Il est possible de télécharger les données au format CSV. Notre objectif est de produire une carte de ces données.
+
+
+\section*{Préambule}
+\begin{enumerate}
+    \item Créer sur votre disque un dossier PythonOpenData dans lequel vous réaliserez l'ensemble des travaux. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD1.
+    \item Décompresser cette archive sur votre disque. 
+    Les fichiers doivent se trouver dans PythonOpenData/TD1.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData. 
+\end{enumerate}
+
+
+
+\section{Chargement des données}
+
+\begin{enumerate}
+    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg.
+    \item Enregistrer le fichier csv dans le dossier PythonOpenData/TD1.
+    \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ?
+    \item Noter que certaines lignes sont très longues... Le chargement du fichier csv pourrait échouer. 
+    \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont manquantes.
+    \item Donner 2 exemples de valeurs indiquées dans la colonne "color". A quoi ces valeurs correspondent-elles ?
+   \end{enumerate}
+
+\section{Préparation des données}
+Dans la suite de ce sujet, on nomme \og trajet\fg ~chaque ligne issue du fichier csv.
+Tout le code produit devra être inclus dans le fichier td1.py.
+\begin{enumerate}
+\item La fonction fournie \verb+taille_max+ prend en entrée un nom de fichier texte, et renvoie la longueur maximale d'une ligne dans ce fichier texte. Ecrire le code, en utilisant cette fonction, pour afficher la taille maximale des lignes dans le fichier mobibreizh-lignes.csv.
+
+\item Ecrire le code permettant de charger le contenu du fichier mobibreizh-lignes.csv dans une liste de dictionnaires, chaque dictionnaire représentant un trajet.
+\item Ecrire le code permettant d'afficher le nombre de trajets disponibles.
+\item Ecrire le code permettant d'afficher les clés du dictionnaire disponibles pour un trajet (par exemple le premier).
+\item Nous allons supprimer les trajets pour lesquels les coordonnées ne sont pas fournies. Ecrire une fonction \verb+elimine_sans_coordonnnees+ qui prend en entrée la liste des trajets, et renvoie une liste des trajets dans laquelle on a enlevé les trajets pour lesquels le champ \emph{geo\_point\_2d} est vide.
+\item Combien de trajets sont maintenant disponibles ? 
+\item Ecrire une fonction \verb+liste_couleurs+ qui prend en entrée la liste des trajets, en renvoie la liste des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher la liste des couleurs. Que constatez vous ? Le format des couleurs est-il homogène ? 
+\item Il faut parfois ajouter le symbole \verb+#+ devant les couleurs lorsqu'il n'est pas présent. Ecrire une fonction  \verb+corrige_couleurs+ qui prend en entrée la liste des trajets, et renvoie la liste 
+des trajets dans laquelle les couleurs ont été corrigée, par ajout du symbole \verb+#+, lorsque c'est nécessaire. Utiliser à nouveau la fonction  \verb+liste_couleurs+ pour s'assurer que les corrections sont effectives.
+\end{enumerate}
+
+
+\section{Prise en main du module cartographie}
+
+Il est mis à votre disposition un fichier \verb+cartographie.py+ contenant plusieurs fonctions codées par les enseignants. 
+Ces fonctions permettent de créer et d'afficher une carte dans un navigateur web.
+
+Voici les fonctions disponibles : 
+
+\vspace{1em}
+
+\begin{tabular}{|l|l|l|}
+    \hline
+    Nom de la fonction & Paramètres d'entrée & Valeur renvoyée \\
+    \hline
+    \verb+creer_carte(titre)+ & \verb+titre+ : titre à afficher au dessus de la carte & la carte créée \\
+    \hline
+    \verb+tracer_point(carte,+ &\verb+carte+ : la carte sur laquelle afficher le point & aucun \\
+    \verb+long,lat,label,+& \verb+long+ : la longitude du point, ex : -1.65 & \\
+    \verb+couleur)+& \verb+lat+ : la latitude du point, ex : 48.652 & \\
+    & \verb+label+ : l'étiquette à afficher au survol du point & \\
+    & \verb+couleur+ (facultatif) : la couleur du point, &\\
+    &au format chaine de caractère ex : \verb+"green"+ &\\
+    & ou hexa ex : \verb+#45A6B9+.&\\  
+    \hline
+    \verb+tracer_ligne(carte,+ &\verb+carte+ : la carte sur laquelle afficher la ligne & aucun \\
+    \verb+lst_long,lst_lat,+& \verb+lst_long+ : la liste des longitudes de la ligne, &\\
+    \verb+label,couleur)+& \hspace{2cm} ex : [-1.65, -1.67, -1.85] & \\
+    & \verb+lst_lat+ : la liste des latitudes de la ligne,  & \\
+    & \hspace{2cm} ex : [48.65, 47.25, 46.23] & \\
+    & \verb+label+ : l'étiquette à afficher au survol de la ligne & \\
+    & \verb+couleur+ (facultatif) : la couleur de la ligne, &\\
+    &au format chaine de caractère ex : \verb+"green"+ &\\
+    & ou hexa ex : \verb+#45A6B9+.&\\ 
+    \hline
+    \verb+afficher_carte(carte)+ &\verb+carte+ : la carte à afficher & aucun \\ 
+    \hline
+\end{tabular}
+
+\vspace{1em}
+Pour réaliser une carte, il faut d'abord la créer, puis tracer tous les élements nécessaires, et enfin demander l'affichage de cette carte.
+
+\begin{enumerate}
+\item En utilisant les fonctions ci-dessus, créer une carte ayant pour titre "Bretagne", y tracer un point aux coordonnées de la ville de Rennes (-1.6742900,48.1119800), en bleu, et afficher la carte.
+\item Ajouter un point sur cette carte pour Saint-Malo, aux coordonnées (-2.025674, 48.649337), en jaune.
+\item Ajouter une point sur cette carte pour Nantes, aux coordonnées (-1.553621, 47.218371), en vert.
+\item Ajouter une ligne sur cette carte, reliant Nantes, Rennes et Saint-Malo, en couleur \verb+#FF5533+.
+\end{enumerate}
+
+\section{Cartographie des points des trajets}
+L'objectif de cette partie est de tracer sur une carte les points de chaque trajet, représentés dans le fichier dans la colonne \emph{'geo\_point\_2d'}. Note : on trace bien ici des points et pas des lignes.
+
+\begin{enumerate}
+    \item Écrire une fonction \verb+ajoute_point_trajet+ qui prend en paramètre une carte, un trajet (un dictionnaire), et trace sur la carte le point 
+    correspondant de coordonnées \emph{'geo\_point\_2d'}, en utilisant la couleur \emph{Color}, et en utilisant le \emph{long\_name} en tant que légende.
+    \item Écrire une fonction \verb+carte_tous_points_2d+ qui prend en entrée la liste des trajets, qui crée une carte, ajoute un point pour chacun des trajets puis affiche la carte.
+\end{enumerate}
+
+\section{Pour aller plus loin : cartographie des lignes des trajets}
+L'objectif de cette partie est de tracer sur une carte les lignes de chaque trajet, représentées dans le fichier dans la colonne \emph{'Shape'}. La colonne  \emph{'Shape'} du fichier csv contient une structure, de type dictionnaire. Le champs \emph{coordinates} contient plusieurs listes de coordonnées, on se focalise sur la première liste de coordonnées.
+ \begin{enumerate}
+ \item Afficher le champ \emph{Shape} du premier trajet. Quel est son type ? 
+ \item Il faut préparer les données pour en extraire les listes de coordonnées. Écrire une fonction \verb+prepare_lst_coord+ qui prend en entrée un trajet
+ et qui renvoie le trajet enrichi avec les listes de coordonnées préparées pour ce trajet. 
+ Il faudra notamment : 
+  \begin{itemize}
+    \item convertir la chaine de caractère du champ \emph{Shape} en dictionnaire, en utilisant \verb+json.loads(chaine)+
+    \item accéder à la première liste des coordonnées,
+    \item créer et remplir deux listes \verb+lst_long+ et \verb+lst_lat+,
+    \item ajouter ces deux listes comme 2 éléments du dictionnaire du trajet.
+  \end{itemize}
+\item Écrire une fonction \verb+ajoute_ligne_trajet+, qui prend en paramètre une carte, un trajet (un dictionnaire), et trace sur la carte la ligne de coordonnées \emph{'lst\_long'} et \emph{lst\_lat},
+ en utilisant la couleur \emph{Color}, et en utilisant le \emph{long\_name} en tant que légende.
+ \item Écrire une fonction \verb+carte_toutes_lignes+ qui prend en entrée la liste des trajets, qui crée une carte, ajoute un point pour chacun des trajets puis affiche la carte.
+
+ \end{enumerate}
+\end{document}

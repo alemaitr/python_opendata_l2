@@ -1,0 +1,57 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+\renewcommand\thesection{Exercice \arabic{section} : }
+
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L1 MIASHS}
+\titre{TD2 : Problèmes de trajets, co-voiturages et copains}
+\begin{document}
+
+\section*{Préambule}
+\begin{enumerate}
+    \item Dans votre dossier PythonOpenData, créer un sous-répertoire TD2 dans lequel vous réaliserez l'ensemble des travaux. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD2.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD2. 
+    \item Copier le fichier credentials.json du TD1 dans le dossier PythonOpenData/TD2.
+\end{enumerate}
+
+
+
+\section{Quel co-voiturage ?}
+
+Dans cette partie, on suppose que l’on cherche à déterminer, parmi plusieurs choix possibles, un trajet optimal avec les contraintes suivantes :
+\begin{itemize}
+    \item les points de départ et d’arrivée sont fixés
+    \item on doit récupérer, sur le trajet, une personne en covoiturage et l’on peut choisir entre plusieurs personnes situées à des positions différentes.
+\end{itemize}
+
+La question peut par exemple être posée sous la forme suivante : \og 
+    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? \fg
+
+\begin{enumerate}
+    \item Écrire une fonction qui prend en entrée :
+    \begin{itemize}
+        \item un lieu d’origine (sous la forme d’une chaîne de caractères)
+        \item une destination (sous la forme d’une chaîne de caractères)
+        \item une liste d’options sur le trajet (sous la forme d’une liste de chaînes de caractères)
+        \item un client d’API GraphHopper
+    \end{itemize}
+    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera l’une des options correspondant au trajet le plus court (en temps).
+
+\end{enumerate}
+
+\end{document}
