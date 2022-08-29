@@ -13,9 +13,10 @@ def acces_cle_api():
     data = json.load(fp)
     return data["GraphHopper"]
     
-#Fonctions pour l'exercice 4
+#Fonctions pour l'exercice 3
 
-#Fonctions pour l'exercice 5
+
+#Fonctions pour l'exercice 4
 
 
 
@@ -25,7 +26,6 @@ def acces_cle_api():
 #######################################################################
 #Tests et appels de fonctions
 #######################################################################
-os.chdir("TD2")
 
 #Exercice 1
 
@@ -36,6 +36,5 @@ os.chdir("TD2")
 
 
 #Exercice 4
+voyage1 = ["Rennes","Le Mans", "Tours", "Clermont-Ferrand", "Avignon"]
 
-
-#Exercice 5
