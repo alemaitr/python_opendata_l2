@@ -1,4 +1,5 @@
 *.out
 *.aux
 *.log
+_build
 TD6/Corrige/*.csv
