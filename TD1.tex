@@ -84,27 +84,5 @@ Pour toutes les fonctions demandées, penser à chaque fois à utiliser d'autres
     \item Définir une fonction \verb+distance_totale+ qui prend en entrée un voyageun client GraphHopper, et renvoie la distance totale du trajet en passant par chacune des étapes.
 \end{enumerate}
 
-\section{Quel co-voiturage ?}
-
-Dans cette partie, on suppose que l’on cherche à déterminer, parmi plusieurs choix possibles, un trajet optimal avec les contraintes suivantes :
-\begin{itemize}
-    \item les points de départ et d’arrivée sont fixés
-    \item on doit récupérer, sur le trajet, une personne en covoiturage et l’on peut choisir entre plusieurs personnes situées à des positions différentes.
-\end{itemize}
-
-La question peut par exemple être posée sous la forme suivante : \og 
-    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? \fg
-
-\begin{enumerate}
-    \item Écrire une fonction qui prend en entrée :
-    \begin{itemize}
-        \item un lieu d’origine (sous la forme d’une chaîne de caractères)
-        \item une destination (sous la forme d’une chaîne de caractères)
-        \item une liste d’options sur le trajet (sous la forme d’une liste de chaînes de caractères)
-        \item un client d’API GraphHopper
-    \end{itemize}
-    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera l’une des options correspondant au trajet le plus court (en temps).
-
-\end{enumerate}
 
 \end{document}
