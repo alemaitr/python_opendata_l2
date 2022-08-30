@@ -1,6 +1,8 @@
 *.out
 *.aux
 *.log
+*.fls
+*.fdb_latexmk
 _build
 TD6/Corrige/*.csv
 TD1/Corrige/credentials.json

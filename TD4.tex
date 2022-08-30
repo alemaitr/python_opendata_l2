@@ -1,0 +1,72 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+\renewcommand\thesection{Exercice \arabic{section} : }
+
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L2 MIASHS}
+\titre{TD4 : Restaurants new-yorkais}
+\begin{document}
+
+Ce sujet traite des fichiers JavaScript Object Notation (JSON).
+Ce format permet de stocker des données structurées, par exemple avec une organisation hiérarchique.
+
+\section*{Préambule}
+\begin{enumerate}
+    \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD4 dans lequel vous réaliserez l'ensemble des travaux.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD4. 
+\end{enumerate}
+
+Dans ce TD, on se tourne vers un jeu de données recensant des notes attribuées à des restaurants de la ville de New York.
+
+\section{Chargement des données}
+
+\begin{enumerate}
+    \item Sur CURSUS, télécharger le jeu de données \verb+NYfood.json+ et l'enregistrer dans le dossier PythonOpenData/TD5-6.
+    \item Visualiser avec Visual Studio Code le contenu du fichier JSON.
+    \item Quels sont les attributs (clés de dictionnaires) de ce jeu de données ? Que contient l'attribut \verb+grades+ (qui signifie \verb+notes+ en français) ?
+\end{enumerate}
+
+\section{Extraction d'informations élémentaires}
+
+Dans la suite de ce sujet, on nomme \og restaurant\fg ~chaque dictionnaire issu du fichier JSON.
+Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans un nouveau fichier \verb+td6.py+.
+
+\begin{enumerate}
+\item Charger le contenu du fichier \verb+NYfood.json+ dans une liste de dictionnaires, chaque dictionnaire représentant un restaurant.
+
+\item Combien y a-t-il de restaurants dans ce fichier ?
+
+\item Combien y a-t-il de restaurants situés à Manhattan listés dans ce fichier ?
+
+\item Écrire une fonction qui prend en entrée la liste des restaurants et retourne une liste sans doublon des quartiers dans lesquels se situent les restaurants listés dans ce fichier.
+
+\item Écrire une fonction qui prend en entrée la liste des restaurants et affiche, pour chaque restaurant du quartier ``Manhattan'', un récapitulatif de la forme \verb+nom_du_restaurant: adresse+ où l'adresse est composée de \verb+building, street, zipcode New York, USA+
+
+\item Quel est le nombre total de notes attribuées aux restaurants du fichier ?
+
+\item Quelles sont les valeurs possibles de notes attribuées aux restaurants par les évaluateurs ?
+\end{enumerate}
+
+\section{Travail spécifique sur les dates}
+
+\begin{enumerate}
+    \item Remarquer que les dates associées aux notes n'ont pas été reconnues comme telles
+    \item Écrire une fonction qui prend en entrée la liste des restaurants et retourne une version transformée dans laquelle les dates sont codées au format \verb+datetime.datetime+.
+    \item Calculer, pour chaque mois de l'année 2014, le nombre total de notes attribuées (on rappelle que les variables de type \verb+datetime+ ont des attributs \verb+year+ et \verb+month+ accessibles via \verb+d.year+ et \verb+d.month+).
+\end{enumerate}
+
+\end{document}
