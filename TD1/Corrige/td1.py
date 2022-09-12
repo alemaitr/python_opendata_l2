@@ -71,8 +71,8 @@ print(f"Distance de Villejean à Beaulieu {dist_villejean_beaulieu}km")
 duree_villejean_beaulieu_voit = gh_client.duration([coor_villejean,coor_beaulieu],unit="min")
 print(f"Durée de Villejean à Beaulieu en voiture {duree_villejean_beaulieu_voit}min")
 
-# duree_villejean_beaulieu_velo = gh_client.duration([coor_villejean,coor_beaulieu],vehicle ="bike",unit="min")
-# print(f"Durée de Villejean à Beaulieu en vélo {duree_villejean_beaulieu_velo}min")
+duree_villejean_beaulieu_velo = gh_client.duration([coor_villejean,coor_beaulieu],vehicle ="bike",unit="min")
+print(f"Durée de Villejean à Beaulieu en vélo {duree_villejean_beaulieu_velo}min")
 
 
 #Exercice 3
