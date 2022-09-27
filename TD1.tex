@@ -22,9 +22,13 @@
 
 \section*{Travail à préparer avant la séance}
 \begin{itemize}
-    \item Créez-vous un compte GraphHopper en cliquant ici (vous utiliserez l’URL \url{http://www.univ-rennes2.fr} pour le champ “site web”)
-\item Créez-vous une clé d’API en vous rendant, connecté avec votre compte, à l’adresse \url{https://graphhopper.com/dashboard/#/api-keys}
-\item Sauvegarder la clé d'API créée.
+    \item Aller sur le site de graphHopper : https://graphhopper.com/
+    \item Se créer un compte (sign up). Vous pouvez indiquer "Université Rennes 2" pour le champ Company.
+    \item Vous allez recevoir un mail de confirmation : cliquer sur le lien reçu par mail pour valider votre compte.
+    \item Se connecter avec vos identifiants sur GraphHopper
+    \item Aller dans l'onglet API key
+    \item Créer une clé avec "Add API key". Dans description, vous pouvez indiquer Python L2
+    \item Sauvegarder la chaine textuelle de la clé, de type e7c81e8f-fcxxxx-xxxxx-xxxxx.
 \end{itemize}
 
 \section*{Préambule}
@@ -34,7 +38,7 @@
     \item Décompresser cette archive sur votre disque. 
     Les fichiers doivent se trouver dans PythonOpenData/TD1.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD1. 
 \end{enumerate}
 
 \section*{Installation du module graphh}
@@ -58,17 +62,17 @@ Note : cette action est à effectuer une fois pour toutes sur votre machine pers
         
 \section{Prise en main de GraphHopper}
 \begin{enumerate}
-    \item Créer un clien GraphHopper en utilisant votre clé d'API.
+    \item Créer un client GraphHopper en utilisant votre clé d'API.
     \item Obtenir les coordonnées GPS de "Rennes Beaulieu" ainsi que de "Rennes Villejean".
     \item Afficher la distance par la route pour relier les deux campus, de Beaulieu vers Villejean, puis dans le sens inverse.
-    \item Afficher la durée pour aller de Villejean à Beaulieu en voiture \emph{puis en vélo}. %(mais ne fonctionne pas ???)
+    \item Afficher la durée pour aller de Villejean à Beaulieu en voiture puis en vélo. 
 \end{enumerate}
 
 \section{Définition de fonctions}
 \begin{enumerate}
-    \item Créer une fonction \verb+distance_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la distance en kilomètres entre ces deux lieux.
+    \item Créer une fonction \verb+distance_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la distance, en kilomètres, entre ces deux lieux.
     \item Tester cette fonction pour calculer la distance de Rennes à Brest.
-    \item Créer une fonction \verb+duree_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la duree du trajet en minutes entre ces deux lieux.
+    \item Créer une fonction \verb+duree_lieux+ qui prend en entrée un client GraphHopper, et deux chaines de caractères représentant des lieux, et qui renvoie la duree du trajet en voiture, en minutes, entre ces deux lieux.
     \item Tester cette fonction pour calculer la duree du trajet de Rennes à Brest.
 \end{enumerate}
 

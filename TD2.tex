@@ -29,7 +29,7 @@
     \item Copier le fichier credentials.json du TD1 dans le dossier PythonOpenData/TD2.
 \end{enumerate}
 
-
+Ce TD présente trois problèmes de calculs de trajets. Pour chacun des problèmes, on pourra utiliser des fonctions disponibles dans le fichier source td2.py.
 
 \section{Quel co-voiturage ?}
 
@@ -39,19 +39,61 @@ Dans cette partie, on suppose que l’on cherche à déterminer, parmi plusieurs
     \item on doit récupérer, sur le trajet, une personne en covoiturage et l’on peut choisir entre plusieurs personnes situées à des positions différentes.
 \end{itemize}
 
-La question peut par exemple être posée sous la forme suivante : \og 
-    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? \fg
+La question peut par exemple être posée sous la forme suivante : \emph{
+    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? }
+\\
 
-\begin{enumerate}
-    \item Écrire une fonction qui prend en entrée :
+    Écrire une fonction qui prend en entrée :
     \begin{itemize}
         \item un lieu d’origine (sous la forme d’une chaîne de caractères)
         \item une destination (sous la forme d’une chaîne de caractères)
         \item une liste d’options sur le trajet (sous la forme d’une liste de chaînes de caractères)
         \item un client d’API GraphHopper
     \end{itemize}
-    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera l’une des options correspondant au trajet le plus court (en temps).
+    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera \emph{l’une des options} correspondant au trajet le plus court.
 
-\end{enumerate}
+\section{Où se retrouver ?}
+
+Plusieurs ami(e)s souhaitent se retrouver, tout en minimisant leur distance de trajet. Plus précisément, ils souhaitent que la somme des distances parcourues par eux tous pour se retrouver soit la plus faible possible.
+    
+La question peut par exemple être posée sous la forme suivante :
+    
+\emph{Pour trois amis habitant respectivement "Paris, 12ème arrondissement", "Auxerre" et "Lyon, 1er arrondissement", est-il préférable (selon le critère énoncé ci-dessus) de se rencontrer à Rennes ou à Strasbourg ?}
+\newpage
+
+Écrire une fonction qui prend en entrée :
+\begin{itemize}
+
+         \item une liste de positions des amis (chaque position étant représentée par une chaîne de caractères)
+           \item une liste de lieux de rencontres possibles (sous la forme d'une liste de chaînes de caractères)
+            \item un client d'API GraphHopper
+\end{itemize}
+        et retourne l'option la plus favorable (par rapport au critère énoncé plus haut). En cas d'égalité, votre fonction retournera \emph{l'une des options} les plus favorables.
+
+\section{Trouver un partenaire sportif}
+Ici, on suppose que l'on souhaite faire du sport et que, pour un sport donné, on veut chercher dans une liste de partenaires potentiels celui ou celle qui se trouve le plus proche de nous.
+
+La question peut par exemple être posée sous la forme suivante :
+
+      \emph{  Voici ma liste de contacts :
+      \begin{itemize}
+            \item Pauline, joue au tennis, se trouve "Place du recteur Henri Le Moal, Rennes, France"
+            \item Ernest, joue au football, se trouve "Place du Parlement de Bretagne, Rennes, France"
+            \item Felix, joue au tennis, se trouve "Rue Lebastard, Rennes, France"
+            \item Sarah, joue au football, se trouve "Place du Parlement de Bretagne, Rennes, France"
+            \item Ingrid, pratique la course à pied, se trouve "Mail François Mitterrand, Rennes, France"
+      \end{itemize}
+        Sachant que je me trouve Place de la République à Rennes, quel est, dans ma liste de contacts, celui ou celle qui se trouve le plus proche de moi et qui joue au tennis ?}
+  \\      
+
+  Écrire une fonction qui prend en entrée :
+    \begin{itemize}
+        \item une position (représentée par une chaîne de caractères)
+        \item une liste de contacts (sous la forme d'une liste de dictionnaires telle que \verb+liste_dicos+ dans le fichier source)
+        \item une activité physique (représentée par une chaîne de caractères)
+        \item un client d'API GraphHopper
+    \end{itemize}
+    et retourne le nom de la personne dont la localisation est la plus proche de nous et qui pratique le sport voulu. En cas d'égalité, votre fonction retournera le nom \emph{ de l'une des personnes} dont la localisation est la plus proche de nous et qui pratique le sport voulu.
+
 
 \end{document}
