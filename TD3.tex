@@ -74,18 +74,16 @@ Les questions suivantes nécessitent de manipuler les données depuis Python et 
 \item À quelle heure du jour compte-t-on le plus grand nombre de passages de vélos tous compteurs et tous jours confondus ?
 \end{enumerate}
 
-\section{Export au format CSV}
+\section{Export au format JSON}
 
-Dans cette partie, il va s'agir d'enregistrer un export du contenu du fichier \verb+eco-counter-data_clean.json+ au format CSV.
-Toutefois, le format CSV n'étant pas adapté pour stocker des listes de valeurs, il faudra pré-traiter les données (et notamment les attributs \verb+gps_coords+ et \verb+date+) pour coller aux besoins du format CSV.
-
+Dans cette partie, il va s'agir d'enregistrer un export du contenu du fichier \verb+eco-counter-data_clean.json+ avec des données corrigées.
 
 \begin{enumerate}
     \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+gps_coords+ a été remplacé par deux nouveaux attributs \verb+latitude+ et \verb+longitude+ (qui correspondent respectivement au premier et second éléments de la liste \verb+gps_coords+).
     
-    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+date+ est représenté par une chaîne de caractères utilisant le format ISO.
+    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+date+ est représenté par une chaîne de caractères de la forme \verb+20/03/2007 17h-18h+.
     
-    \item En utilisant les deux fonctions précédentes et la classe \verb+DictWriter+ du module \verb+csv+\footnote{\url{https://docs.python.org/3/library/csv.html\#csv.DictWriter}}, exporter le jeu de données au format CSV dans un fichier nommé \verb+eco-counter-data_clean.csv+
+    \item En utilisant les deux fonctions précédentes, exporter cette nouvelle version du jeu de données dans un fichier nommé \verb+eco-counter-data_out.json+. Pour une meilleur lisibilité, vous ferez en sorte de fixer l'indentation du fichier obtenu à 2 caractères.
 \end{enumerate}
 
 \end{document}

@@ -69,4 +69,16 @@ Les questions suivantes nécessitent de manipuler les données depuis Python et 
     \item Calculer, pour chaque mois de l'année 2014, le nombre total de notes attribuées (on rappelle que les variables de type \verb+datetime+ ont des attributs \verb+year+ et \verb+month+ accessibles via \verb+d.year+ et \verb+d.month+).
 \end{enumerate}
 
+\section{Export au format CSV}
+
+Dans cette partie, il va s'agir d'enregistrer un export du contenu du fichier \verb+NYfood.json+ au format CSV, en s'assurant donc que l'on n'ait plus d'attributs imbriqués.
+
+\begin{enumerate}
+    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+grades+ a été supprimé et remplacé par un attribut \verb+n_grades+ qui indique le nombre de notes reçues.
+    
+    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+address+ est supprimé et remplacé par deux nouveaux attributs \verb+latitude+ et \verb+longitude+ (l'attribut \verb+coordinates+ est une liste contenant la longitude et la latitude, stockées dans cet ordre).
+    
+    \item En utilisant les deux fonctions précédentes, exporter cette nouvelle version du jeu de données dans un fichier nommé \verb+NYfood.csv+.
+\end{enumerate}
+
 \end{document}
