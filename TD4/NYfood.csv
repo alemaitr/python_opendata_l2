@@ -1,0 +1,143 @@
+borough;cuisine;name;restaurant_id;n_grades;latitude;longitude
+Brooklyn;Donuts;Nostrand Donut Shop;40365226;6;40.6509823;-73.94933739999999
+Bronx;Café/Coffee/Tea;Terrace Cafe;40368018;3;40.8502883;-73.8786113
+Manhattan;Italian;Trattoria Della Arte;40387754;4;40.7652002;-73.9805746
+Queens;Pizza;Singas Famous Pizza;40399256;5;40.7410885;-73.8813376
+Manhattan;Spanish;El Rinconcito Restaurant;40401216;5;40.7254798;-73.97702629999999
+Brooklyn;Pizza;Jerusalem Pizza;40401837;4;40.617828;-73.960202
+Manhattan;Pizza/Italian;Lombardi'S;40402172;3;40.7215332;-73.99563440000001
+Manhattan;American ;Mutual Of America;40404069;4;40.7575374;-73.9741793
+Manhattan;Eastern European;Yonah Shimmels Knishes;40544576;5;40.7231435;-73.9901259
+Staten Island;American ;Mug Shots;40550262;4;40.5975538;-74.18227569999999
+Manhattan;Afghan;Afghan Kebab House;40552806;5;40.768076;-73.959249
+Brooklyn;Latin (Cuban, Dominican, Puerto Rican, South & Central American);La Familia Restaurant;40554349;4;40.6548509;-74.00416179999999
+Queens;American ;Jays Restaurant;40559832;4;40.6794932;-73.7775135
+Manhattan;French;Picholine;40604688;5;40.772009;-73.9810679
+Manhattan;Pizza;Domino'S Pizza;40605511;5;40.811811;-73.954382
+Brooklyn;American ;Taco Bell, Au Bon Pain;40618821;5;40.6905615;-73.9976592
+Manhattan;Sandwiches/Salads/Mixed Buffet;Au Bon Pain;40738008;4;40.7027702;-74.0132552
+Queens;Bakery;Ciros Pastry Shop;40746162;5;40.5782181;-73.84947930000001
+Bronx;Juice, Smoothies, Fruit Salads;Astral Fitness & Wellness;40760469;4;40.8766056;-73.90567390000001
+Manhattan;Café/Coffee/Tea;City Chow Cafe;40789374;4;40.7390882;-73.9900893
+Manhattan;American ;Comic Strip;40823209;5;40.774806;-73.953558
+Brooklyn;Pizza;Original Pizza;40840790;5;40.620627;-73.917091
+Manhattan;Seafood;Blue Fin;40865946;4;40.7594462;-73.98559709999999
+Queens;Seafood;Taverna Kyclades;40901879;5;40.7753227;-73.909217
+Manhattan;Delicatessen;Broadway Deli & Bagel'S;40931920;4;40.7601242;-73.9961543
+Manhattan;American ;Moca Bar & Lounge;40938384;4;40.806289;-73.95350599999999
+Queens;Asian;Somoon;40941224;5;40.7612647;-73.80386779999999
+Brooklyn;Italian;Europa Bakery & Pastry Shop;40948401;4;40.61640939999999;-73.985646
+Queens;Chinese;Jade Linden Restaurant;40962966;5;40.6701023;-73.85703029999999
+Brooklyn;Delicatessen;One Way Deli;41029952;6;40.6932942;-73.9908107
+Manhattan;American ;Providence;41058317;3;40.7671561;-73.9833115
+Manhattan;Bakery;Amy'S Bread;41085883;5;40.730947;-74.0030587
+Manhattan;Bakery;Blue Ribbon Bakery Market;41098050;4;40.729171;-74.003282
+Bronx;American ;Sapito'S Sports Bar & Grill;41129035;5;40.837066;-73.834498
+Bronx;Sandwiches;Subway;41149695;4;40.8623051;-73.8434039
+Manhattan;Korean;Island Glen Usa;41163829;5;40.746619;-73.98965919999999
+Bronx;Pizza;Best Italian Pizza;41164361;4;40.8624744;-73.89678649999999
+Bronx;Mexican;Distribuidora San Marcos;41183397;5;40.82223889999999;-73.897071
+Manhattan;Korean;Shilla Korean Barbecue House;41200526;7;40.748122;-73.987189
+Brooklyn;Caribbean;David'S Bakery;41226851;3;40.6319235;-73.9434885
+Manhattan;Pizza;Papa John'S;41228236;4;40.7803979;-73.94946
+Manhattan;American ;Lelabar;41279957;4;40.730384;-74.006554
+Manhattan;American ;Santos Party House;41292184;4;40.7178239;-74.0012835
+Queens;Chinese;New Joy Kitchen Chinese Restaurant;41296144;5;40.7043111;-73.81455079999999
+Manhattan;Mexican;La Guadalupana Restaurant;41298602;7;40.83553;-73.9439866
+Staten Island;Italian;Giuliana Ristorante;41321209;4;40.539822;-74.1485189
+Queens;Café/Coffee/Tea;Caffeina Espresso Bar;41382110;5;40.74891400000001;-73.9446222
+Bronx;American ;Frankie'S Tavern;41389636;5;40.905125;-73.90106899999999
+Queens;American ;Cibo/Deep Blue On The Fly;41393345;4;40.6458994;-73.7776963
+Queens;American ;Two Boots/ Stand 412;41395529;4;40.7529864;-73.8509773
+Manhattan;Sandwiches;Le Pain Quotidien;41408351;5;40.7603162;-73.97497589999999
+Bronx;Bakery;Pastora Bakery;41416164;7;40.8158272;-73.9077518
+Bronx;Latin (Cuban, Dominican, Puerto Rican, South & Central American);Salimar;41435037;5;40.809852;-73.923945
+Queens;Donuts;Dunkin' Donuts;41435077;3;40.7079014;-73.830681
+Manhattan;Korean;Judy Karaoke;41438509;5;40.7494113;-73.98425790000002
+Queens;Hamburgers;Mcdonald'S;41442614;4;40.7132124;-73.82923269999999
+Staten Island;American ;Katie'S Cafe In Skating Rink;41443344;3;40.543785;-74.232298
+Bronx;Chinese;Ka Wah Chinese Restaurant;41445823;6;40.8738699;-73.88473019999999
+Brooklyn;Latin (Cuban, Dominican, Puerto Rican, South & Central American);Cafe Argentino;41456654;5;40.7111303;-73.9513697
+Manhattan;American ;Drunken Horse;41471964;3;40.748073;-74.004226
+Queens;Latin (Cuban, Dominican, Puerto Rican, South & Central American);Los Sauces Bar & Restaurant;41473154;4;40.7522323;-73.8545508
+Manhattan;Latin (Cuban, Dominican, Puerto Rican, South & Central American);Zengo Nyc;41474378;5;40.7496967;-73.9755346
+Manhattan;American ;The Lambs Club;41499145;4;40.7564613;-73.9845479
+Staten Island;American ;Bagel Bistro & Diner;41505432;6;40.6129702;-74.1240593
+Bronx;Chinese;Sun'S Kang Rong Restaurant;41507479;5;40.8300011;-73.9149801
+Queens;Donuts;Dunkin Donuts;41524735;4;40.71057220000001;-73.79275849999999
+Brooklyn;Japanese;Taro Sushi Ny Inc;41525547;4;40.6796383;-73.9745645
+Manhattan;Café/Coffee/Tea;Peridance Capezio Center Cafe;41540529;4;40.732705;-73.988739
+Manhattan;American ;New Star Cafe;41542520;7;40.754635;-73.9883849
+Queens;Delicatessen;John'S Cafe Deli;41545059;5;40.712993;-73.916502
+Queens;Donuts;Dunkin Donuts;41548052;4;40.7643754;-73.88586169999999
+Queens;Chinese;King Garden Chinese Restaurant;41552677;5;40.723487;-73.8480122
+Bronx;American ;Vithas Coffee Shop;41555602;6;40.8037149;-73.906064
+Manhattan;Pizza;Bad Horse Pizza;41563804;4;40.8068241;-73.9534067
+Manhattan;Jewish/Kosher;2Nd Avenue Deli;41588604;4;40.7695385;-73.9543817
+Queens;American ;Show Palace;41596694;5;40.7510895;-73.9455116
+Manhattan;Bakery;Pasteles Capy;41597477;4;40.797001;-73.938525
+Queens;Spanish;Mini Picanteria El Guayaquileno Ii;41604026;6;40.7492865;-73.8700438
+Queens;Korean;Rolly Kimbab;41610408;5;40.7608866;-73.80248399999999
+Queens;American ;Triple Crown Cafe;41611705;4;40.6729864;-73.8328389
+Brooklyn;Bottled beverages, including water, sodas, juices, etc.;New Golden House;41613545;4;40.701186;-73.941029
+Manhattan;Pizza/Italian;Little Italy Pizza/Papaya Dog;41614718;5;40.7475145;-73.9847695
+Manhattan;American ;Phoenix;41618267;4;40.730016;-73.9811835
+Manhattan;Chicken;Simply Chicken-Lobster Roll East;41618411;3;40.7508707;-73.99426609999999
+Bronx;Chinese;New Rainbow Chinese Restaurant;41622444;4;40.8462404;-73.8925517
+Staten Island;Eastern European;Cafe Gourmand;41628517;3;40.5719841;-74.0951962
+Manhattan;American ;Mcdonald'S;41629269;4;40.7082556;-74.0049104
+Queens;Café/Coffee/Tea;Dunkin Donuts Coffee Express;41629670;3;40.6434612;-73.7822056
+Bronx;Italian;Antonio'S;41636621;5;38.5319584;-121.4158208
+Queens;Peruvian;La Cabana Peruana;41639084;6;40.679922;-73.84553
+Queens;Chinese;New Win Shing;41650019;7;40.755681;-73.912498
+Brooklyn;American ;The Harp;41653491;3;40.6298064;-74.0287297
+Queens;Ice Cream, Gelato, Yogurt, Ices;Carvel;41654548;4;40.70071610000001;-73.8953066
+Manhattan;Greek;Ethos Gallery;41655550;4;40.7544974;-73.9659551
+Manhattan;Japanese;Sea King;41657649;4;40.7386229;-73.981921
+Manhattan;Delicatessen;The Spot Cafe;41658609;5;40.7427988;-73.99197389999999
+Brooklyn;Donuts;Dunkin Donuts;41660728;3;40.68380579999999;-73.975526
+Manhattan;Italian;Sbarro;41667651;3;40.7605538;-73.9843207
+Queens;Asian;The Buffet;41686991;4;40.7812795;-73.8408115
+Brooklyn;Chinese;Golden Imperial Seafood Restaurant;41687397;4;40.6366272;-74.0145153
+Brooklyn;Japanese;Ramen Yebisu/Baoburg;41688151;4;40.7178403;-73.9595695
+Manhattan;Thai;Bangkok House;41692194;6;40.76049;-73.990197
+Brooklyn;American ;Mayfield;41697040;3;40.6749297;-73.95670199999999
+Queens;Tex-Mex;Fresh Tortillas Grill;41697378;3;40.7069303;-73.8345078
+Queens;American ;Coffee Shop Deli;41700219;3;40.7084143;-73.87202479999999
+Bronx;Indian;Premium Sweets & Restaurant;41704624;3;40.83593949999999;-73.85486929999999
+Manhattan;Chinese;King Dragon;41711697;3;40.792862;-73.950369
+Queens;Pizza/Italian;Martiniello'S Ii Pizzeria Restaurant;41713775;3;40.7292549;-73.9005025
+Staten Island;American ;Buffalo Wild Wings;41714253;3;40.61197809999999;-74.1582069
+Manhattan;Steak;Mark Joseph Steakhouse;41716286;3;40.7083453;-74.0015335
+Manhattan;American ;Feast;41718746;2;40.7325384;-73.98805140000002
+Manhattan;Spanish;100% Patacon Cachapa Yaroa;41719221;3;40.834426;-73.9407018
+Queens;Caribbean;Clippers Ii;50000291;2;40.6740781;-73.7354008
+Queens;Hamburgers;Williams Burgers;50000453;2;40.7379639;-73.9294324
+Manhattan;Thai;Potjanee;50000496;2;40.7298732;-74.0035063
+Manhattan;Donuts;Dunkin Donuts;50000547;2;40.7595022;-73.98376929999999
+Manhattan;French;Casimir & Co;50001070;3;40.7711236;-73.96201760000001
+Queens;Asian;Sushi Fussion Express Inc.;50001156;1;40.72699009999999;-73.8222341
+Queens;Pizza;Emilia'S Pizzeria;50002844;1;40.7661407;-73.9150813
+Bronx;American ;Madison Cafe;50003475;2;40.8142274;-73.919679
+Queens;Pizza/Italian;Dino'S Pizza & Pasta;50004969;2;40.7569535;-73.9067018
+Queens;American ;Secrets;50009155;0;40.664641;-73.734422
+Brooklyn;Ice Cream, Gelato, Yogurt, Ices;Maxie Cafe;50009394;1;40.6019616;-74.00314089999999
+Manhattan;Chinese;China Local Cuisine;50009575;3;40.7142098;-73.99488219999999
+Manhattan;Chicken;Royal Fried Chicken Inc;50009759;1;40.720461;-73.9786361
+Queens;Café/Coffee/Tea;Kung Fu Tea;50009810;1;40.720751;-73.8467768
+Manhattan;Other;66Th Street Donuts Llc;50011464;0;40.7664957;-73.9653112
+Queens;Pizza;Joe'S Pizza And Pasta Restaurant;50013258;1;40.6941235;-73.8500014
+Queens;Ice Cream, Gelato, Yogurt, Ices;Red Mango;50013420;1;40.7620398;-73.76993039999999
+Manhattan;American ;Chadbourne & Parke;50014249;1;40.5114481;-78.3969541
+Brooklyn;Chinese;Emerald Fortune;50014469;1;40.6047805;-73.9785522
+Queens;Moroccan;Atlas Mountain Sandwich Shop;50014623;1;40.771734;-73.926731
+Queens;Japanese;A Sushi;50015505;1;40.7197721;-73.84376050000002
+Brooklyn;Barbecue;Arrogant Swine;50016031;1;40.7100177;-73.9333297
+Manhattan;Thai;Senn Thai Comfort Food;50016060;1;40.7850197;-73.977251
+Manhattan;American ;Barcade;50016566;1;40.72911560000001;-73.98953929999999
+Manhattan;Juice, Smoothies, Fruit Salads;Oasis Jimma Juice Bar;50017185;1;40.815009;-73.95929799999999
+Manhattan;Bottled beverages, including water, sodas, juices, etc.;Organic Gemini;50017220;1;40.739143;-74.00702
+Manhattan;American ;124 Coffee Shop;50017240;1;40.8049519;-73.9403658
+Bronx;Other;Acapella Gourmet Pizza & Restaurant Corp;50017596;0;40.8835412;-73.8978475
+Manhattan;Other;Ground-Central;50018380;0;40.749838;-73.97172789999999
+Brooklyn;Other;;50018936;0;40.670792;-73.93065899999999
