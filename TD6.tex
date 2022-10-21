@@ -17,7 +17,7 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L1 MIASHS}
-\titre{TD1 : Données CSV des transports bretons}
+\titre{TD6 : Données CSV des transports bretons}
 \begin{document}
 
 La région Bretagne fournit des données sur les lignes de transports en communs.
@@ -26,39 +26,34 @@ Il est possible de télécharger les données au format CSV. Notre objectif est 
 
 \section*{Préambule}
 \begin{enumerate}
-    \item Créer sur votre disque un dossier PythonOpenData dans lequel vous réaliserez l'ensemble des travaux. 
-    \item Télécharger sur Cursus l'archive contenant les données sources du TD1.
-    \item Décompresser cette archive sur votre disque. 
-    Les fichiers doivent se trouver dans PythonOpenData/TD1.
+    \item Créer sur votre disque un dossier TD6 dans PythonOpenData. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD6, et la décompresser.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD6. 
 \end{enumerate}
 
 
 
-\section{Chargement des données}
+\section{Chargement et analyse des données}
 
 \begin{enumerate}
-    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg.
-    \item Enregistrer le fichier csv dans le dossier PythonOpenData/TD1.
-    \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ?
-    \item Noter que certaines lignes sont très longues... Le chargement du fichier csv pourrait échouer. 
-    \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont manquantes.
+    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg, et enregistrer le fichier csv dans le dossier PythonOpenData/TD6.
+    \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ? Noter que certaines lignes sont très longues...
+    \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont parfois manquantes.
     \item Donner 2 exemples de valeurs indiquées dans la colonne "color". A quoi ces valeurs correspondent-elles ?
    \end{enumerate}
 
 \section{Préparation des données}
 Dans la suite de ce sujet, on nomme \og trajet\fg ~chaque ligne issue du fichier csv.
-Tout le code produit devra être inclus dans le fichier td1.py.
+Tout le code produit devra être inclus dans le fichier td6.py.
 \begin{enumerate}
-\item La fonction fournie \verb+taille_max+ prend en entrée un nom de fichier texte, et renvoie la longueur maximale d'une ligne dans ce fichier texte. Ecrire le code, en utilisant cette fonction, pour afficher la taille maximale des lignes dans le fichier mobibreizh-lignes.csv.
+\item La fonction fournie \verb+taille_max+ prend en entrée un nom de fichier texte, et renvoie la longueur maximale d'une ligne dans ce fichier texte. Utiliser cette fonction pour afficher la taille maximale des lignes dans le fichier mobibreizh-lignes.csv.
 
-\item Ecrire le code permettant de charger le contenu du fichier mobibreizh-lignes.csv dans une liste de dictionnaires, chaque dictionnaire représentant un trajet.
-\item Ecrire le code permettant d'afficher le nombre de trajets disponibles.
-\item Ecrire le code permettant d'afficher les clés du dictionnaire disponibles pour un trajet (par exemple le premier).
-\item Nous allons supprimer les trajets pour lesquels les coordonnées ne sont pas fournies. Ecrire une fonction \verb+elimine_sans_coordonnnees+ qui prend en entrée la liste des trajets, et renvoie une liste des trajets dans laquelle on a enlevé les trajets pour lesquels le champ \emph{geo\_point\_2d} est vide.
-\item Combien de trajets sont maintenant disponibles ? 
-\item Ecrire une fonction \verb+liste_couleurs+ qui prend en entrée la liste des trajets, en renvoie la liste des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher la liste des couleurs. Que constatez vous ? Le format des couleurs est-il homogène ? 
+\item Charger le contenu du fichier mobibreizh-lignes.csv dans une liste de dictionnaires, chaque dictionnaire représentant un trajet.
+\item Afficher le nombre de trajets disponibles.
+\item Afficher les clés du dictionnaire disponibles pour un trajet.
+\item Nous allons supprimer les trajets pour lesquels les coordonnées ne sont pas fournies. Ecrire une fonction \verb+elimine_sans_coordonnnees+ qui prend en entrée la liste des trajets, et renvoie une liste des trajets dans laquelle on a enlevé les trajets pour lesquels le champ \emph{geo\_point\_2d} est vide. Combien de trajets sont maintenant disponibles ? 
+\item Ecrire une fonction \verb+liste_couleurs+ qui prend en entrée la liste des trajets, en renvoie la liste des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher la liste des couleurs. Le format des couleurs est-il homogène ? 
 \item Il faut parfois ajouter le symbole \verb+#+ devant les couleurs lorsqu'il n'est pas présent. Ecrire une fonction  \verb+corrige_couleurs+ qui prend en entrée la liste des trajets, et renvoie la liste 
 des trajets dans laquelle les couleurs ont été corrigée, par ajout du symbole \verb+#+, lorsque c'est nécessaire. Utiliser à nouveau la fonction  \verb+liste_couleurs+ pour s'assurer que les corrections sont effectives.
 \end{enumerate}
