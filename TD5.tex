@@ -12,7 +12,7 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
-
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
 \siglemat{Python et Open data}
@@ -25,14 +25,14 @@ Ce sujet est une synthèse des travaux avec GraphHopper et avec Json.
 Le fichier mini-rando\_gps.json fournit des séries de positions GPS correspondant à des traces GPS de sorties randonnée de M. Toulemonde. On cherchera dans ce TD à écrire un programme calculant les dénivelés cumulés positif et négatif de chacune de ces randonnées. Pour cela, vous utiliserez l’API GraphHopper via le module Python graphh.
 
 \section*{Préambule}
-\begin{enumerate}
+\begin{itemize}
     \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD5 dans lequel vous réaliserez l'ensemble des travaux.
     \item Lancer l'éditeur Visual Studio Code.
     \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD5. 
     \item Télécharger le fichier mini-rando\_gps.json dans le dossier PythonOpenData/TD5.
   \item Copier le fichier credentials.json du TD1 dans le dossier PythonOpenData/TD5.
   \item Créer un fichier td5.py dans lequel vous écrirez le code du TD. 
-\end{enumerate}
+\end{itemize}
 
 \section{Altitudes avec GraphHopper}
 \begin{enumerate}

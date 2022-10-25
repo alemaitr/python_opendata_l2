@@ -12,7 +12,7 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
-
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
 \siglemat{Python et Open data}
@@ -21,16 +21,20 @@
 \begin{document}
 
 La région Bretagne fournit des données sur les lignes de transports en communs.
-Il est possible de télécharger les données au format CSV. Notre objectif est de produire une carte de ces données.
+Il est possible de télécharger les données au format CSV. 
+Notre objectif est de produire une carte de ces données.
+
+Note : nous utiliserons ici des données brutes, directement téléchargées sur le site web du fournisseur de données. 
+Une grande partie du travail va donc consister à homogénéiser et rendre accessible le format des données. 
 
 
 \section*{Préambule}
-\begin{enumerate}
+\begin{itemize}
     \item Créer sur votre disque un dossier TD6 dans PythonOpenData. 
     \item Télécharger sur Cursus l'archive contenant les données sources du TD6, et la décompresser.
     \item Lancer l'éditeur Visual Studio Code.
     \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD6. 
-\end{enumerate}
+\end{itemize}
 
 
 
