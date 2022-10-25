@@ -29,7 +29,7 @@ Il est fortement conseillé de vous aider des deux documents suivants pour ce TD
 
 % * [le document d'explication fourni pour ce cours](http://rtavenar.github.io/teaching/python_project/html/tweepy_gmaps.html)
 
-
+TODO : Améliorer en augmentant le nombre de questions, créer des questions intermédiaires. 
 
 \section*{Travail à préparer chez vous avant la séance}
 
@@ -98,18 +98,16 @@ Pour la suite, vous devrez avoir activé la fonctionnalité de \textbf{localisat
 \item  Dans le menu "Confidentialité et sécurité", cochez la case "Tweeter avec une localisation" puis validez en bas de la page en cliquant sur "Enregistrer les modifications".
 \end{itemize}
 
-8. Le fichier `tweets.csv` disponible sur CURSUS contient une liste de Tweets que vous allez maintenant poster. Pour chaque tweet, on fournit son texte ainsi que sa position GPS. Copiez ce fichier dans votre répertoire `"data"`{.haskell} et écrivez une fonction qui prend en entrée la variable d'accès à l'API et le chemin vers le fichier contenant les tweets et poste l'ensemble des Tweets contenus dans ce fichier.
-
-Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux tweet posté depuis mon TD de Python"`. Vérifiez que les Tweets apparaissent bien sur votre compte Twitter, avec la localisation voulue.
-
-
-
-9. Améliorez la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
-
+\begin{enumerate}
+    \item Le fichier \verb+tweets.csv+ disponible sur CURSUS contient une liste de Tweets. Pour chaque tweet, on fournit son texte ainsi que sa position GPS. Télécharger ce fichier dans votre répertoire TD9.
+    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et le chemin vers le fichier contenant les tweets et poste l'ensemble des Tweets contenus dans ce fichier. Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux tweet posté depuis mon TD de Python"`. 
+    \item Vérifiez que les Tweets apparaissent bien sur votre compte Twitter, avec la localisation voulue.
+    \item  Améliorer la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
+\end{enumerate}
 \section{Suppression de tweets}
 
 \begin{enumerate}
-    \itemÉcrivez une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
+    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
 \end{enumerate}
 
 

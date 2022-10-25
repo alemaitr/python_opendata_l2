@@ -39,18 +39,18 @@ def auteur(tweet):
     return tweet.author.id, tweet.author.name
 
 
-#Question 8 et 9
+#Question 3.2 et 3.4
 def tweeter_fichier(acces_api, fichier):
-    tweets=[]
+    idtweets=[]
     for ligne in csv.DictReader(open(fichier, "r", encoding='utf-8'), delimiter=";"):
         message = ligne["text"]+" [Ceci est un faux tweet avec localisation]"
         latitude = float(ligne["lat"])
         longitude = float(ligne["lng"])
         mon_tweet=acces_api.update_status(message, lat=latitude,long=longitude)
-        tweets.append(mon_tweet)
-    return tweets
+        idtweets.append(mon_tweet)
+    return idtweets
 
-#question 10
+#Question 4.1
 def efface_tweets(acces_api,liste_ident):
     for id in liste_ident :
         acces_api.destroy_status(id)
@@ -74,10 +74,10 @@ print(liste_textes_tweets(deux_tweets))
 print("Test de la fonction auteur")
 print(auteur(deux_tweets[0]))
 
-# #test question 8
-# chemin = os.path.join("data","tweets.csv")
-# nouveau_tweets=tweeter_fichier(acces_api,chemin)
+#Q3.2
+chemin ="../donnees/tweets.csv"
+nouveau_tweets=tweeter_fichier(acces_api,chemin)
 
-# #test question 9
-# liste_id = [tweet.id for tweet in nouveau_tweets[0:2]]
-# efface_tweets(acces_api,liste_id)
+# Q4.1
+liste_id = [tweet.id for tweet in nouveau_tweets[0:2]]
+efface_tweets(acces_api,liste_id)
