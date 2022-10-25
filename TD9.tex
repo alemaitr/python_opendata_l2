@@ -12,7 +12,7 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
-
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
 \siglemat{Python et Open data}
@@ -70,7 +70,7 @@ Pour commencer, vous allez devoir vous authentifier sur l'API Twitter. Comme ind
 
 \end{verbatim}
 où les `"..."` seront remplacés par vos identifiants fournis par l'interface Twitter.
-\item Écrire une fonction \verb+acces_api+ qui lit les identifiants dans le fichier \verb+credentials.json+ et qui retourne une variable d'accès à l'API Twitter pour ces identifiants.
+\item Écrire une fonction \verb+acces_api+ qui prend en entrée le nom d'un fichier json contenant les clés, qui lit les identifiants dans ce fichier et qui retourne une variable d'accès à l'API Twitter pour ces identifiants.
 \end{enumerate}
 
 \section{Consultation de tweets}
@@ -83,12 +83,12 @@ où les `"..."` seront remplacés par vos identifiants fournis par l'interface T
 
 \item En utilisant la fonction de la question précédente, écrire une fonction qui prend une liste de tweets en entrée et retourne la liste des textes des tweets en question.
 
-\item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et retourne l'identifiant de son auteur.
+\item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et renvoie un tuple contenant retourne l'identifiant et le nom de son auteur.
 
 \end{enumerate}
 
 
-\section{Écriture de tweets des tweets}
+\section{Écriture de tweets}
 
 Pour la suite, vous devrez avoir activé la fonctionnalité de \textbf{localisation de vos tweets} sur la plateforme twitter. Pour cela :
 
@@ -106,10 +106,11 @@ Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux t
 
 9. Améliorez la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
 
+\section{Suppression de tweets}
 
-
-10. Écrivez une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
-
+\begin{enumerate}
+    \itemÉcrivez une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
+\end{enumerate}
 
 
 \end{document}
