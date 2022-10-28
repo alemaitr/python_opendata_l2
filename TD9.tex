@@ -12,7 +12,7 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
-
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
 \siglemat{Python et Open data}
@@ -22,14 +22,14 @@
 
 Dans ce TD, vous utiliserez le module `tweepy` pour manipuler des données issues de l'API Twitter.
 
-Il est fortement conseillé de vous aider des deux documents suivants pour ce TD :
+%Il est fortement conseillé de vous aider des deux documents suivants pour ce TD :
 
 
 % * [l'aide en ligne de tweepy](http://tweepy.readthedocs.io/en/v3.6.0/api.html)
 
 % * [le document d'explication fourni pour ce cours](http://rtavenar.github.io/teaching/python_project/html/tweepy_gmaps.html)
 
-
+%TODO : Améliorer en augmentant le nombre de questions, créer des questions intermédiaires. 
 
 \section*{Travail à préparer chez vous avant la séance}
 
@@ -39,13 +39,13 @@ Ensuite, vous devrez suivre les indications fournies \url{http://rtavenar.github
 
 
 \section*{Préambule}
-\begin{enumerate}
+\begin{itemize}
     \item Créer sur votre disque un dossier TD9 dans PythonOpenData. 
     \item Copier le fichier \verb+credentials.json+ du TD1 dans TD9.
     \item Télécharger sur Cursus l'archive contenant les données sources du TD9, et la décompresser.
     \item Lancer l'éditeur Visual Studio Code.
     \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD9. 
-\end{enumerate}
+\end{itemize}
 
 \subsection*{Cas des ordinateurs de l'Université de Rennes 2}
 
@@ -70,7 +70,7 @@ Pour commencer, vous allez devoir vous authentifier sur l'API Twitter. Comme ind
 
 \end{verbatim}
 où les `"..."` seront remplacés par vos identifiants fournis par l'interface Twitter.
-\item Écrire une fonction \verb+acces_api+ qui lit les identifiants dans le fichier \verb+credentials.json+ et qui retourne une variable d'accès à l'API Twitter pour ces identifiants.
+\item Écrire une fonction \verb+acces_api+ qui prend en entrée le nom d'un fichier json contenant les clés, qui lit les identifiants dans ce fichier et qui retourne une variable d'accès à l'API Twitter pour ces identifiants.
 \end{enumerate}
 
 \section{Consultation de tweets}
@@ -83,12 +83,12 @@ où les `"..."` seront remplacés par vos identifiants fournis par l'interface T
 
 \item En utilisant la fonction de la question précédente, écrire une fonction qui prend une liste de tweets en entrée et retourne la liste des textes des tweets en question.
 
-\item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et retourne l'identifiant de son auteur.
+\item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et renvoie un tuple contenant retourne l'identifiant et le nom de son auteur.
 
 \end{enumerate}
 
 
-\section{Écriture de tweets des tweets}
+\section{Écriture de tweets}
 
 Pour la suite, vous devrez avoir activé la fonctionnalité de \textbf{localisation de vos tweets} sur la plateforme twitter. Pour cela :
 
@@ -98,18 +98,17 @@ Pour la suite, vous devrez avoir activé la fonctionnalité de \textbf{localisat
 \item  Dans le menu "Confidentialité et sécurité", cochez la case "Tweeter avec une localisation" puis validez en bas de la page en cliquant sur "Enregistrer les modifications".
 \end{itemize}
 
-8. Le fichier `tweets.csv` disponible sur CURSUS contient une liste de Tweets que vous allez maintenant poster. Pour chaque tweet, on fournit son texte ainsi que sa position GPS. Copiez ce fichier dans votre répertoire `"data"`{.haskell} et écrivez une fonction qui prend en entrée la variable d'accès à l'API et le chemin vers le fichier contenant les tweets et poste l'ensemble des Tweets contenus dans ce fichier.
+\begin{enumerate}
+    \item Le fichier \verb+tweets.csv+ disponible sur CURSUS contient une liste de Tweets. Pour chaque tweet, on fournit son texte ainsi que sa position GPS. Télécharger ce fichier dans votre répertoire TD9.
+    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et le chemin vers le fichier contenant les tweets et poste l'ensemble des Tweets contenus dans ce fichier. Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux tweet posté depuis mon TD de Python"`. 
+    \item Vérifiez que les Tweets apparaissent bien sur votre compte Twitter, avec la localisation voulue.
+    \item  Améliorer la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
+\end{enumerate}
+\section{Suppression de tweets}
 
-Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux tweet posté depuis mon TD de Python"`. Vérifiez que les Tweets apparaissent bien sur votre compte Twitter, avec la localisation voulue.
-
-
-
-9. Améliorez la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
-
-
-
-10. Écrivez une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
-
+\begin{enumerate}
+    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
+\end{enumerate}
 
 
 \end{document}

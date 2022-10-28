@@ -26,5 +26,14 @@ LogoCursus/logo.png
 NYfood.csv
 TD5/Corrige/credentials.json
 TD5/Corrige/randos_finales.json
+Eval1/credentials.json
+TD9/corrige/credentials.json
+NotesEval1.ods
+eval1.tex
+eval1.pdf
+Eval1/eval1.py
+Eval1/filtre.py
+Eval1/restaurateurs.csv
+Eval1/SanFrancisco_restaurants.json
 CC1/Restaurant_Scores_SanFrancisco.csv
 CC1/prepare_data.py

@@ -12,21 +12,125 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
-
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD8 : Données du métro}
+\titre{TD8 : Données du réseau STAR}
 \begin{document}
 
 
+Le réseau de transports en commun de l'agglomération rennaise (la STAR) fournit des données relatives à ses services en libre accès via une API de données.
+Dans ce TD, vous effectuerez des requêtes à cette API en utilisant le module \verb+requests+.
+
 \section*{Préambule}
 \begin{enumerate}
-    \item Créer sur votre disque un dossier TD8 dans PythonOpenData. 
-    \item Télécharger sur Cursus l'archive contenant les données sources du TD8, et la décompresser.
+    \item Dans votre dossier PythonOpenData créez un sous-dossier TD7.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD8. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD7 et créez un fichier td7.py dans lequel vous écrirez votre code. 
 \end{enumerate}
+
+Pour ce TD, il est conseillé d'importer le module \verb+pprint+ qui permet d'afficher de manière claire les dictionnaires :
+
+\begin{verbatim}
+from pprint import pprint
+
+[...]
+pprint(mon_joli_dictionnaire)
+\end{verbatim}
+
+\section{Accès aux données}
+
+\begin{itemize}
+    \item Se rendre sur le site de la STAR (\url{https://data.explore.star.fr/explore/})
+            et trouver l'API indiquant les prochains passages de métro rennais.
+    \item Cliquez sur l'onglet "API" pour accéder aux options de requête.
+    \item Essayez notamment d'ajouter le \emph{facet} \verb+depart+ et notez le format de date
+            utilisé (un \emph{facet} est un attribut dont on demande explicitement qu'il soit 
+            présent dans la réponse pour tous les résultats retournés).
+    \item En utilisant l'interface d'édition de requêtes de l'API de la STAR, composez une requête qui permette :
+    \begin{itemize}
+        \item d'afficher les attributs \verb+depart+, \verb+destination+ et \verb+nomarret+ pour les résultats 
+            retournés (ajout de ces attributs à la liste des \emph{facets})
+        \item de ne conserver que les passages pour lesquels l'attribut \verb+precision+ vaut 
+        \verb+Temps réel+ (valeur à spécifier dans la catégorie \emph{refine})
+        \item de forcer les dates à être spécifiées dans le fuseau horaire \verb+Europe/Paris+
+        \item de retourner les 100 prochains passages.
+    \end{itemize}
+    \item Notez l'URL générée (clic droit sur le lien du bas de la page, puis "Copier le lien").
+\end{itemize}
+
+\section{Travail spécifique sur les dates}
+
+\begin{quote}
+    Petit point sur :
+    
+    \textbf{UTC, Temps Universel Coordonné, (Coordinated Universal Time)}
+    est une échelle de temps adoptée comme base universelle.
+    En France, nous avons une heure d'avance sur ce temps de référence.
+    Pour représenter une date complète utilisable à l'international
+    l'API de la Star utilise le modèle suivant
+    \verb|"jourThoraire+timezone"| en trois parties avec pour séparateurs \verb+"T"+ et \verb|"+"|
+    où :
+    
+    \begin{itemize}
+        \item jour = \verb+"aaaa-mm-jj"+ ,
+        \item  horaire = \verb+"hh:mn:sc"+,
+        \item  timezone \verb+IN {"00:00", "01:00"...}+
+    \end{itemize}
+
+    Ainsi :
+    
+    \begin{itemize}
+        \item si timezone vaut \verb+"01:00"+ il s'agit de l'heure "en France",
+        \item si timezone vaut \verb+"00:00"+, il y a une heure de retard
+    \end{itemize}
+\end{quote}
+
+\begin{itemize}
+    \item Écrire une fonction qui prend en entrée une chaîne de caractères 
+        représentant une date dans le format vu à la requête précédente (exemples : 
+        \verb+"2021-11-25T09:01:52+01:00"+  ou \verb+"2021-11-25T09:01:52+00:00"+)
+        et retourne une date de sortie ayant les caractéristiques suivantes:
+        \begin{itemize}
+            \item du type date de Python (ce qui permet la réalisation de calculs, de comparaison...) ,
+            \item privé de timezone et
+            \item son horaire doit être celui du fuseau horaire français.
+        \end{itemize}
+    \item Écrivez une fonction qui retourne la liste de tous les passages de métro à
+        venir. Cette fonction fera une requête API, en limitant le nombre de résultats à 100 lignes. 
+        La liste retournée par cette fonction contiendra des dictionnaires composés de 3 clés : 
+        \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), \verb+destination+ et \verb+nomarret+ 
+        et vous ne conserverez que les passages pour lesquels l'attribut \verb+precision+ vaut \verb+Temps réel+.
+        **Attention :** pour certains passages, l'attribut \verb+"depart"+ n'existe pas :
+        ces passages doivent donc être ignorés.
+    \item Écrivez une fonction qui prend en entrée une liste de passages tels que ceux retournés par la question 
+        précédente et un délai \verb+t+ en minutes et qui retourne la liste des passages qui auront lieu dans un délai de \verb+t+ 
+        minutes après l'instant présent. 
+    \item Tester cette fonction en affichant la liste des prochains passages de métro dans 
+        les 10 minutes à venir.
+\end{itemize}
+
+\section{Pour aller plus loin}
+
+En utilisant le service Open Data de Rennes Métropole (\url{https://data.rennesmetropole.fr/}), écrivez une
+fonction qui affiche le nombre total de passages de vélos (même si le nom du jeu de données 
+sous-entend qu'il fournit des infos sur les passages de vélos et de piétons, seuls les vélos 
+sont comptés) devant chacun des 
+compteurs installés dans Rennes (attribut \verb+name+), pour le mois de novembre 2021.
+
+Notez que dans l'interface utilisée, pour filtrer une date par mois 
+(c'est-à-dire ne conserver que les enregistrements pour le mois \verb+MM+ de l'année 
+\verb+YYYY+), on peut demander que l'attribut \verb+date+ soit de la forme : \verb+YYYY/MM+,
+en donnant les valeurs voulues à \verb+YYYY+ et \verb+MM+.
+
+Votre fonction devra afficher une sortie de la forme :
+
+\begin{verbatim}
+Le compteur Eco-Display Place de Bretagne a vu passer 48827 vélos en novembre 2021.
+Le compteur Rennes Rue d'Isly V1 a vu passer 20703 vélos en novembre 2021.
+\end{verbatim}
+
 
 \end{document}
