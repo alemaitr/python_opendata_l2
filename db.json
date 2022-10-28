@@ -1,0 +1,483 @@
+{
+    "cesars2016": [
+        {
+            "titre" : "Ma vie de courgette",
+            "synopsis" : "Courgette n'a rien d'un légume, c'est un vaillant petit garçon. Il croit qu'il est seul au monde quand il perd sa mère. Mais c'est sans compter sur les rencontres qu'il va faire dans sa nouvelle vie au foyer pour enfants. Simon, Ahmed, Jujube, Alice et Béatrice : ils ont tous leurs histoires et elles sont aussi dures qu'ils sont tendres. Et puis il y a cette fille, Camille. Quand on a 10 ans, avoir une bande de copains, tomber amoureux, il y en a des choses à découvrir et à apprendre. Et pourquoi pas même, être heureux.",
+            "genre" : "Animation",
+            "réalisateur" : {
+                "prénom" : "Claude",
+                "nom" : "Barras"
+            },
+            "acteurs" : [],
+            "date_sortie" : "2016-10-19T10:00:00.000Z",
+            "durée" : 66
+        },
+        {
+            "titre" : "Frantz",
+            "synopsis" : "Au lendemain de la guerre 14-18, dans une petite ville allemande, Anna se rend tous les jours sur la tombe de son fiancé, Frantz, mort sur le front en France. Mais ce jour-là, un jeune français, Adrien, est venu se recueillir sur la tombe de son ami allemand. Cette présence à la suite de la défaite allemande va provoquer des réactions passionnelles dans la ville.",
+            "genre" : "Drame",
+            "réalisateur" : {
+                "prénom" : "François",
+                "nom" : "Ozon"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Pierre",
+                    "nom" : "Niney"
+                }, 
+                {
+                    "prénom" : "Paula",
+                    "nom" : "Beer"
+                }, 
+                {
+                    "prénom" : "Ernst",
+                    "nom" : "Stotzner"
+                }, 
+                {
+                    "prénom" : "Marie",
+                    "nom" : "Gruber"
+                }, 
+                {
+                    "prénom" : "Johann",
+                    "nom" : "Von Bulow"
+                }, 
+                {
+                    "prénom" : "Anton",
+                    "nom" : "Von Lucke"
+                }, 
+                {
+                    "prénom" : "Cyrielle",
+                    "nom" : "Clair"
+                }, 
+                {
+                    "prénom" : "Alice",
+                    "nom" : "de Lencquesaing"
+                }
+            ],
+            "date_sortie" : "2016-09-07T01:00:00.000Z",
+            "durée" : 113
+        },
+        {
+            "titre" : "La danseuse",
+            "synopsis" : "Loïe Fuller est née dans le grand ouest américain. Rien ne destine cette fille de ferme à devenir la gloire des cabarets parisiens de la Belle Epoque et encore moins à danser à l'Opéra de Paris. Cachée sous des mètres de soie, les bras prolongés de longues baguettes en bois, Loïe réinvente son corps sur scène et émerveille chaque soir un peu plus. Même si les efforts physiques doivent lui briser le dos, même si la puissance des éclairages doit lui brûler les yeux, elle ne cessera de perfectionner sa danse. Mais sa rencontre avec Isadora Duncan, jeune prodige avide de gloire, va précipiter la chute de cette icône du début du 20ème siècle.",
+            "genre" : "Biopic",
+            "réalisateur" : {
+                "prénom" : "Stéphanie",
+                "nom" : "Di Gusto"
+            },
+            "acteurs" : [ 
+                {
+                    "nickname" : "Soko"
+                }, 
+                {
+                    "prénom" : "Gaspard",
+                    "nom" : "Ulliel"
+                }, 
+                {
+                    "prénom" : "Mélanie",
+                    "nom" : "Thierry"
+                }, 
+                {
+                    "prénom" : "Lily-Rose",
+                    "nom" : "Depp"
+                }, 
+                {
+                    "prénom" : "François",
+                    "nom" : "Damiens"
+                }, 
+                {
+                    "prénom" : "Louis-Do",
+                    "nom" : "de Lencquesaing"
+                }, 
+                {
+                    "prénom" : "Amanda",
+                    "nom" : "Plummer"
+                }, 
+                {
+                    "prénom" : "Denis",
+                    "nom" : "Ménochet"
+                }
+            ],
+            "date_sortie" : "2016-09-28T01:00:00.000Z",
+            "durée" : 112
+        },
+        {
+            "titre" : "Elle",
+            "synopsis" : "Michèle fait partie de ces femmes que rien ne semble atteindre. À la tête d'une grande entreprise de jeux vidéo, elle gère ses affaires comme sa vie sentimentale : d'une main de fer. Sa vie bascule lorsqu'elle est agressée chez elle par un mystérieux inconnu. Inébranlable, Michèle se met à le traquer en retour. Un jeu étrange s'installe alors entre eux. Un jeu qui, à tout instant, peut dégénérer.",
+            "genre" : "Thriller",
+            "réalisateur" : {
+                "prénom" : "Paul",
+                "nom" : "Verhoeven"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Isabelle",
+                    "nom" : "Huppert"
+                }, 
+                {
+                    "prénom" : "Laurent",
+                    "nom" : "Lafitte"
+                }, 
+                {
+                    "prénom" : "Anne",
+                    "nom" : "Consigny"
+                }, 
+                {
+                    "prénom" : "Charles",
+                    "nom" : "Berling"
+                }, 
+                {
+                    "prénom" : "Virginie",
+                    "nom" : "Efira"
+                }, 
+                {
+                    "prénom" : "Judith",
+                    "nom" : "Magre"
+                }, 
+                {
+                    "prénom" : "Christian",
+                    "nom" : "Berkel"
+                }, 
+                {
+                    "prénom" : "Jonas",
+                    "nom" : "Bloquet"
+                }, 
+                {
+                    "prénom" : "Alice",
+                    "nom" : "Isaaz"
+                }, 
+                {
+                    "prénom" : "Vimala",
+                    "nom" : "Pons"
+                }, 
+                {
+                    "prénom" : "Arthur",
+                    "nom" : "Mazet"
+                }, 
+                {
+                    "prénom" : "Raphaël",
+                    "nom" : "Lenglet"
+                }, 
+                {
+                    "prénom" : "Lucas",
+                    "nom" : "Prisor"
+                }, 
+                {
+                    "prénom" : "Hugo",
+                    "nom" : "Conzelmann"
+                }, 
+                {
+                    "prénom" : "Stéphane",
+                    "nom" : "Bak"
+                }
+            ],
+            "date_sortie" : "2016-05-25T01:00:00.000Z",
+            "durée" : 130
+        },
+        {
+            "titre" : "Chocolat",
+            "synopsis" : "Du cirque au théâtre, de l'anonymat à la gloire, l'incroyable destin du clown Chocolat, premier artiste noir de la scène française. Le duo inédit qu'il forme avec Footit, va rencontrer un immense succès populaire dans le Paris de la Belle époque avant que la célébrité, l'argent facile, le jeu et les discriminations n'usent leur amitié et la carrière de Chocolat. Le film retrace l'histoire de cet artiste hors du commun.",
+            "genre" : "Biopic",
+            "réalisateur" : {
+                "prénom" : "Roschdy",
+                "nom" : "Zem"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Omar",
+                    "nom" : "Sy"
+                }, 
+                {
+                    "prénom" : "James",
+                    "nom" : "Thierrée"
+                }, 
+                {
+                    "prénom" : "Clotilde",
+                    "nom" : "Hesme"
+                }, 
+                {
+                    "prénom" : "Olivier",
+                    "nom" : "Gourmet"
+                }, 
+                {
+                    "prénom" : "Frédéric",
+                    "nom" : "Pierrot"
+                }, 
+                {
+                    "prénom" : "Noémie",
+                    "nom" : "Lvovsky"
+                }, 
+                {
+                    "prénom" : "Alice",
+                    "nom" : "de Lencquesaing"
+                }, 
+                {
+                    "prénom" : "Olivier",
+                    "nom" : "Rabourdin"
+                }
+            ],
+            "date_sortie" : "2016-02-03T01:00:00.000Z",
+            "durée" : 110
+        },
+        {
+            "titre" : "L'Odyssée",
+            "synopsis" : "1948. Jacques-Yves Cousteau, sa femme et ses deux fils, vivent au paradis, dans une jolie maison surplombant la mer Méditerranée. Mais Cousteau ne rêve que d'aventure. Grâce à son invention, un scaphandre autonome qui permet de respirer sous l'eau, il a découvert un nouveau monde. Désormais, ce monde, il veut l'explorer. Et pour ça, il est prêt à tout sacrifier.",
+            "genre" : "Biopic",
+            "réalisateur" : {
+                "prénom" : "Jérôme",
+                "nom" : "Salle"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Lambert",
+                    "nom" : "Wilson"
+                }, 
+                {
+                    "prénom" : "Pierre",
+                    "nom" : "Niney"
+                }, 
+                {
+                    "prénom" : "Audrey",
+                    "nom" : "Tautou"
+                }, 
+                {
+                    "prénom" : "Laurent",
+                    "nom" : "Lucas"
+                }, 
+                {
+                    "prénom" : "Benjamin",
+                    "nom" : "Lavernhe"
+                }, 
+                {
+                    "prénom" : "Vincent",
+                    "nom" : "Heneine"
+                }, 
+                {
+                    "prénom" : "Thibault",
+                    "nom" : "de Montalembert"
+                }, 
+                {
+                    "prénom" : "Roger",
+                    "nom" : "Van Hool"
+                }, 
+                {
+                    "prénom" : "Chloé",
+                    "nom" : "Hirschman"
+                }, 
+                {
+                    "prénom" : "Adam",
+                    "nom" : "Neill"
+                }, 
+                {
+                    "prénom" : "Olivier",
+                    "nom" : "Galfione"
+                }, 
+                {
+                    "prénom" : "Martin",
+                    "nom" : "Loizillon"
+                }, 
+                {
+                    "prénom" : "Ulysse",
+                    "nom" : "Stein"
+                }, 
+                {
+                    "prénom" : "Rafaël",
+                    "nom" : "de Ferran"
+                }, 
+                {
+                    "prénom" : "Chloé",
+                    "nom" : "Williams"
+                }
+            ],
+            "date_sortie" : "2016-10-12T03:00:00.000Z",
+            "durée" : 105
+        },
+        {
+            "titre" : "L'effet aquatique",
+            "synopsis" : "Samir, la quarantaine dégingandée, grutier à Montreuil, tombe raide dingue d'Agathe. Comme elle est maître-nageuse à la piscine Maurice Thorez, il décide, pour s'en approcher, de prendre des leçons de natation avec elle alors qu'il sait parfaitement nager. Mais son mensonge ne tient pas trois leçons - or Agathe déteste les menteurs ! Choisie pour représenter la Seine-Saint-Denis, Agathe s'envole pour l'Islande où se tient le 10ème Congrès International des Maîtres-Nageurs. Morsure d'amour oblige, Samir n'a d'autre choix que de s'envoler à son tour...",
+            "genre" : "Comédie dramatique",
+            "réalisateur" : {
+                "prénom" : "Sólveig",
+                "nom" : "Anspach"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Florence",
+                    "nom" : "Loiret Caille"
+                }, 
+                {
+                    "prénom" : "Samir",
+                    "nom" : "Guesmi"
+                }, 
+                {
+                    "prénom" : "Didda",
+                    "nom" : "Jónsdóttir"
+                }, 
+                {
+                    "prénom" : "Philippe",
+                    "nom" : "Rebbot"
+                }, 
+                {
+                    "nickname" : "Esteban"
+                }, 
+                {
+                    "prénom" : "Olivia",
+                    "nom" : "Côte"
+                }
+            ],
+            "date_sortie" : "2016-06-29T01:00:00.000Z",
+            "durée" : 83
+        },
+        {
+            "titre" : "Juste la fin du monde",
+            "synopsis" : "Après douze ans d'absence, un écrivain retourne dans son village natal pour annoncer à sa famille sa mort prochaine. Ce sont les retrouvailles avec le cercle familial où l'on se dit l'amour que l'on se porte à travers les éternelles querelles, et où l'on dit malgré nous les rancoeurs qui parlent au nom du doute et de la solitude.",
+            "genre" : "Drame",
+            "réalisateur" : {
+                "prénom" : "Xavier",
+                "nom" : "Dolan"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Nathalie",
+                    "nom" : "Baye"
+                }, 
+                {
+                    "prénom" : "Vincent",
+                    "nom" : "Cassel"
+                }, 
+                {
+                    "prénom" : "Marion",
+                    "nom" : "Cotillard"
+                }, 
+                {
+                    "prénom" : "Léa",
+                    "nom" : "Seydoux"
+                }, 
+                {
+                    "prénom" : "Gaspard",
+                    "nom" : "Ulliel"
+                }
+            ],
+            "date_sortie" : "2016-09-21T01:00:00.000Z",
+            "durée" : 95
+        },
+        {
+            "titre" : "Merci patron !",
+            "synopsis" : "Pour Jocelyne et Serge Klur, rien ne va plus : leur usine fabriquait des costumes Kenzo (Groupe LVMH), à Poix-du-Nord, près de Valenciennes, mais elle a été délocalisée en Pologne. Voilà le couple au chômage, criblé de dettes, risquant désormais de perdre sa maison. C'est alors que François Ruffin, fondateur du journal Fakir, frappe à leur porte. Il est confiant : il va les sauver. Entouré d'un inspecteur des impôts belge, d'une bonne soeur rouge, de la déléguée CGT, et d'ex-vendeurs à la Samaritaine, il ira porter le cas Klur à l'assemblée générale de LVMH, bien décidé à toucher le coeur de son PDG, Bernard Arnault. Mais ces David frondeurs pourront-ils l'emporter contre un Goliath milliardaire ?",
+            "genre" : "Documentaire",
+            "réalisateur" : {
+                "prénom" : "François",
+                "nom" : "Ruffin"
+            },
+            "date_sortie" : "2016-02-24T01:00:00.000Z",
+            "durée" : 90
+        },
+        {
+            "titre" : "Dans les forêts de Sibérie",
+            "synopsis" : "Pour assouvir un besoin de liberté, Teddy décide de partir loin du bruit du monde, et s'installe seul dans une cabane, sur les rives gelées du lac Baïkal. Une nuit, perdu dans le blizzard, il est secouru par Aleksei, un Russe en cavale qui vit caché dans la forêt sibérienne depuis des années. Entre ces deux hommes que tout oppose, l'amitié va naître aussi soudaine qu'essentielle.",
+            "genre" : "Aventure",
+            "réalisateur" : {
+                "prénom" : "Safy",
+                "nom" : "Nebbou"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Raphaël",
+                    "nom" : "Personnaz"
+                }, 
+                {
+                    "prénom" : "Evgueni",
+                    "nom" : "Sidikhine"
+                }
+            ],
+            "date_sortie" : "2016-06-15T02:00:00.000Z",
+            "durée" : 105
+        },
+        {
+            "titre" : "Divines",
+            "synopsis" : "Dans un ghetto où se côtoient trafics et religion, Dounia a soif de pouvoir et de réussite. Soutenue par Maimouna, sa meilleure amie, elle décide de suivre les traces de Rebecca, une dealeuse respectée. Sa rencontre avec Djigui, un jeune danseur troublant de sensualité, va bouleverser son quotidien.",
+            "genre" : "Drame",
+            "réalisateur" : {
+                "prénom" : "Houda",
+                "nom" : "Benyamina"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Oulaya",
+                    "nom" : "Amamra"
+                }, 
+                {
+                    "prénom" : "Déborah",
+                    "nom" : "Lukumuena"
+                }, 
+                {
+                    "prénom" : "Kévin",
+                    "nom" : "Mischel"
+                }, 
+                {
+                    "prénom" : "Jisca",
+                    "nom" : "Kalvanda"
+                }, 
+                {
+                    "prénom" : "Yasin",
+                    "nom" : "Houicha"
+                }, 
+                {
+                    "prénom" : "Majdouline",
+                    "nom" : "Idrissi"
+                }
+            ],
+            "date_sortie" : "2016-08-31T01:00:00.000Z",
+            "durée" : 105
+        },
+        {
+            "titre" : "Diamant noir",
+            "synopsis" : "Pier Ulmann vivote à Paris, entre chantiers et larcins qu'il commet pour le compte de Rachid, sa seule \"famille\". Son histoire le rattrape le jour où son père est retrouvé mort dans la rue, après une longue déchéance. Bête noire d'une riche famille de diamantaires basée à Anvers, il ne lui laisse rien, à part l'histoire de son bannissement par les Ulmann et une soif amère de vengeance. Sur l'invitation de son cousin Gabi, Pier se rend à Anvers pour rénover les bureaux de la prestigieuse firme Ulmann. La consigne de Rachid est simple : \"Tu vas là-bas pour voir, et pour prendre.\" Mais un diamant a beaucoup de facettes...",
+            "genre" : "Drame",
+            "réalisateur" : {
+                "prénom" : "Arthur",
+                "nom" : "Harari"
+            },
+            "acteurs" : [ 
+                {
+                    "prénom" : "Niels",
+                    "nom" : "Schneider"
+                }, 
+                {
+                    "prénom" : "August",
+                    "nom" : "Diehl"
+                }, 
+                {
+                    "prénom" : "Hans-Peter",
+                    "nom" : "Cloos"
+                }, 
+                {
+                    "prénom" : "Abdel",
+                    "nom" : "Hafed Benotman"
+                }, 
+                {
+                    "prénom" : "Raphaele",
+                    "nom" : "Godin"
+                }, 
+                {
+                    "prénom" : "Raghunath",
+                    "nom" : "Manet"
+                }, 
+                {
+                    "prénom" : "Jos",
+                    "nom" : "Verbist"
+                }, 
+                {
+                    "prénom" : "Guillaume",
+                    "nom" : "Verdier"
+                }, 
+                {
+                    "prénom" : "Hilde",
+                    "nom" : "Van Mieghem"
+                }
+            ],
+            "date_sortie" : "2016-06-08T01:00:00.000Z",
+            "durée" : 115
+        }
+    ]
+}
