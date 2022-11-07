@@ -16,8 +16,97 @@
 
 \sorte{TD}
 \siglemat{Python et Open data}
-\formation{L1 MIASHS}
-\titre{TD7 : API }
+\formation{L2 MIASHS}
+\titre{TD7 : Les Cesars 2016 (récupération de données via des requêtes HTTP)}
+
 \begin{document}
+
+Pour cette séances, vous travaillerez sur les données disponibles à l'adresse suivante :
+
+\begin{center}
+    \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016}
+\end{center}
+
+Ces données concernent des films récompensés lors de la cérémonie des Césars 2016.
+Il est à noter que l'API qui fournit ces données peut être interrogée de la façon suivante :
+
+\begin{center}
+    \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?attribut=valeur}
+\end{center}
+auquel cas ne seront retournés que les films pour lesquels le champ \verb+attribut+ vaut \verb+valeur+.
+
+\section*{Préambule}
+\begin{itemize}
+    \item Créer sur votre disque un dossier TD7 dans PythonOpenData.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD7 et créez un fichier \verb+td7.py+. 
+\end{itemize}
+
+
+
+\section{Un premier coup d'\oe{}il aux données}
+
+\begin{enumerate}
+    \item À l'aide d'un navigateur web, visualisez les données disponibles à l'URL citée ci-dessus.
+    \item Quel est le format de ces données ?
+    \item Combien de films sont décrits dans ces données ?
+    \item Dans votre fichier \verb+td7.py+, récupérez le jeu de données en question et vérifiez que le nombre de films est conforme à ce que vous aviez noté précédemment.
+\end{enumerate}
+
+\section{Les \emph{biopics}}
+
+\begin{enumerate}
+    \item Écrivez une fonction qui prend en entrée un genre cinématographique et un nom (de famille) d'acteur/actrice \verb+nom_famille+ et retourne la liste des films du genre donné pour lesquels au moins un acteur ou une actrice a pour nom de famille \verb+nom_famille+.
+    La requête HTTP devra être incluse dans le corps de la fonction et vous ferez en sorte de minimiser la quantité de données à récupérer par votre script.
+
+    \item Testez la fonction précédente pour afficher la liste des films du genre ``Biopic''.
+
+    \item Modifiez la fonction précédente pour que si l'argument \verb+nom_famille+ n'est pas fourni lors de l'appel, la fonction retourne l'ensemble des films du genre voulu.
+
+    \item Affichez la liste des ``Biopic'' dans lesquels joue une actrice ou un acteur du nom de ``de Lencquesaing''.
+\end{enumerate}
+
+\section{Les ``François'' réalisateurs}
+
+\begin{enumerate}
+    \item Écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne la liste des réalisateurs dont le prénom est ``François''.
+\end{enumerate}
+
+\section{Les actrices et acteurs}
+
+\begin{enumerate}
+    \item Écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne une liste avec doublons des actrices et acteurs contenus dans le jeu de données.
+    
+    \item Écrivez une fonction qui prend en entrée un acteur et retourne son nom de famille, s'il existe, ou sinon son surnom. La chaîne de caractères retournée devra être en caractères majuscules.
+    
+    \item \textbf{En utilisant les fonctions codées aux deux questions précédentes}, écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne une liste sans doublon des actrices et acteurs contenus dans le jeu de données, triés dans l'ordre alphabétique des noms de famille (ou \verb+surnom+ si le nom de famille n'est pas spécifié).
+    
+    \item \textbf{En utilisant la fonction codée à la question 4.1}, écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne la liste des acteurs ayant joué dans plusieurs films.
+\end{enumerate}
+
+\section{Pour aller plus loin : export des données au format CSV}
+
+On souhaiterait maintenant exporter les données récupérées au format CSV.
+Malheureusement, le format CSV attend des données sous formes de tableaux, ce qui n'est pas très commode pour stocker des listes d'acteurs par films.
+La stratégie à suivre pour enregistrer ces données sera donc d'enregistrer 3 fichiers CSV :
+\begin{itemize}
+    \item Un premier fichier qui contiendra les informations concernant les films du jeu de données ;
+    \item Un deuxième fichier qui contiendra les informations concernant les actrices et acteurs du jeu de données ;
+    \item Un troisième fichier qui listera les associations entre films et actrices/acteurs.
+\end{itemize}
+
+\begin{enumerate}
+    \item Pour permettre de faire les liens souhaités entre films et acteurs, il faut fournir à chaque film un identifiant unique. Écrivez une fonction qui prend en entrée un jeu de données et retourne une nouvelle version de ce jeu de données dans laquelle chaque film a un nouvel attribut \verb+id+ unique.
+    
+    \item Appliquez cette fonction à votre jeu de données.
+    
+    \item Enregistrez les informations relatives aux acteurs dans un premier fichier \verb+acteurs.csv+ qui contiendra 4 colonnes : \verb+id+, \verb+prénom+, \verb+nom+, \verb+surnom+.
+    
+    \item Écrivez une fonction qui prend en entrée un jeu de données et retourne deux listes : la première correspondant au jeu de données dans lequel on a supprimé toutes les informations concernant les acteurs et la seconde stockant les liens entre acteurs et films sous la forme de paires \verb+(id_film, id_acteur)+.
+    
+    \item Enregistrez les informations relatives aux films dans un fichier \verb+films.csv+ qui contiendra 7 colonnes : \verb+id+, \verb+titre+, \verb+date_sortie+, \verb+durée+, \verb+réalisateur.prénom+, \verb+réalisateur.nom+ et \verb+genre+.
+    
+    \item Enregistrez les informations permettant de lier les actrices et acteurs aux films dans un fichier \verb+liens.csv+ qui contiendra 2 colonnes : \verb+id_film+ et \verb+id_acteur+.
+\end{enumerate}
 
 \end{document}

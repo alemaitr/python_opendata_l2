@@ -33,7 +33,10 @@ eval1.tex
 eval1.pdf
 Eval1/eval1.py
 Eval1/filtre.py
-Eval1/restaurateurs.csv
-Eval1/SanFrancisco_restaurants.json
+CC1/SanFrancisco_restaurants.json
 CC1/Restaurant_Scores_SanFrancisco.csv
 CC1/prepare_data.py
+CC1/credentials.json
+CC1/essai.py
+CC1/restaurateurs.csv
+TD7/Corrige/*.csv
