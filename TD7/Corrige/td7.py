@@ -1,124 +1,143 @@
 import requests
-from pprint import pprint
 import csv
 
-def get_genre(genre, nom_acteur=None):
-    url = f"http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?genre={genre}"
-    donnees = []
-    for film in requests.get(url=url).json():
-        liste_noms_acteurs = [a.get('nom', '') for a in film["acteurs"]]
-        if nom_acteur is None or nom_acteur in liste_noms_acteurs:
-            donnees.append(film)
-    return donnees
 
-
-def realisateurs(donnees):
-    liste_real = []
-    for film in donnees:
-        if film["réalisateur"]["prénom"] == "François":
-            liste_real.append(film["réalisateur"])
-    return liste_real
-
-
-def get_nom_acteur(acteur):
-    return acteur.get("nom", acteur.get("nickname", "")).upper() + " " + acteur.get("prénom", "").upper()
-
-
-def liste_acteurs_avec_doublons(donnees):
-    liste_acteurs = []
-    for film in donnees:
-        liste_acteurs.extend(film.get("acteurs", []))
-    return liste_acteurs
-
-
-def acteurs_tries(donnees):
-    liste_acteurs = liste_acteurs_avec_doublons(donnees)
-    liste_acteurs_sans_doublon = []
-    for acteur in liste_acteurs:
-        if acteur not in liste_acteurs_sans_doublon:
-            liste_acteurs_sans_doublon.append(acteur)
-    liste_acteurs_tries = sorted(liste_acteurs_sans_doublon, key=get_nom_acteur)
-    return liste_acteurs_tries
-
-# Note : cette version ne gère pas le cas où un acteur est présent dans plus de 2 films
-def acteurs_plusieurs_films(donnees):
-    liste_acteurs = liste_acteurs_avec_doublons(donnees)
-    liste_acteurs_sans_doublon = []
-    liste_acteurs_doublons = []
-    for acteur in liste_acteurs:
-        if acteur in liste_acteurs_sans_doublon:
-            liste_acteurs_doublons.append(acteur)
-        else:
-            liste_acteurs_sans_doublon.append(acteur)
-    return liste_acteurs_doublons
-
-
-def ajoute_id(donnees):
-    for i, film in enumerate(donnees):
-        film["id"] = i
-    return donnees        
-
-
-def separe_films_acteurs(donnees):
-    liens_films_acteurs = []
-    for film in donnees:
-        if "acteurs" not in film:
-            continue
-        for acteur in film["acteurs"]:
-            liens_films_acteurs.append({"film": film["id"], "acteur": acteur["id_acteur"]})
-        del film["acteurs"]
-    return donnees, liens_films_acteurs
     
+#Fonction exercice 2
 
-def linearise_real(donnees):
-    for film in donnees:
-        for cle, valeur in film["réalisateur"].items():
-            film[f"réalisateur.{cle}"] = valeur
+def lesfrancois(content):
+    lst =  []
+    for film in contenu :
+        realisateur = film["réalisateur"]
+        if realisateur["prénom"]=="François":
+            lst.append(realisateur)
+    return lst 
+
+#Fonction exercice 3
+def genre_nom(genre,nom_famille=None):
+    #On filtre sur le genre
+    lst = requests.get(f"http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?genre={genre}").json()
+    films=[]
+    for film in lst :
+        acteurs = [a.get("nom","") for a in film["acteurs"]]
+        if nom_famille in acteurs or nom_famille==None:
+            films.append(film["titre"])
+    return films
+
+#Fonction exercice 4
+def acteurs_doublons(contenu):
+    acteurs = []
+    for film in contenu : 
+        acteurs.extend(film.get("acteurs",[]))
+    return acteurs
+
+def nom_surnom(acteur):
+    if "nom" in acteur.keys():
+        return acteur["nom"].upper()
+    return acteur["surnom"].upper()
+
+def liste_acteur_sans_doublon(contenu):
+    liste_db = acteurs_doublons(contenu)
+    liste_sans_db = []
+    for act in liste_db:
+        if act not in liste_sans_db:
+            liste_sans_db.append(act)
+    liste_sans_db.sort(key=nom_surnom)
+    return liste_sans_db
+
+# Note : cette version réutilise 2 fonctions, mais n'est pas la plus économique en 
+# terme de nombre de parcours 
+def acteurs_plusieurs_films(contenu):
+    lst_complete = acteurs_doublons(contenu)
+    lst_sans_doublons = liste_acteur_sans_doublon(contenu)
+    lst_finale = []
+    for acteur in lst_complete :
+        if acteur in lst_sans_doublons:
+            lst_sans_doublons.remove(acteur)
+        else : 
+            if acteur not in lst_finale :
+                lst_finale.append(acteur)
+    return lst_finale
+
+#Fonctions de l'exercice 5
+
+def ajoute_ids(contenu): 
+    for i,film in enumerate(contenu) : 
+        film["id_film"]=i
+    return contenu
+
+def separe_films_acteurs(contenu):
+    liens_acteurs =[]
+
+    for film in contenu :
+        id_film = film["id_film"]
+        if "acteurs" in film.keys() :
+            for acteur in film["acteurs"] :
+                liens_acteurs.append({"id_film":id_film,"id_acteur":acteur["id_acteur"]})
+            del film["acteurs"]
+
+    return contenu, liens_acteurs
+
+def prepare_real(contenu):
+    for film in contenu :
+        film["réalisateur.prénom"] = film["réalisateur"]["prénom"]
+        film["réalisateur.nom"] = film["réalisateur"]["nom"]
         del film["réalisateur"]
-    return donnees
+    return contenu
+#Exercice 1
+contenu = requests.get("http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016").json()
+print(f"Nombre de films : {len(contenu)}")
+# Nombre de films : 8
 
+#Exercice 2
+print(lesfrancois(contenu))
+# [{'nom': 'Ozon', 'prénom': 'François'}, {'nom': 'Ruffin', 'prénom': 'François'}]
 
-# 1. Chargement des données
-url = "http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016"
-donnees = requests.get(url=url).json()
-pprint(donnees)
+#Exercice 3
+print(genre_nom("Biopic","de Lencquesaing"))
+# ['La danseuse', 'Chocolat']
+print(genre_nom("Biopic"))
+# ['La danseuse', 'Chocolat', "L'Odyssée"]
 
-# 2. Les Biopic
-donnees_biopic = get_genre(genre="Biopic", nom_acteur="de Lencquesaing")
-pprint(donnees_biopic)
+#Exercice 4
+acteurs_db = acteurs_doublons(contenu)
+# print(acteurs_db)
+print(nom_surnom(acteurs_db[0]))
+acteurs_diff = liste_acteur_sans_doublon(contenu)
+print("La liste des acteurs triée : \n",acteurs_diff)
 
-# 3. Les Réalisateurs
-real_Francois = realisateurs(donnees)
-print(real_Francois)
+acteurs_plus = acteurs_plusieurs_films(contenu)
 
-# 4. Les acteurs
-print(f"Liste des acteurs qui jouent dans plusieurs films : {acteurs_plusieurs_films(donnees)}")
+print(f"Nombre d'acteurs dans des films : {len(acteurs_db)}")
+print(f"Nombre d'acteurs sans doublons : {len(acteurs_diff)}")
+print(f"Nombre d'acteurs dans plusieurs films : {len(acteurs_plus)} : \n {acteurs_plus}")
 
-# Pour aller plus loin
-# 5. Sauvegarde dans 3 fichiers CSV : acteurs, films, liens acteurs-films
-tous_les_acteurs = acteurs_tries(donnees)
-print(f"Liste triée des acteurs : {tous_les_acteurs}")
-donnees = ajoute_id(donnees)
-films, liens_films_acteurs = separe_films_acteurs(donnees, tous_les_acteurs)
-pprint(liens_films_acteurs)
+#Exercice 5
+contenu = ajoute_ids(contenu)
+print("Après ajout d'id : \n",contenu[0])
 
-fp = open("acteurs.csv", "w")
-writer = csv.DictWriter(fp, fieldnames=["id", "prénom", "nom", "nickname"], delimiter=";")
-writer.writeheader()
-writer.writerows(tous_les_acteurs)
-fp.close()
+#Ecriture des acteurs dans un fichier
+acteurs = liste_acteur_sans_doublon(contenu)
 
-fp = open("liens.csv", "w")
-writer = csv.DictWriter(fp, fieldnames=["film", "acteur"], delimiter=";")
-writer.writeheader()
-writer.writerows(liens_films_acteurs)
-fp.close()
+with open("acteurs.csv", "w",encoding="utf-8",newline='') as fp :
+    writer = csv.DictWriter(fp, fieldnames=["id_acteur", "prénom", "nom", "surnom"], delimiter=";")
+    writer.writeheader()
+    writer.writerows(acteurs)
 
-donnees = linearise_real(donnees)
-fp = open("films.csv", "w")
-writer = csv.DictWriter(fp, 
-                        fieldnames=['id', 'titre', 'date_sortie', 'durée', 'réalisateur.prénom', 'réalisateur.nom', 'genre'], 
-                        delimiter=";")
-writer.writeheader()
-writer.writerows(donnees)
-fp.close()
+#Séparation film/acteurs
+contenu, liens = separe_films_acteurs(contenu)
+
+#preparation du réalisateur
+contenu = prepare_real(contenu)
+
+#ecriture des films
+with open("films.csv", "w",encoding="utf-8",newline='') as fp :
+    writer = csv.DictWriter(fp, fieldnames=["id_film", "titre", "date_sortie", "durée","réalisateur.prénom","réalisateur.nom","genre"], delimiter=";")
+    writer.writeheader()
+    writer.writerows(contenu)
+
+#ecriture des liens
+with open("liens.csv", "w",encoding="utf-8",newline='') as fp :
+    writer = csv.DictWriter(fp, fieldnames=["id_film","id_acteur"], delimiter=";")
+    writer.writeheader()
+    writer.writerows(liens)

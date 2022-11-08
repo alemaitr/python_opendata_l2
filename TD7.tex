@@ -98,7 +98,7 @@ La stratégie à suivre pour enregistrer ces données sera donc d'enregistrer 3 
 \end{itemize}
 
 \begin{enumerate}
-    \item Pour permettre de faire les liens souhaités entre films et acteurs, il faut fournir à chaque film un identifiant unique. Écrivez une fonction qui prend en entrée un jeu de données et retourne une nouvelle version de ce jeu de données dans laquelle chaque film a un nouvel attribut \verb+id+ unique.
+    \item Pour permettre de faire les liens souhaités entre films et acteurs, il faut fournir à chaque film un identifiant unique. Note : les acteurs disposent déjà d'un identifiant unique. Écrivez une fonction qui prend en entrée un jeu de données et retourne une nouvelle version de ce jeu de données dans laquelle chaque film a un nouvel attribut \verb+id_film+ unique.
     
     \item Appliquez cette fonction à votre jeu de données.
     
@@ -106,7 +106,7 @@ La stratégie à suivre pour enregistrer ces données sera donc d'enregistrer 3 
     
     \item Écrivez une fonction qui prend en entrée un jeu de données et retourne deux listes : la première correspondant au jeu de données dans lequel on a supprimé toutes les informations concernant les acteurs et la seconde stockant les liens entre acteurs et films sous la forme de paires stockées dans un dictionnaire \verb+{"id_film":idf, "id_acteur":ida}+.
     
-    \item Enregistrez les informations relatives aux films dans un fichier \verb+films.csv+ qui contiendra 7 colonnes : \verb+id+, \verb+titre+, \verb+date_sortie+, \verb+durée+, \verb+réalisateur.prénom+, \verb+réalisateur.nom+ et \verb+genre+.
+    \item Enregistrez les informations relatives aux films dans un fichier \verb+films.csv+ qui contiendra 7 colonnes : \verb+id_film+, \verb+titre+, \verb+date_sortie+, \verb+durée+, \verb+réalisateur.prénom+, \verb+réalisateur.nom+ et \verb+genre+.
     
     \item Enregistrez les informations permettant de lier les actrices et acteurs aux films dans un fichier \verb+liens.csv+ qui contiendra 2 colonnes : \verb+id_film+ et \verb+id_acteur+.
 \end{enumerate}
