@@ -19,7 +19,6 @@ TD1/TD1.7z
 cours1.pdf
 cours3.pdf
 CoursIntro.pdf
-cours1_old.pptx
 LogoCursus/18131.jpg
 LogoCursus/logo.pfi
 LogoCursus/logo.png
@@ -29,10 +28,6 @@ TD5/Corrige/randos_finales.json
 Eval1/credentials.json
 TD9/corrige/credentials.json
 NotesEval1.ods
-eval1.tex
-eval1.pdf
-Eval1/eval1.py
-Eval1/filtre.py
 CC1/SanFrancisco_restaurants.json
 CC1/Restaurant_Scores_SanFrancisco.csv
 CC1/prepare_data.py
@@ -40,4 +35,4 @@ CC1/credentials.json
 CC1/essai.py
 CC1/restaurateurs.csv
 TD7/Corrige/*.csv
-Eval1/restaurateurs.csv
+
