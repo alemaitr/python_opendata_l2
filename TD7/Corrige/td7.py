@@ -40,7 +40,7 @@ def acteurs_tries(donnees):
     liste_acteurs_tries = sorted(liste_acteurs_sans_doublon, key=get_nom_acteur)
     return liste_acteurs_tries
 
-
+# Note : cette version ne gère pas le cas où un acteur est présent dans plus de 2 films
 def acteurs_plusieurs_films(donnees):
     liste_acteurs = liste_acteurs_avec_doublons(donnees)
     liste_acteurs_sans_doublon = []

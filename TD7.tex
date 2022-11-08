@@ -28,12 +28,6 @@ Pour cette séances, vous travaillerez sur les données disponibles à l'adresse
 \end{center}
 
 Ces données concernent des films récompensés lors de la cérémonie des Césars 2016.
-Il est à noter que l'API qui fournit ces données peut être interrogée de la façon suivante :
-
-\begin{center}
-    \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?attribut=valeur}
-\end{center}
-auquel cas ne seront retournés que les films pour lesquels le champ \verb+attribut+ vaut \verb+valeur+.
 
 \section*{Préambule}
 \begin{itemize}
@@ -53,24 +47,32 @@ auquel cas ne seront retournés que les films pour lesquels le champ \verb+attri
     \item Dans votre fichier \verb+td7.py+, récupérez le jeu de données en question et vérifiez que le nombre de films est conforme à ce que vous aviez noté précédemment.
 \end{enumerate}
 
-\section{Les \emph{biopics}}
-
-\begin{enumerate}
-    \item Écrivez une fonction qui prend en entrée un genre cinématographique et un nom (de famille) d'acteur/actrice \verb+nom_famille+ et retourne la liste des films du genre donné pour lesquels au moins un acteur ou une actrice a pour nom de famille \verb+nom_famille+.
-    La requête HTTP devra être incluse dans le corps de la fonction et vous ferez en sorte de minimiser la quantité de données à récupérer par votre script.
-
-    \item Testez la fonction précédente pour afficher la liste des films du genre ``Biopic''.
-
-    \item Modifiez la fonction précédente pour que si l'argument \verb+nom_famille+ n'est pas fourni lors de l'appel, la fonction retourne l'ensemble des films du genre voulu.
-
-    \item Affichez la liste des ``Biopic'' dans lesquels joue une actrice ou un acteur du nom de ``de Lencquesaing''.
-\end{enumerate}
-
 \section{Les ``François'' réalisateurs}
 
 \begin{enumerate}
     \item Écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne la liste des réalisateurs dont le prénom est ``François''.
 \end{enumerate}
+
+\section{Les \emph{biopics}}
+
+Il est à noter que l'API qui fournit les données peut être interrogée de la façon suivante :
+\begin{center}
+    \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?attribut=valeur}
+\end{center}
+auquel cas ne seront retournés que les films pour lesquels le champ \verb+attribut+ vaut \verb+valeur+.
+
+
+\begin{enumerate}
+    \item Écrivez une fonction qui prend en entrée un genre cinématographique \verb+genre+ et un nom (de famille) d'acteur/actrice \verb+nom_famille+ et retourne la liste des titres de films du genre donné pour lesquels au moins un acteur ou une actrice a pour nom de famille \verb+nom_famille+.
+    La requête HTTP devra être incluse dans le corps de la fonction et vous ferez en sorte de minimiser la quantité de données à récupérer par votre script.
+
+    \item Affichez la liste des ``Biopic'' dans lesquels joue une actrice ou un acteur du nom de ``de Lencquesaing''.
+    \item Modifiez la fonction précédente pour que si l'argument \verb+nom_famille+ n'est pas fourni lors de l'appel, la fonction retourne l'ensemble des titres de films du genre voulu.
+    \item Testez la fonction précédente pour afficher la liste des films du genre ``Biopic''.
+   
+\end{enumerate}
+
+
 
 \section{Les actrices et acteurs}
 
@@ -100,9 +102,9 @@ La stratégie à suivre pour enregistrer ces données sera donc d'enregistrer 3 
     
     \item Appliquez cette fonction à votre jeu de données.
     
-    \item Enregistrez les informations relatives aux acteurs dans un premier fichier \verb+acteurs.csv+ qui contiendra 4 colonnes : \verb+id+, \verb+prénom+, \verb+nom+, \verb+surnom+.
+    \item Enregistrez les informations relatives aux acteurs dans un premier fichier \verb+acteurs.csv+ qui contiendra 4 colonnes : \verb+id_acteur+, \verb+prénom+, \verb+nom+, \verb+surnom+.
     
-    \item Écrivez une fonction qui prend en entrée un jeu de données et retourne deux listes : la première correspondant au jeu de données dans lequel on a supprimé toutes les informations concernant les acteurs et la seconde stockant les liens entre acteurs et films sous la forme de paires \verb+(id_film, id_acteur)+.
+    \item Écrivez une fonction qui prend en entrée un jeu de données et retourne deux listes : la première correspondant au jeu de données dans lequel on a supprimé toutes les informations concernant les acteurs et la seconde stockant les liens entre acteurs et films sous la forme de paires stockées dans un dictionnaire \verb+{"id_film":idf, "id_acteur":ida}+.
     
     \item Enregistrez les informations relatives aux films dans un fichier \verb+films.csv+ qui contiendra 7 colonnes : \verb+id+, \verb+titre+, \verb+date_sortie+, \verb+durée+, \verb+réalisateur.prénom+, \verb+réalisateur.nom+ et \verb+genre+.
     
