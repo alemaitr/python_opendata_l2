@@ -25,11 +25,11 @@ Le réseau de transports en commun de l'agglomération rennaise (la STAR) fourni
 Dans ce TD, vous effectuerez des requêtes à cette API en utilisant le module \verb+requests+.
 
 \section*{Préambule}
-\begin{enumerate}
-    \item Dans votre dossier PythonOpenData créez un sous-dossier TD7.
+\begin{itemize}
+    \item Dans votre dossier PythonOpenData créez un sous-dossier TD8.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD7 et créez un fichier td7.py dans lequel vous écrirez votre code. 
-\end{enumerate}
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD8 et créez un fichier td7.py dans lequel vous écrirez votre code. 
+\end{itemize}
 
 Pour ce TD, il est conseillé d'importer le module \verb+pprint+ qui permet d'afficher de manière claire les dictionnaires :
 
@@ -42,7 +42,7 @@ pprint(mon_joli_dictionnaire)
 
 \section{Accès aux données}
 
-\begin{itemize}
+\begin{enumerate}
     \item Se rendre sur le site de la STAR (\url{https://data.explore.star.fr/explore/})
             et trouver l'API indiquant les prochains passages de métro rennais.
     \item Cliquez sur l'onglet "API" pour accéder aux options de requête.
@@ -59,7 +59,7 @@ pprint(mon_joli_dictionnaire)
         \item de retourner les 100 prochains passages.
     \end{itemize}
     \item Notez l'URL générée (clic droit sur le lien du bas de la page, puis "Copier le lien").
-\end{itemize}
+\end{enumerate}
 
 \section{Travail spécifique sur les dates}
 
@@ -88,7 +88,7 @@ pprint(mon_joli_dictionnaire)
     \end{itemize}
 \end{quote}
 
-\begin{itemize}
+\begin{enumerate}
     \item Écrire une fonction qui prend en entrée une chaîne de caractères 
         représentant une date dans le format vu à la requête précédente (exemples : 
         \verb+"2021-11-25T09:01:52+01:00"+  ou \verb+"2021-11-25T09:01:52+00:00"+)
@@ -110,7 +110,7 @@ pprint(mon_joli_dictionnaire)
         minutes après l'instant présent. 
     \item Tester cette fonction en affichant la liste des prochains passages de métro dans 
         les 10 minutes à venir.
-\end{itemize}
+\end{enumerate}
 
 \section{Pour aller plus loin}
 
