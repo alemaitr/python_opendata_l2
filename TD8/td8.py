@@ -71,9 +71,10 @@ def affichage_station(station):
     prochains = prochain_passage_station(passages)
     print("********************************************")
     print(f"Bienvenue à la station {station}")
+    print("********************************************")
     for cle,heure in prochains.items():
         heureformat = heure.strftime("%H:%M:%S")
-        print(f"Ligne {cle[0]}, direction {cle[1]} : métro à {heureformat}")
+        print(f"Ligne {cle[0]}, direction {cle[1]} : prochain métro à {heureformat}")
     print("********************************************")
 # # Q 1.7 Récupération des passages de métro
 # passages_brut = requests.get("https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=100&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.precision=Temps+r%C3%A9el&timezone=Europe%2FParis")
@@ -86,7 +87,7 @@ def affichage_station(station):
 
 #Test fonctions exercice 2
 passages = tous_passages_metro()
-#pprint(passages)
+# pprint(passages)
 print(len(passages))
 avenir = a_venir(10,passages)
 # pprint(avenir)
@@ -98,3 +99,5 @@ pass_gare = passages_station("Gares")
 procgare = prochain_passage_station(pass_gare)
 pprint(procgare)
 affichage_station("Gares")
+# affichage_station("La Poterie")
+# affichage_station("Saint-Germain")
