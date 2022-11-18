@@ -28,7 +28,7 @@ Dans ce TD, vous effectuerez des requêtes à cette API en utilisant le module \
 \begin{itemize}
     \item Dans votre dossier PythonOpenData créez un sous-dossier TD8.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD8 et créez un fichier td7.py dans lequel vous écrirez votre code. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD8 et créez un fichier td8.py dans lequel vous écrirez votre code. 
 \end{itemize}
 
 Pour ce TD, il est conseillé d'importer le module \verb+pprint+ qui permet d'afficher de manière claire les dictionnaires :
@@ -45,92 +45,106 @@ pprint(mon_joli_dictionnaire)
 \begin{enumerate}
     \item Se rendre sur le site de la STAR (\url{https://data.explore.star.fr/explore/})
             et trouver l'API indiquant les prochains passages de métro rennais.
-    \item Cliquez sur l'onglet "API" pour accéder aux options de requête.
-    \item Essayez notamment d'ajouter le \emph{facet} \verb+depart+ et notez le format de date
+    \item Lire les informations pour comprendre le sens des données disponibles.
+    \item Cliquer sur l'onglet "API" pour accéder aux options de requête.
+    \item Ajouter le \emph{facet} \verb+depart+ et noter le format de date
             utilisé (un \emph{facet} est un attribut dont on demande explicitement qu'il soit 
             présent dans la réponse pour tous les résultats retournés).
-    \item En utilisant l'interface d'édition de requêtes de l'API de la STAR, composez une requête qui permette :
+    \item En utilisant l'interface d'édition de requêtes de l'API de la STAR, composer une requête qui permette :
     \begin{itemize}
         \item d'afficher les attributs \verb+depart+, \verb+destination+ et \verb+nomarret+ pour les résultats 
             retournés (ajout de ces attributs à la liste des \emph{facets})
         \item de ne conserver que les passages pour lesquels l'attribut \verb+precision+ vaut 
         \verb+Temps réel+ (valeur à spécifier dans la catégorie \emph{refine})
-        \item de forcer les dates à être spécifiées dans le fuseau horaire \verb+Europe/Paris+
+        % \item de forcer les dates à être spécifiées dans le fuseau horaire \verb+Europe/Paris+
         \item de retourner les 100 prochains passages.
     \end{itemize}
-    \item Notez l'URL générée (clic droit sur le lien du bas de la page, puis "Copier le lien").
+    \item Noter l'URL générée (clic droit sur le lien du bas de la page, puis "Copier le lien").
+    \item En python, écrire le code permettant d'accéder aux passages de métro renvoyés par cette URL.
+    \item Combien de passages de métro sont renvoyés ? Comparer le nombre d'enregistrements présents dans \verb+records+ et le nombre \verb+nhits+ annoncé en début de requête.
 \end{enumerate}
 
-\section{Travail spécifique sur les dates}
+\section{Etude de tous les passages}
 
-\begin{quote}
-    Petit point sur :
-    
-    \textbf{UTC, Temps Universel Coordonné, (Coordinated Universal Time)}
-    est une échelle de temps adoptée comme base universelle.
-    En France, nous avons une heure d'avance sur ce temps de référence.
-    Pour représenter une date complète utilisable à l'international
-    l'API de la Star utilise le modèle suivant
-    \verb|"jourThoraire+timezone"| en trois parties avec pour séparateurs \verb+"T"+ et \verb|"+"|
-    où :
-    
-    \begin{itemize}
-        \item jour = \verb+"aaaa-mm-jj"+ ,
-        \item  horaire = \verb+"hh:mn:sc"+,
-        \item  timezone \verb+IN {"00:00", "01:00"...}+
-    \end{itemize}
+Les dates fournies par la STAR sont au format ISO, avec précision du fuseau horaire (timezone). Par exemple, \verb.2022-11-25T09:01:52+01:00. correspond bien à l'horaire de 9h01 en France, qui est dans le fuseau horaire UTC+1 (+01:00).
 
-    Ainsi :
-    
-    \begin{itemize}
-        \item si timezone vaut \verb+"01:00"+ il s'agit de l'heure "en France",
-        \item si timezone vaut \verb+"00:00"+, il y a une heure de retard
-    \end{itemize}
-\end{quote}
+Les objets Datetime de Python peuvent intégrer la connaissance de la timezone. Ces dates ainsi créées sont dites "aware", par opposition aux dates sans timezone qui sont "naïve". 
+
+Notez qu'il n'est pas possible d'effectuer des opérations (comparaisons, différences) entre une date naïve et une date aware. Par exemple, pour comparer une date aware avec la date actuelle, il faudra créer une version aware de datetime.now(), avec : 
+\begin{verbatim}
+    from pytz import timezone
+    datetime.now(timezone('Europe/Paris'))
+\end{verbatim}
 
 \begin{enumerate}
-    \item Écrire une fonction qui prend en entrée une chaîne de caractères 
-        représentant une date dans le format vu à la requête précédente (exemples : 
-        \verb+"2021-11-25T09:01:52+01:00"+  ou \verb+"2021-11-25T09:01:52+00:00"+)
-        et retourne une date de sortie ayant les caractéristiques suivantes:
-        \begin{itemize}
-            \item du type date de Python (ce qui permet la réalisation de calculs, de comparaison...) ,
-            \item privé de timezone et
-            \item son horaire doit être celui du fuseau horaire français.
-        \end{itemize}
-    \item Écrivez une fonction qui retourne la liste de tous les passages de métro à
-        venir. Cette fonction fera une requête API, en limitant le nombre de résultats à 100 lignes. 
-        La liste retournée par cette fonction contiendra des dictionnaires composés de 3 clés : 
-        \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), \verb+destination+ et \verb+nomarret+ 
-        et vous ne conserverez que les passages pour lesquels l'attribut \verb+precision+ vaut \verb+Temps réel+.
-        **Attention :** pour certains passages, l'attribut \verb+"depart"+ n'existe pas :
+    \item Écrire une fonction qui retourne la liste de tous les passages de métro. Cette fonction fera une requête API, en limitant le nombre de résultats à 100 lignes.  Vous ne conserverez que les passages pour lesquels l'attribut \verb+precision+ vaut \verb+Temps réel+.
+    
+    La liste retournée par cette fonction contiendra des dictionnaires composés de 4 clés : 
+    \begin{itemize}
+        \item        \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), 
+        \item \verb+destination+ contenant la destination,
+        \item \verb+nomarret+ contenant le nom de l'arret,
+        \item \verb+ligne+ contenant le nom court de la ligne.
+    \end{itemize}
+        \textbf{Attention} : pour certains passages, l'attribut \verb+"depart"+ n'existe pas :
         ces passages doivent donc être ignorés.
-    \item Écrivez une fonction qui prend en entrée une liste de passages tels que ceux retournés par la question 
-        précédente et un délai \verb+t+ en minutes et qui retourne la liste des passages qui auront lieu dans un délai de \verb+t+ 
-        minutes après l'instant présent. 
+    
+    \item Écrire une fonction qui prend en entrée une liste de passages tels que ceux retournés par la question 
+        précédente et un délai \verb+t+ en minutes et qui retourne la liste des passages qui auront lieu dans un délai de \verb+t+ minutes après l'instant présent. 
     \item Tester cette fonction en affichant la liste des prochains passages de métro dans 
         les 10 minutes à venir.
 \end{enumerate}
 
-\section{Pour aller plus loin}
+\section{Prochains métros dans la station}
 
-En utilisant le service Open Data de Rennes Métropole (\url{https://data.rennesmetropole.fr/}), écrivez une
-fonction qui affiche le nombre total de passages de vélos (même si le nom du jeu de données 
-sous-entend qu'il fournit des infos sur les passages de vélos et de piétons, seuls les vélos 
-sont comptés) devant chacun des 
-compteurs installés dans Rennes (attribut \verb+name+), pour le mois de novembre 2021.
+On souhaite renseigner un panneau d'affichage en entrée d'une station de métro, avec l'horaire de chaque prochain passage, pour chaque ligne de métro, dans chaque direction. 
 
-Notez que dans l'interface utilisée, pour filtrer une date par mois 
-(c'est-à-dire ne conserver que les enregistrements pour le mois \verb+MM+ de l'année 
-\verb+YYYY+), on peut demander que l'attribut \verb+date+ soit de la forme : \verb+YYYY/MM+,
-en donnant les valeurs voulues à \verb+YYYY+ et \verb+MM+.
+\begin{enumerate}
+    \item Écrire une fonction qui prend en entrée le nom d'une station de métro, et qui renvoie la liste des passages à cette station. On prendra soin de filtrer la station dès la requête à l'API.
 
-Votre fonction devra afficher une sortie de la forme :
+    La liste retournée par cette fonction contiendra des dictionnaires composés de 3 clés : 
+    \begin{itemize}
+        \item \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), 
+        \item \verb+destination+ contenant la destination,
+       \item \verb+ligne+ contenant le nom court de la ligne.
+    \end{itemize}
+    \item Tester cette fonction pour afficher les passages à la station Gares.
+    \item Écrire une fonction qui prend en entrée une liste de passages dans une station, telle que retournée ci-dessus, et qui recherche pour chaque ligne de métro, et chaque direction l'heure du prochain passage à venir. 
+    
+    Les données seront retournées sous la forme d'un dictionnaire dans lequel les clés sont des tuples \verb+(ligne, destination)+ et les valeurs la date du premier prochain passage au format datetime. 
 
-\begin{verbatim}
-Le compteur Eco-Display Place de Bretagne a vu passer 48827 vélos en novembre 2021.
-Le compteur Rennes Rue d'Isly V1 a vu passer 20703 vélos en novembre 2021.
+    \item Écrire une fonction qui prend en entrée un nom de station, et qui utilise les fonctions précédemment codées, afin d'afficher l'horaire des prochains passages en entrée de la station de métro. 
+    
+    L'affichage pourra être par exemple : 
+    \begin{verbatim}
+    ********************************************
+    Bienvenue à la station Gares
+    Ligne a, direction La Poterie : métro à 15:29:55
+    Ligne a, direction J.F. Kennedy : métro à 15:33:57
+    Ligne b, direction Saint-Jacques - Gaîté : métro à 15:34:05
+    ********************************************
 \end{verbatim}
+\end{enumerate}
+
+% \section{Pour aller plus loin}
+
+% En utilisant le service Open Data de Rennes Métropole (\url{https://data.rennesmetropole.fr/}), écrivez une
+% fonction qui affiche le nombre total de passages de vélos (même si le nom du jeu de données 
+% sous-entend qu'il fournit des infos sur les passages de vélos et de piétons, seuls les vélos 
+% sont comptés) devant chacun des 
+% compteurs installés dans Rennes (attribut \verb+name+), pour le mois de novembre 2021.
+
+% Notez que dans l'interface utilisée, pour filtrer une date par mois 
+% (c'est-à-dire ne conserver que les enregistrements pour le mois \verb+MM+ de l'année 
+% \verb+YYYY+), on peut demander que l'attribut \verb+date+ soit de la forme : \verb+YYYY/MM+,
+% en donnant les valeurs voulues à \verb+YYYY+ et \verb+MM+.
+
+% Votre fonction devra afficher une sortie de la forme :
+
+% \begin{verbatim}
+% Le compteur Eco-Display Place de Bretagne a vu passer 48827 vélos en novembre 2021.
+% Le compteur Rennes Rue d'Isly V1 a vu passer 20703 vélos en novembre 2021.
+% \end{verbatim}
 
 
 \end{document}
