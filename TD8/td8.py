@@ -34,7 +34,7 @@ def a_venir(t, lespassages):
 
 #Q3.1 Passages dans une station
 def passages_station(station):
-    url = f"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=100&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.nomarret={station}&precision=Temps+r%C3%A9el&timezone=Europe%2FParis"
+    url = f"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=200&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.nomarret={station}&precision=Temps+r%C3%A9el&timezone=Europe%2FParis"
     contenu = requests.get(url)
     dico = contenu.json()
     liste_passage = []
