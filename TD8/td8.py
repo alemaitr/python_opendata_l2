@@ -34,10 +34,11 @@ def a_venir(t, lespassages):
 
 #Q3.1 Passages dans une station
 def passages_station(station):
-    url = f"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=200&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.nomarret={station}&precision=Temps+r%C3%A9el&timezone=Europe%2FParis"
+    url = f"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=10&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.nomarret={station}&refine.precision=Temps+r%C3%A9el"
     contenu = requests.get(url)
     dico = contenu.json()
     liste_passage = []
+    print(dico["nhits"])
     for metro in dico["records"] :
         if "depart" in metro["fields"].keys() :
             passage = {}
@@ -98,6 +99,6 @@ pass_gare = passages_station("Gares")
 # pprint(pass_gare)
 procgare = prochain_passage_station(pass_gare)
 pprint(procgare)
-affichage_station("Gares")
-# affichage_station("La Poterie")
-# affichage_station("Saint-Germain")
+# affichage_station("Gares")
+affichage_station("La Poterie")
+affichage_station("Saint-Germain")
