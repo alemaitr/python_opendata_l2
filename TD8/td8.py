@@ -38,7 +38,7 @@ def passages_station(station):
     contenu = requests.get(url)
     dico = contenu.json()
     liste_passage = []
-    print(dico["nhits"])
+    # print(dico["nhits"])
     for metro in dico["records"] :
         if "depart" in metro["fields"].keys() :
             passage = {}
@@ -74,7 +74,8 @@ def affichage_station(station):
     print(f"Bienvenue à la station {station}")
     print("********************************************")
     for cle,heure in prochains.items():
-        heureformat = heure.strftime("%H:%M:%S")
+
+        heureformat = heure.astimezone(timezone("Europe/Paris")).strftime("%H:%M:%S")
         print(f"Ligne {cle[0]}, direction {cle[1]} : prochain métro à {heureformat}")
     print("********************************************")
 # # Q 1.7 Récupération des passages de métro
@@ -97,8 +98,8 @@ print(len(avenir)," passages dans les 10 prochaines minutes")
 #Tests exercice 3
 pass_gare = passages_station("Gares")
 # pprint(pass_gare)
-procgare = prochain_passage_station(pass_gare)
-pprint(procgare)
-# affichage_station("Gares")
-affichage_station("La Poterie")
-affichage_station("Saint-Germain")
+# procgare = prochain_passage_station(pass_gare)
+# pprint(procgare)
+affichage_station("Gares")
+# affichage_station("La Poterie")
+# affichage_station("Saint-Germain")
