@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{../tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{hyperref}
+\makeatletter
+\usepackage[table]{xcolor}
+
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94}
+ 
+\lstset{
+  aboveskip=3mm,
+  belowskip=-5mm,
+  backgroundcolor=\color{darkWhite},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{red},
+  deletekeywords={...},
+  escapeinside={\%*}{*)},
+  extendedchars=true,
+  framexleftmargin=16pt,
+  framextopmargin=3pt,
+  framexbottommargin=6pt,
+  frame=tb,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  language=Python,
+  literate=
+  {²}{{\textsuperscript{2}}}1
+  {⁴}{{\textsuperscript{4}}}1
+  {⁶}{{\textsuperscript{6}}}1
+  {⁸}{{\textsuperscript{8}}}1
+  {€}{{\euro{}}}1
+  {é}{{\'e}}1
+  {è}{{\`{e}}}1
+  {ê}{{\^{e}}}1
+  {ë}{{\¨{e}}}1
+  {É}{{\'{E}}}1
+  {Ê}{{\^{E}}}1
+  {û}{{\^{u}}}1
+  {ù}{{\`{u}}}1
+  {â}{{\^{a}}}1
+  {à}{{\`{a}}}1
+  {á}{{\'{a}}}1
+  {ã}{{\~{a}}}1
+  {Á}{{\'{A}}}1
+  {Â}{{\^{A}}}1
+  {Ã}{{\~{A}}}1
+  {ç}{{\c{c}}}1
+  {Ç}{{\c{C}}}1
+  {õ}{{\~{o}}}1
+  {ó}{{\'{o}}}1
+  {ô}{{\^{o}}}1
+  {Õ}{{\~{O}}}1
+  {Ó}{{\'{O}}}1
+  {Ô}{{\^{O}}}1
+  {î}{{\^{i}}}1
+  {Î}{{\^{I}}}1
+  {í}{{\'{i}}}1
+  {Í}{{\~{Í}}}1,
+  morekeywords={*,...},
+   numbersep=10pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{gray},
+  tabsize=4,
+  title=\lstname,
+}
+ 
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L2 MIASHS}
+\titre{Aide mémoire API Tweepy - Version 2}
+\begin{document}
+
+\section*{Documentation}
+Ce document présente un résumé de quelques fonctionnalités utiles de l'API Tweepy. La documentation complète est disponible à cette adresse : \url{https://docs.tweepy.org/en/stable/client.html}
+
+\section{Obtenir des identifiants pour l'API Twitter}
+Pour travailler avec l’API Twitter, vous devrez posséder un compte Twitter, et obtenir des clés d'API.
+
+Le document \url{https://raw.githubusercontent.com/alemaitr/python_opendata_l2/master/DocTweepy/compteDeveloppeur.pdf} explique comment procéder. 
+
+\section{Authentification}
+Une fois ces identifiants créés, vous pouvez créer un client d'API tweepy avec les commandes suivantes, en indiquant vos propres identifiants  :
+\begin{lstlisting}
+client = tweepy.Client(consumer_key="xxx", consumer_secret="xxx", access_token="xxx",access_token_secret="xxx")
+\end{lstlisting}
+Le client vous donne accès à diverses fonctionnalités, dont quelques-unes  exposées ci-dessous. 
+\section{Gérer ses tweets}
+\subsection{Poster un tweet}
+
+\begin{lstlisting}
+client.create_tweet("Texte à tweeter")
+\end{lstlisting}
+
+\subsection{Supprimer un tweet}
+Supprimer un tweet nécessite d'en connaitre son identifiant. 
+\begin{lstlisting}
+client.delete_tweet(tweet_id)
+\end{lstlisting}
+
+\subsection{Liker un tweet}
+Liker un tweet nécessite d'en connaitre son identifiant. 
+\begin{lstlisting}
+client.like(tweet_id)
+\end{lstlisting}
+
+Il est aussi possible de ne plus aimer un tweet : 
+\begin{lstlisting}
+client.unlike(tweet_id)
+\end{lstlisting}
+\section{Accéder aux utilisateurs}
+
+\subsection{Obtenir des informations utilisateurs}
+
+Il est possible d'obtenir des informations utilisateurs à partir d'un nom ou d'un identifiant.
+
+L'objet renvoyé est un User donc les data contiennent pas défaut le nom et l'id.
+
+A partir d'un username : 
+\begin{lstlisting}
+user = client.get_user(username="metropolerennes",user_auth=True)
+print(f"Utilisateur : {user.data.name}, identifiant : {user.data.id}")
+\end{lstlisting}
+
+A partir d'un identifiant : 
+
+\begin{lstlisting}
+user = client.get_user(id="16824660",user_auth=True)
+print(f"Utilisateur : {user.data.name}, identifiant : {user.data.id}")
+\end{lstlisting}
+
+\subsection{Champs d'un utilisateur}
+Par défaut, les champs d'un User ne sont composés que d'un identifiant, et d'un nom. Pour avoir des objets plus complets, il est nécessaire de le préciser lors de la requête, en remplissant une liste de user\_fields.
+
+Par exemple, dans la requête ci-dessus, on complète en demandant également le nom d'utilisateur et le lieu : 
+\begin{lstlisting}
+user = client.get_user(id="16824660",user_auth=True,user_fields=["username","location"])
+print(f"Utilisateur : {user.data.name}, username :{user.data.username}, identifiant : {user.data.id}, lieu : {user.data.location}")
+\end{lstlisting}
+
+Les user\_fields disponibles sont les suivants : 
+created\_at, description, entities, id, location, name, pinned\_tweet\_id, profile\_image\_url, protected, public\_metrics, url, username, verified, withheld
+
+\subsection{Liste des followers}
+
+Le client permet d'accéder à la liste des followers d'un utilisateur, à partir de son identifiant. Comme ci-dessus, on pourra enrichir les champs renvoyés en précisant un user\_fields.
+
+\begin{lstlisting}
+response = client.get_users_followers(
+    id="16824660", user_fields=["profile_image_url"],user_auth=True)
+for user in response.data:
+    print(user.username, user.profile_image_url)
+\end{lstlisting}
+
+\subsection{Liste des utilisateurs ayant aimé un tweet}
+Cette fonctionnalité nécessite de connaître l'id du tweet. Comme ci-dessus, on pourra enrichir les champs renvoyés en précisant un user\_fields.
+\begin{lstlisting}
+tweet_id = 1595360922314608641
+response = client.get_liking_users(tweet_id,user_auth=True)
+for user in response.data:
+    print(user.name)
+\end{lstlisting}
+
+
+\subsection{Liste des utilisateurs ayant retweeté un tweet}
+Cette fonctionnalité nécessite de connaître l'id du tweet. Comme ci-dessus, on pourra enrichir les champs renvoyés en précisant un user\_fields.
+\begin{lstlisting}
+tweet_id = 1595360922314608641
+response = client.get_retweeters(tweet_id,user_auth=True)
+for user in response.data:
+    print(user.name)
+\end{lstlisting}
+
+\section{Consulter des tweets}
+
+\subsection{Consulter des tweets récents}
+Exemple : consultation des tweets récents citant "Rennes". La réponse renvoyée contient une liste de tweets (dans data). Il est possible d'afficher les identifiants de chaque tweet. Par défaut, 10 résultats sont renvoyés. 
+\begin{lstlisting}
+response = client.search_recent_tweets("Rennes",user_auth=True)
+for tweet in tweets.data:
+    print(tweet.id)
+    print(tweet.text)
+\end{lstlisting}  
+
+\subsection{Champs des tweets}
+
+Par défaut, les champs d'un tweet ne sont composés que d'un identifiant, et d'un texte. Pour avoir des objets plus complets, il est nécessaire de le préciser lors de la requête. 
+
+Par exemple, on complète le code précédent pour demander en plus la date de création, la langue.
+\begin{lstlisting}
+response = client.search_recent_tweets("Rennes",tweet_fields=["created_at","lang"],user_auth=True)
+for tweet in tweets.data:
+    print(f"{tweet.id} (le{tweet.created_at}, en {tweet.lang}) : {tweet.text}") 
+\end{lstlisting} 
+
+Les tweet\_fields disponibles sont les suivants : 
+attachments, author\_id, context\_annotations, conversation\_id, created\_at, edit\_controls, edit\_history\_tweet\_ids, entities, geo, id, in\_reply\_to\_user\_id, lang, non\_public\_metrics, organic\_metrics, possibly\_sensitive, promoted\_metrics, public\_metrics, referenced\_tweets, reply\_settings, source, text, withheld
+
+\subsection{Consulter la liste des tweets d'un utilisateur}
+Cette fonctionnalité nécessite de connaître l'identifiant d'un utilisateur.
+
+\begin{lstlisting}
+response = client.get_users_tweets(user_id)
+for tweet in response.data:
+    print(tweet.id)
+    print(tweet.text)
+\end{lstlisting}  
+Comme ci-dessus, il est possible d'enrichir les données des tweets en précisant des tweet\_fields.
+
+\subsection{Consulter les tweets mentionnant un utilisateur}
+Cette fonctionnalité nécessite de connaître l'identifiant d'un utilisateur. 
+
+\begin{lstlisting}
+user_id = 2244994945
+response = client.get_users_mentions(user_id)
+for tweet in response.data:
+    print(tweet.id)
+    print(tweet.text)
+\end{lstlisting} 
+
+\subsection{Consulter des tweets à partir de leurs ids}
+
+\begin{lstlisting}
+tweet_ids = [1460323737035677698, 1293593516040269825, 1293595870563381249]
+response = client.get_tweets(tweet_ids, tweet_fields=["created_at"],user_auth=True)
+for tweet in response.data:
+    print(tweet.text, tweet.created_at)
+\end{lstlisting}  
+
+\end{document}
