@@ -37,7 +37,9 @@ def recent_query(client,query,nb):
 client= client_twitter("TD9/corrige/credentials.json")
 
 #Création d'un tewwet
-# response = client.create_tweet(text="Je crée un tweet avec le client API")
+response = client.create_tweet(text="Je crée un tweet avec le client API V2")
+print(response.data["id"])
+
 
 #Récupération d'un utilisateur
 # user = client.get_user(username="chris_suspecte",user_auth=True)
