@@ -108,7 +108,7 @@ print(response.data["id"])
 \end{lstlisting}
 
 \subsection{Supprimer un tweet}
-Supprimer un tweet nécessite d'en connaitre son identifiant. 
+Supprimer un tweet nécessite d'en connaitre son identifiant (entier).
 \begin{lstlisting}
 client.delete_tweet(tweet_id)
 \end{lstlisting}
@@ -167,6 +167,7 @@ for user in response.data:
     print(user.username, user.profile_image_url)
 \end{lstlisting}
 
+Par défaut, la fonction renvoie les 100 premiers followers.
 \subsection{Liste des utilisateurs ayant aimé un tweet}
 Cette fonctionnalité nécessite de connaître l'id du tweet. Comme ci-dessus, on pourra enrichir les champs renvoyés en précisant un user\_fields.
 \begin{lstlisting}
@@ -197,6 +198,12 @@ for tweet in tweets.data:
     print(tweet.text)
 \end{lstlisting}  
 
+La requête peut être plus sophistiquée qu'un simple mot. 
+Par exemple, ci-dessous, on cherche les 10 derniers tweets, postés par EmmanuelMacron, en supprimant les retweets.
+\begin{lstlisting}
+myquery = 'from:EmmanuelMacron -is:retweet'
+tweets = client.search_recent_tweets(query=myquery, max_results=10,user_auth=True)
+\end{lstlisting}                                    
 \subsection{Champs des tweets}
 
 Par défaut, les champs d'un tweet ne sont composés que d'un identifiant, et d'un texte. Pour avoir des objets plus complets, il est nécessaire de le préciser lors de la requête. 
@@ -210,17 +217,34 @@ for tweet in tweets.data:
 
 Les tweet\_fields disponibles sont les suivants : 
 attachments, author\_id, context\_annotations, conversation\_id, created\_at, edit\_controls, edit\_history\_tweet\_ids, entities, geo, id, in\_reply\_to\_user\_id, lang, non\_public\_metrics, organic\_metrics, possibly\_sensitive, promoted\_metrics, public\_metrics, referenced\_tweets, reply\_settings, source, text, withheld
+\\
+
+Le champ \verb+geo+ contient, lorsque cela a été précisé, les coordonnées géographiques du tweet. 
+Il peut s'agir soit d'un emplacement (place\_id), parfois complété d'une structure contenant des coordonnées GPS du type : 
+\begin{verbatim}
+{'place_id': '5a110d312052166f', 
+'coordinates': {'type': 'Point', 'coordinates': [-122.407437, 37.787994]}}
+\end{verbatim}
+\\
+
+Le champ \verb+public_metrics+ contient les statistiques comme le nombre de retweet ou le nombre de likes, sous la forme : 
+\begin{verbatim}
+{'retweet_count': 1, 'reply_count': 0, 'like_count': 0, 'quote_count': 0}
+\end{verbatim}
 
 \subsection{Consulter la liste des tweets d'un utilisateur}
 Cette fonctionnalité nécessite de connaître l'identifiant d'un utilisateur.
 
 \begin{lstlisting}
-response = client.get_users_tweets(user_id)
+response = client.get_users_tweets(user_id,user_auth=True)
 for tweet in response.data:
     print(tweet.id)
     print(tweet.text)
 \end{lstlisting}  
 Comme ci-dessus, il est possible d'enrichir les données des tweets en précisant des tweet\_fields.
+Le paramètre max\_results permet de préciser le nombre de résultat à renvoyer, par défaut 10.
+
+Il est également possible de préciser les dates de début et fin de la requête, avec les paramètres star\_time et end\_time (au format datetime). 
 
 \subsection{Consulter les tweets mentionnant un utilisateur}
 Cette fonctionnalité nécessite de connaître l'identifiant d'un utilisateur. 

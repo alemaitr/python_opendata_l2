@@ -12,6 +12,7 @@
 
 
 \renewcommand\thesection{Exercice \arabic{section} : }
+\renewcommand\thesubsection{Question \arabic{section}.\arabic{subsection} : }
 \renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
 
 \sorte{TD}
@@ -73,7 +74,10 @@ où les `"..."` seront remplacés par vos identifiants fournis par l'interface T
     \item Écrire une fonction \verb+tweeter+ qui prend en entrée un client Twitter, un message, et qui poste un tweet avec ce message. 
     Cette fonction doit renvoyer l'identifiant du tweet ainsi créé.
     \item Tester cette fonction pour poster un message de votre choix (ex : "Je suis en TP Python"). 
+    \item Écrire une fonction \verb+efface_tweet+ qui prend en entrée un client Twitter et un identifiant de tweet, et supprime le tweet correspondant.
+    \item Tester cette fonction pour supprimer un des tweets précédemment postés.
 \end{enumerate}
+
 
 \section{Identifiants utilisateurs}
 
@@ -91,7 +95,7 @@ où les `"..."` seront remplacés par vos identifiants fournis par l'interface T
                #SHS et #STAPS à l'Université #Rennes2", 
     'Date de création':'04/2013'}
     \end{verbatim}
-    Notons que la date de création est convertie sous forme d'une chaine de caractère ne contenant que le mois est l'année.
+    Notons que la date de création est convertie sous forme d'une chaine de caractère ne contenant que le mois et l'année.
 
     \item Utiliser cette fonction pour obtenir votre identifiant utilisateur.
 
@@ -100,31 +104,84 @@ où les `"..."` seront remplacés par vos identifiants fournis par l'interface T
 
 \section{Consultation de tweets}
 
-\begin{enumerate}
 
+\begin{enumerate}
+\item Écrire une fonction \verb+derniers_tweets+ qui prend en entrée un client, un identifiant d'utilisateur, un entier n et qui renvoie les n derniers tweets de l'utilisateur. 
+Les tweets seront renvoyés sous la forme d'une liste de dictionnaires, chaque dictionnaire sera de la forme suivante : 
+\begin{verbatim}
+{'date': datetime.datetime(2022, 11, 24, 11, 8, 24, tzinfo=datetime.timezone.utc),
+'texte': 'La journée pédagogique NCU Cursus IDE@L sur le thème de l'hybridation est lancée !',
+'tweet_id': 1595736085518245888}
+\end{verbatim}
+\item Utiliser cette fonction pour afficher vos 5 derniers tweets.
+
+\item Compléter cette fonction pour enrichir les dictionnaires retournés avec la géo-localisation du tweet : lorsque les informations de coordonnées GPS sont fournies, ajouter deux clés "lat" et "long" contenant la latitude et la longitude du tweet.
+\item Tester en affichant les derniers tweets de l'utilisateur \verb+chris_suspecte+
+
+Voici un exemple de dictionnaire fourni : 
+\begin{verbatim}
+{'date': datetime.datetime(2022, 11, 24, 6, 45, 15, tzinfo=datetime.timezone.utc),
+  'lat': 37.787994,
+  'long': -122.407437,
+  'texte': 'Je suis à San Francisco [Ceci est un faux tweet avec localisation]',
+  'tweet_id': 1595669860960419846},
+\end{verbatim}
 
 \end{enumerate}
 
 
-% \begin{enumerate}
-    
-    
-% \item  Écrire une fonction qui prend en entrée le client d'accès à l'API et retourne la liste des 2 derniers tweets de l'utilisateur identifié.
+\section{Questions non guidées}
 
-% \item Écrire une fonction qui prend un tweet en entrée (de type `Status`) et retourne le texte de ce tweet.
+Les questions ci-dessous sont plus ouvertes. Écrire le code nécessaire pour répondre à chacune des questions, en utilisant des fonctions lorsque c'est pertinent.
 
-% \item En utilisant la fonction de la question précédente, écrire une fonction qui prend une liste de tweets en entrée et retourne la liste des textes des tweets en question.
+\subsection{Tweet favori}
 
-% \item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et renvoie un tuple contenant retourne l'identifiant et le nom de son auteur.
+Problème :
+\emph{Parmi les 50 derniers tweet de l'Université Rennes 2 (UnivRennes\_2), lequel à récolté le plus de like (points favoris) ? }
+\\
 
-% \end{enumerate}
+Exemple de résultat : 
+\begin{verbatim}
+Le tweet de Université Rennes 2 ayant récolté le plus de like date du 08/11/22 à 10:04 : 
+ --------------------
+Ma thèse en 180 secondes : relevez le défi de présenter votre #thèse en 3 minutes !
+Les inscriptions à la formation #MT180 sont ouvertes jusqu'au 16 décembre. 
+Au programme, 2 jours pour se former à la médiation #scientifique ! 
+Dates et programmes : https://t.co/G0OGvEmJNT https://t.co/Wah5HiZxlo
+ --------------------
+\end{verbatim}
 
 
-\section{Suppression de tweets}
 
-\begin{enumerate}
-    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et une liste d'identifiants de tweets et supprime tous les tweets correspondants.
-\end{enumerate}
 
+\subsection{Régularité}
+
+Problème : \emph{Sur chacun des jours de septembre 2021, combien l'Université Rennes 2 (UnivRennes\_2) a t'elle posté de tweets ? }
+\\
+
+Exemple de résultat :
+\begin{verbatim}
+Voici la répartition des tweets de Rennes 2 sur le mois de septembre 2022
+{1: 8, 2: 2, 3: 0, 4: 0, 5: 2, 6: 5, 7: 2, 8: 2, 9: 2, 10: 0, 11: 0, 12: 4, 
+13: 6, 14: 4, 15: 3, 16: 5, 17: 0, 18: 0, 19: 4, 20: 3, 21: 2, 22: 3, 23: 6, 
+24: 0, 25: 0, 26: 2, 27: 1, 28: 8, 29: 4, 30: 1}
+\end{verbatim}
+
+\subsection{Followers}
+
+Problème :
+\emph{Citer des utilisateurs qui suivent à la fois le compte de l'Université Rennes 2 (UnivRennes\_2) et celui de la ville de Rennes (metropolerennes) ?}
+\\
+
+Exemple de résultat :
+
+\begin{verbatim}
+Voici le nom de 46 followers communs à Université Rennes 2 et Rennes métropole
+Il s'agit de :
+    ['Eli Ackerman', 'lumiere espoir', 'Sidahmed Ali', 'Bienfait Hugo',
+     'Association Météo Bretagne' 'Léa', 'Educ_info', 'Gaïd Le Maner-Idrissi', 
+     'david delapousse', 'ED PROMOTION', 'Avenarius', ...]
+\end{verbatim}
+Note : Il est difficile d'extraire ici tous les followers communs, car la récupération simple des followers est limitée à 1000.
 
 \end{document}
