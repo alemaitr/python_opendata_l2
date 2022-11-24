@@ -37,10 +37,12 @@ def recent_query(client,query,nb):
 client= client_twitter("TD9/corrige/credentials.json")
 
 #Création d'un tewwet
-response = client.create_tweet(text="Je crée un tweet avec le client API V2")
-print(response.data["id"])
-
-
+# response = client.create_tweet(text="Je crée un tweet avec localisation de Jean-Mi",place_id="6264e4f8ac43f448")
+# print(response.data["id"])
+lat=37.787994
+long=-122.407437
+# response = client.create_tweet(text="Je crée un tweet depuis SF",place_id="San Francisco")
+# print(response.data["id"])
 #Récupération d'un utilisateur
 # user = client.get_user(username="chris_suspecte",user_auth=True)
 # print(f"User : {user.data.name},identifiant : {user.data.id}, ")
@@ -105,7 +107,12 @@ print(response.data["id"])
 # for user in response.data:
 #     print(user.name)
 
-tweet_id = 1595360922314608641
-response = client.get_retweeters(tweet_id,user_auth=True)
-for user in response.data:
-    print(user.name)
+# tweet_id = 1595360922314608641
+# response = client.get_retweeters(tweet_id,user_auth=True)
+# for user in response.data:
+#     print(user.name)
+
+tweet_ids = [1595473634331688963,900348496779382784,1595499732515885071,1595504049322971136,1594957690244984833,1595669860960419846,1595683728202039297,1595683729531453442]
+response = client.get_tweets(tweet_ids, tweet_fields=["created_at","geo"],user_auth=True)
+for tweet in response.data:
+    print(tweet.text, tweet.created_at, tweet.geo)

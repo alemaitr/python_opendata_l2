@@ -103,7 +103,7 @@ Le client vous donne accès à diverses fonctionnalités, dont quelques-unes  ex
 
 L'identifiant du tweet créé est renvoyé dans la réponse
 \begin{lstlisting}
-response = client.create_tweet("Texte à tweeter")
+response = client.create_tweet(text="Texte à tweeter")
 print(response.data["id"])
 \end{lstlisting}
 

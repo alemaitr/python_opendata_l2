@@ -22,21 +22,10 @@
 
 Dans ce TD, vous utiliserez le module `tweepy` pour manipuler des données issues de l'API Twitter.
 
-%Il est fortement conseillé de vous aider des deux documents suivants pour ce TD :
-
-
-% * [l'aide en ligne de tweepy](http://tweepy.readthedocs.io/en/v3.6.0/api.html)
-
-% * [le document d'explication fourni pour ce cours](http://rtavenar.github.io/teaching/python_project/html/tweepy_gmaps.html)
-
-%TODO : Améliorer en augmentant le nombre de questions, créer des questions intermédiaires. 
 
 \section*{Travail à préparer chez vous avant la séance}
 
-Préparez un compte Twitter à utiliser pendant la séance. Pour cela, vous pourrez soit utiliser un compte Twitter existant, soit en créer un pour l'occasion. 
-
-Ensuite, vous devrez suivre les indications fournies \url{http://rtavenar.github.io/teaching/python_project/html/tweepy_createapp.html} pour créer une "Application", c'est-à-dire un cadre dans lequel vous aurez le droit de faire des requêtes à l'API Twitter depuis votre code Python.
-
+Suivez les indications fournies sur le document TD9-péparation, pour créer votre compte Twitter et obtenir les clé API. 
 
 \section*{Préambule}
 \begin{itemize}
@@ -47,13 +36,15 @@ Ensuite, vous devrez suivre les indications fournies \url{http://rtavenar.github
     \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD9. 
 \end{itemize}
 
-\subsection*{Cas des ordinateurs de l'Université de Rennes 2}
+\subsection*{Installation du module tweepy}
 
-Sur les ordinateurs de l'Université de Rennes 2, le module `tweepy` n'est pas installé par défaut. Pour pouvoir l'utiliser, il va donc falloir commencer par l'installer. Pour cela, vous devrez ouvrir le terminal dans Visual Studio Code, puis entrer la ligne \verb+pip install --user tweepy+.
+Sur les ordinateurs de l'Université de Rennes 2, le module `tweepy` n'est pas installé par défaut, vous devez donc l'installer. Pour cela, vous ouvrir le terminal dans Visual Studio Code, puis entrer la ligne : 
+
+\verb+pip install --user tweepy+.
 
 \section{Identification}
 
-Pour commencer, vous allez devoir vous authentifier sur l'API Twitter. Comme indiqué en cours, vous ne devrez jamais laisser apparaître vos identifiants dans votre code Python.
+Vous allez devoir vous authentifier sur l'API Twitter.Vous ne devrez jamais laisser apparaître vos identifiants dans votre code Python, mais les stocker dans un fichier externe.
 
 \begin{enumerate}
     \item Compléter le fichier \verb+credentials.json+ avec vos identifiants de twitter, pour qu'il ait le format suivant : 
@@ -70,40 +61,65 @@ Pour commencer, vous allez devoir vous authentifier sur l'API Twitter. Comme ind
 
 \end{verbatim}
 où les `"..."` seront remplacés par vos identifiants fournis par l'interface Twitter.
-\item Écrire une fonction \verb+acces_api+ qui prend en entrée le nom d'un fichier json contenant les clés, qui lit les identifiants dans ce fichier et qui retourne une variable d'accès à l'API Twitter pour ces identifiants.
+
+\item Écrire une fonction \verb+client_twitter+ qui prend en entrée le nom d'un fichier json contenant les clés, qui lit les identifiants dans ce fichier et qui retourne un client d'accès à l'API Twitter pour ces identifiants.
 \end{enumerate}
 
-\section{Consultation de tweets}
-\begin{enumerate}
-    
-    
-\item  Écrire une fonction qui prend en entrée la variable d'accès à l'API et retourne la liste des 2 derniers tweets de l'utilisateur identifié.
 
-\item Écrire une fonction qui prend un tweet en entrée (de type `Status`) et retourne le texte de ce tweet.
-
-\item En utilisant la fonction de la question précédente, écrire une fonction qui prend une liste de tweets en entrée et retourne la liste des textes des tweets en question.
-
-\item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et renvoie un tuple contenant retourne l'identifiant et le nom de son auteur.
-
-\end{enumerate}
 
 
 \section{Écriture de tweets}
+\begin{enumerate}
+    \item Écrire une fonction \verb+tweeter+ qui prend en entrée un client Twitter, un message, et qui poste un tweet avec ce message. 
+    Cette fonction doit renvoyer l'identifiant du tweet ainsi créé.
+    \item Tester cette fonction pour poster un message de votre choix (ex : "Je suis en TP Python"). 
+\end{enumerate}
 
-Pour la suite, vous devrez avoir activé la fonctionnalité de \textbf{localisation de vos tweets} sur la plateforme twitter. Pour cela :
-
-\begin{itemize}
-\item Rendez vous, dans un navigateur web, sur votre compte twitter : \url{https://twitter.com/}
-\item  Sélectionnez "Paramètres et confidentialité" dans les préférences de votre compte
-\item  Dans le menu "Confidentialité et sécurité", cochez la case "Tweeter avec une localisation" puis validez en bas de la page en cliquant sur "Enregistrer les modifications".
-\end{itemize}
+\section{Identifiants utilisateurs}
 
 \begin{enumerate}
-    \item Le fichier \verb+tweets.csv+ disponible sur CURSUS contient une liste de Tweets. Pour chaque tweet, on fournit son texte ainsi que sa position GPS. Télécharger ce fichier dans votre répertoire TD9.
-    \item Écrire une fonction qui prend en entrée la variable d'accès à l'API et le chemin vers le fichier contenant les tweets et poste l'ensemble des Tweets contenus dans ce fichier. Au texte contenu dans le fichier, vous ajouterez la mention `"Ceci est un faux tweet posté depuis mon TD de Python"`. 
-    \item Vérifiez que les Tweets apparaissent bien sur votre compte Twitter, avec la localisation voulue.
-    \item  Améliorer la fonction de la question précédente pour qu'elle retourne la liste des identifiants des tweets créés.
+
+    \item Créer un fonction \verb+details_utilisateur+ qui prend en entrée un client et un nom d'utilisateur Twitter, et qui renvoie un dictionnaire contenant le détail des informations de cet utilisateur. 
+    
+    Par exemple, pour \verb+UnivRennes_2+, on renverra le dictionnaire suivant : 
+    \begin{verbatim}
+    {'Utilisateur': 'UnivRennes_2', 
+    'User_id': 1354601634, 
+    'Nom': 'Université Rennes 2', 
+    'Lieu': 'Rennes, France', 
+    'Description': "Toute l'actualité des #Arts, #Lettres, #Langues,
+               #SHS et #STAPS à l'Université #Rennes2", 
+    'Date de création':'04/2013'}
+    \end{verbatim}
+    Notons que la date de création est convertie sous forme d'une chaine de caractère ne contenant que le mois est l'année.
+
+    \item Utiliser cette fonction pour obtenir votre identifiant utilisateur.
+
 \end{enumerate}
+
+
+\section{Consultation de tweets}
+
+\begin{enumerate}
+
+
+\end{enumerate}
+
+
+% \begin{enumerate}
+    
+    
+% \item  Écrire une fonction qui prend en entrée le client d'accès à l'API et retourne la liste des 2 derniers tweets de l'utilisateur identifié.
+
+% \item Écrire une fonction qui prend un tweet en entrée (de type `Status`) et retourne le texte de ce tweet.
+
+% \item En utilisant la fonction de la question précédente, écrire une fonction qui prend une liste de tweets en entrée et retourne la liste des textes des tweets en question.
+
+% \item Écrire une fonction qui prend en entrée un tweet (de type `Status`) et renvoie un tuple contenant retourne l'identifiant et le nom de son auteur.
+
+% \end{enumerate}
+
+
 \section{Suppression de tweets}
 
 \begin{enumerate}
