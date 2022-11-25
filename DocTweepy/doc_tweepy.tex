@@ -129,7 +129,7 @@ client.unlike(tweet_id)
 
 Il est possible d'obtenir des informations utilisateurs à partir d'un nom ou d'un identifiant.
 
-L'objet renvoyé est un User donc les data contiennent pas défaut le nom et l'id.
+
 
 A partir d'un username : 
 \begin{lstlisting}
@@ -143,6 +143,8 @@ A partir d'un identifiant :
 user = client.get_user(id="16824660",user_auth=True)
 print(f"Utilisateur : {user.data.name}, identifiant : {user.data.id}")
 \end{lstlisting}
+
+L'objet renvoyé est un User dont les data contiennent par défaut le nom et l'id.
 
 \subsection{Champs d'un utilisateur}
 Par défaut, les champs d'un User ne sont composés que d'un identifiant, et d'un nom. Pour avoir des objets plus complets, il est nécessaire de le préciser lors de la requête, en remplissant une liste de user\_fields.
@@ -220,7 +222,7 @@ attachments, author\_id, context\_annotations, conversation\_id, created\_at, ed
 \\
 
 Le champ \verb+geo+ contient, lorsque cela a été précisé, les coordonnées géographiques du tweet. 
-Il peut s'agir soit d'un emplacement (place\_id), parfois complété d'une structure contenant des coordonnées GPS du type : 
+Il peut s'agir d'un simple emplacement (place\_id), parfois complété d'une structure contenant des coordonnées GPS du type : 
 \begin{verbatim}
 {'place_id': '5a110d312052166f', 
 'coordinates': {'type': 'Point', 'coordinates': [-122.407437, 37.787994]}}
