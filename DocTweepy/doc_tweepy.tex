@@ -143,7 +143,6 @@ user = client.get_user(id="16824660",user_auth=True)
 print(f"Utilisateur : {user.data.name}, identifiant : {user.data.id}")
 \end{lstlisting}
 
-L'objet renvoyé est un User dont les data contiennent par défaut le nom et l'id.
 
 \subsection{Champs d'un utilisateur}
 Par défaut, les champs d'un User ne sont composés que d'un identifiant, et d'un nom. Pour avoir des objets plus complets, il est nécessaire de le préciser lors de la requête, en remplissant une liste de user\_fields.
