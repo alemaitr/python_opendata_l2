@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+% \renewcommand\thesection{Exercice \arabic{section} : }
+% \renewcommand\thesubsection{Question \arabic{section}.\arabic{subsection} : }
+% \renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L2 MIASHS}
+\titre{TD 10-11 : Projet Cluedo}
+\begin{document}
+
+
+\section{Préambule}
+
+Pour ce projet, vous devrez travailler par groupes de 2 ou 3.
+
+Le projet sera réalisé essentiellement lors des deux dernières séances de TD, et votre présence lors de ces séances de TD est obligatoire.
+
+Votre rendu se fera sous la forme d’un
+fichier Python. Ce fichier devra être nommé td10-11.py et contenir les noms et numéros étudiant de tous
+les membres du groupe commentés, en en-tête du fichier, comme dans l’exemple suivant :
+\begin{verbatim}
+# 22000002 Paul Machin
+# 22000227 Yolène Truc
+
+import ...
+\end{verbatim}
+
+La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt. Les fichiers déposés sur
+CURSUS ne devront surtout pas contenir vos clés d’API. Celles-ci devront être lues par votre
+programme dans un fichier credentials.json (que vous ne fournirez pas pour ne pas divulguer
+votre clé d’API) au format :
+\begin{verbatim}
+{"twitter": {
+    "CONSUMER_KEY":"...",
+    "CONSUMER_SECRET":"...",
+    "ACCESS_TOKEN":"...",
+    "ACCESS_TOKEN_SECRET":"..."
+    },
+"graphhopper": "..."
+}
+\end{verbatim}
+
+
+
+\end{document}
