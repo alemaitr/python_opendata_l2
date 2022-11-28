@@ -1,9 +1,16 @@
 {   
-    "id_requete":"Z3145T2208",
-    "description_requete": "Enquete Cluedo L2 MIASHS",
-    "debut_bornage": "28/11/22-14h00",
-    "fin_bornage": "28/11/22-16h00",
-    "numeros_suivis":["0611001100","0622002200","0633003300","0644004400"],
+    "requete": {
+        "id_requete": "Z3145T2208",
+        "description_requete": "Enquete Cluedo L2 MIASHS",
+        "debut_bornage": "28/11/22-14h00",
+        "fin_bornage": "28/11/22-16h00",
+        "numeros_suivis": [
+            "0611001100",
+            "0622002200",
+            "0633003300",
+            "0644004400"
+        ]
+    },
     "antennes": [
         {
             "id": "750398",

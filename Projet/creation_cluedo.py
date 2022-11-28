@@ -97,18 +97,19 @@ os.chdir("Projet")
 # # 15h40
 # tweet_suspect("suspect_christiane","Ouh là là, c'est le bazar le parking du Mont Saint Michel !","Pk-Mt-St-Michel")
 
+
+
+# # 16h10
+# tweet_suspect("suspect_robert","Paris pluvieux, mais Paris heureux !!")
+# tweet_suspect("suspect_christiane","Magnifique visite de l'abbaye !!","Abbaye-Mt-St-Michel")
 #####################################
 ############ A tweeter  #############
 
 
 
 
-# 16h10
-tweet_suspect("suspect_robert","Paris pluvieux, mais Paris heureux !!")
-tweet_suspect("suspect_christiane","Magnifique visite de l'abbaye !!","Abbaye-Mt-St-Michel")
-
 
 #20h 
-# tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
-# tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
+tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
+tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
 
