@@ -28,6 +28,56 @@ Pour ce projet, vous devrez travailler par groupes de 2 ou 3.
 
 Le projet sera réalisé essentiellement lors des deux dernières séances de TD, et votre présence lors de ces séances de TD est obligatoire.
 
+La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt.
+
+
+\section{L'enquête}
+
+Le 28 novembre 2022, à 15h05, un crime a été commis à l’UFR Sciences Sociales de l’Université Rennes 2. Quatre suspects ont été ciblés grâce aux premiers éléments de l’enquête. 
+
+Votre rôle sera de déterminer si leur géolocalisation sur les réseaux sociaux est compatible avec leur présence sur les lieux du crime à l’heure dite.
+
+Vous disposez de deux sources d'indices de géolocalisation : 
+\begin{itemize}
+    \item le compte Twitter des suspects : chacun a pu émettre des tweets, dont certains sont géolocalisés. 
+    \item un relevé du bornage téléphonique sur 3 pylones (Beaulieu, Villejean et Pacé) pour les numéros de téléphone de nos quatre suspects.
+\end{itemize}
+
+Les enquêteurs ont déterminé que chacun des suspects se déplace exclusivement en voiture. 
+
+Vous devrez donc étudier les géolocalisation disponibles pour chacun des suspects. Vous pourrez ainsi innocenter les suspects qui, compte tenu de leur localisation avant ou après le crime, n'avaient pas le temps de se rendre (en voiture) à l'UFR Sciences sociales à 15h05. 
+
+S'il ne reste qu'un seul suspect, il sera désigné coupable !
+
+\section{Implémentation en Python}
+
+Concrètement, votre programme devra afficher, pour chaque suspect listé dans le fichier suspects.csv, ses nom et prénom et s’il est possible ou non, d’après ses traces de géolocalisation qu’il ait commis le crime.
+
+
+Pour mener à bien votre mission, vous pourrez utiliser (outre votre intelligence) :
+\begin{itemize}
+\item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points ;
+\item le package tweepy pour interroger Twitter ;
+\item le package requests pour interroger la base de bornage téléphonique : \url{}
+\item le package datetime pour la gestion des dates et des temps écoulés entre deux dates.
+\end{itemize}
+
+
+\section{Niveaux de rendu attendu}
+
+Pour valider le projet, votre code devra fournir le nom du coupable (le seul suspect non innocenté par la géo-localisation).
+\\
+
+Des travaux plus élaborés seront valorisés dans la note finale, tels que : 
+\begin{itemize}
+    \item fournir un code clair et lisible ;
+    \item limiter les traitements inutiles et les requêtes redondantes ;
+    \item prendre en compte l'imprecision du bornage téléphonique : être capté par la borne signifie être autour de la borne à plus ou moins 2 minutes en voiture ;
+    \item tracer des cartes...
+\end{itemize}
+
+
+\section{Rendu de devoir}
 Votre rendu se fera sous la forme d’un
 fichier Python. Ce fichier devra être nommé td10-11.py et contenir les noms et numéros étudiant de tous
 les membres du groupe commentés, en en-tête du fichier, comme dans l’exemple suivant :
@@ -37,11 +87,7 @@ les membres du groupe commentés, en en-tête du fichier, comme dans l’exemple
 
 import ...
 \end{verbatim}
-
-La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt. Les fichiers déposés sur
-CURSUS ne devront surtout pas contenir vos clés d’API. Celles-ci devront être lues par votre
-programme dans un fichier credentials.json (que vous ne fournirez pas pour ne pas divulguer
-votre clé d’API) au format :
+Les fichiers déposés sur CURSUS ne devront surtout pas contenir vos clés d’API. Celles-ci devront être lues par votre programme dans un fichier credentials.json (que vous ne fournirez pas pour ne pas divulguer votre clé d’API) au format :
 \begin{verbatim}
 {"twitter": {
     "CONSUMER_KEY":"...",
@@ -52,7 +98,6 @@ votre clé d’API) au format :
 "graphhopper": "..."
 }
 \end{verbatim}
-
 
 
 \end{document}

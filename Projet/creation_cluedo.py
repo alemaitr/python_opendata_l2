@@ -58,7 +58,7 @@ def verifie_lieux(fichier):
 
 os.chdir("Projet")
 
-verifie_lieux("places.json")
+# verifie_lieux("places.json")
 
 # efface_tweet("suspect_georges",1596842707640524802)
 
@@ -69,30 +69,36 @@ verifie_lieux("places.json")
 # tweet_suspect("suspect_jeanmi","Mon appartement ne ressemble à rien, il faut vraiment que j'aille chez Ikéa demain !","GastonBerger")
 # tweet_suspect("suspect_georges","En pleines révisions, grosse journée de cours demain !")
 # tweet_suspect("suspect_robert","Quelqu'un saurait où on peut acheter des tickets de métro parisien à Rennes ?","Sainte-Anne")
-#####################################
-############ A tweeter  #############
+# tweet_suspect("suspect_christiane","Fin du week-end... départ pour la fac","République")
 
-#13h
+# #13h
 # tweet_suspect("suspect_georges","Déjeuner avec les potes, Miam le RU de Villejean :-(","RU-Villejean")
 # tweet_suspect("suspect_robert","Un sandwich vite fait en gare de Rennes, avant de monter dans le TGV pour Paris","Gare")
 # tweet_suspect("suspect_christiane","Que de monde au Métronome ce midi !!","RU-Villejean")
-# tweet_suspect("suspect_jeanmi","Ma liste de courses est prête, allé 18 place 12... Ikea, j'arrive !","GastonBerger")
+# tweet_suspect("suspect_jeanmi","Ma liste de courses est prête, allée 18 place 12... Ikea, j'arrive !","GastonBerger")
 
-#14h45
+# #14h45
 # tweet_suspect("suspect_jeanmi","Au rayon cuisine, je trouve un magnifique couteau de boucher !!","IKEA-Rennes")
 # tweet_suspect("suspect_christiane","Merci la BU Rennes 2, collecté plein d'infos sur l'Abbaye du Mt St Michel. Allons voir en vrai maintenant !","BU")
 # tweet_suspect("suspect_georges","Mais que ce cours est long est pénible... ")
-#14h58
+
+# #14h58
 # tweet_suspect("suspect_jeanmi","Ouf, je sors d'Ikéa, bien chargé !!","IKEA-Rennes")
 # tweet_suspect("suspect_georges","L'étudiante derrière moi pourrait elle arrêter de me tousser dessus ?")
-#15h06
+
+# #15h06
 # tweet_suspect("suspect_robert","Cool, mon train est à l'heure !! Bien arrivé à Montparnasse")
-# 15h25
+
+# # 15h25
 # tweet_suspect("suspect_robert","Les ascenseurs de la Tour Eiffel sont en panne... ça va être sportif !!")
 # tweet_suspect("suspect_jeanmi","Tout est déchargé, je m'attaque au montage des Billy !","GastonBerger")
 # tweet_suspect("suspect_georges","Bon, ben y'a du boulot pour les partiels...")
+#####################################
+############ A tweeter  #############
+
+
 # 15h40
-# tweet_suspect("suspect_christiane","Ouh là là, c'est le bazard le parking du Mont Saint Michel !","Pk-Mt-St-Michel")
+tweet_suspect("suspect_christiane","Ouh là là, c'est le bazard le parking du Mont Saint Michel !","Pk-Mt-St-Michel")
 
 
 # 16h10
