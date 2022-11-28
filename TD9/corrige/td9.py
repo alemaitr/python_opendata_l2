@@ -77,6 +77,7 @@ def tweet_favoris(client,user):
         like =tweet.public_metrics['like_count'] 
         if like>nbmax :
             t_like = tweet
+            nbmax = like
 
     date = t_like.created_at.strftime("%d/%m/%y à %H:%M")
     print(f'Le tweet de {user_nom} ayant récolté le plus de like date du {date} : \n {"-"*20} \n {t_like.text}\n {"-"*20}' )
@@ -148,7 +149,7 @@ client= client_twitter("credentials.json")
 # pprint(dico)
 
 #Q5.1
-# tweet_favoris(client,"UnivRennes_2")
+tweet_favoris(client,"UnivRennes_2")
 
 #Q5.2
 # dico = repartition_mois(client,"UnivRennes_2",9)
