@@ -450,47 +450,7 @@
             },
             "titre": "L'Odyssée"
         },
-        {
-            "acteurs": [
-                {
-                    "id_acteur": 30,
-                    "nom": "Loiret Caille",
-                    "prénom": "Florence"
-                },
-                {
-                    "id_acteur": 20,
-                    "nom": "Guesmi",
-                    "prénom": "Samir"
-                },
-                {
-                    "id_acteur": 26,
-                    "nom": "Jónsdóttir",
-                    "prénom": "Didda"
-                },
-                {
-                    "id_acteur": 44,
-                    "nom": "Rebbot",
-                    "prénom": "Philippe"
-                },
-                {
-                    "id_acteur": 16,
-                    "surnom": "Esteban"
-                },
-                {
-                    "id_acteur": 8,
-                    "nom": "Côte",
-                    "prénom": "Olivia"
-                }
-            ],
-            "date_sortie": "2016-06-29T01:00:00.000Z",
-            "durée": 83,
-            "genre": "Comédie dramatique",
-            "réalisateur": {
-                "nom": "Anspach",
-                "prénom": "Sólveig"
-            },
-            "titre": "L'effet aquatique"
-        },
+    
         {
             "date_sortie": "2016-02-24T01:00:00.000Z",
             "durée": 90,
