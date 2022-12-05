@@ -110,6 +110,8 @@ os.chdir("Projet")
 
 
 #21h 
-tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
-tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
+# tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
+# tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
 
+
+# efface_tweet("suspect_jeanmi",1598220930077151232)
