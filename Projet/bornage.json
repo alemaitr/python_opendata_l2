@@ -50,7 +50,7 @@
         },
         {
             "id": "1173910",
-            "operateur": "Orange",
+            "operateurs": "Orange",
             "adresse": "ZAC des Touches Bd de La Giraudais La Janaie Longue 35740 Pacé",
             "localisation": {
                 "lat": 48.13936549198643,
