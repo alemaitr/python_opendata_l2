@@ -9,6 +9,7 @@ Jean Mi habite à Villejean, en face de l'UFR. Il passse le début d'après midi
         14h45 : tweet_suspect("suspect_jeanmi","Au rayon cuisine, je trouve un magnifique couteau de boucher !!","IKEA-Rennes")
         14h58 : tweet_suspect("suspect_jeanmi","Ouf, je sors d'Ikéa, bien chargé !!","IKEA-Rennes")
         15h25 : tweet_suspect("suspect_jeanmi","Tout est déchargé, je m'attaque au montage des Billy !","GastonBerger")
+		21h : tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
 
     Bornage : 
         Pacé : 14h00,14h15,14h30,14h45
@@ -44,7 +45,7 @@ Christiane passe la matinée à la BU. Elle y est encore à 14h45. Puis elle par
 
 * Robert
 
-Rien ne peut innoncenter Robert. Il fait croire dans ses messages qu'il va passer la journée à Paris. Son dernier tweet géolocalisé est à la gare de Rennes vers 13h. Ses tweets suivants ne sont pas géolocalisés. Il a coupé son téléphone portable pour ne pas se faire repérer. Il n'a donc pas de bornage téléphonique. 
+Rien ne peut innocenter Robert. Il fait croire dans ses messages qu'il va passer la journée à Paris. Son dernier tweet géolocalisé est à la gare de Rennes vers 13h. Ses tweets suivants ne sont pas géolocalisés. Il a coupé son téléphone portable pour ne pas se faire repérer. Il n'a donc pas de bornage téléphonique. 
 
     Tweets :
         la veille : tweet_suspect("suspect_robert","Quelqu'un saurait où on peut acheter des tickets de métro parisien à Rennes ?","Sainte-Anne")
@@ -52,5 +53,5 @@ Rien ne peut innoncenter Robert. Il fait croire dans ses messages qu'il va passe
         15h06 : tweet_suspect("suspect_robert","Cool, mon train est à l'heure !! Bien arrivé à Montparnasse")
         15h25 : tweet_suspect("suspect_robert","Les ascenseurs de la Tour Eiffel sont en panne... ça va être sportif !!")
         16h10 : tweet_suspect("suspect_robert","Paris pluvieux, mais Paris heureux !!")
-        20h00 : tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
+        21h00 : tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
 
