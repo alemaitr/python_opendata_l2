@@ -11,21 +11,21 @@ def noms_compteurs(d):
 
 def nombre_passages(d, noms):
     for nom in noms:
-        n_juin = 0
+        n_sept = 0
         for elem in d:
             if elem["name"] == nom:
-                n_juin += elem["counts"]
-        print(f"Compteur '{nom}': {n_juin} passages durant le mois de Juin")
+                n_sept += elem["counts"]
+        print(f"Compteur '{nom}': {n_sept} passages durant le mois de Septembre")
 
 
-def nombre_passages_3_juin(d, noms):
+def nombre_passages_4_septembre(d, noms):
     for nom in noms:
-        n_3_juin = 0
+        n_4_septembre = 0
         for elem in d:
             if elem["name"] == nom:
                 if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2022, 6, 3):
-                    n_3_juin += elem["counts"]
-        print(f"Compteur '{nom}': {n_3_juin} passages le 3 Juin")
+                    n_4_septembre += elem["counts"]
+        print(f"Compteur '{nom}': {n_4_septembre} passages le 4 Septembre")
 
 
 def passages_par_creneau(d):
@@ -57,7 +57,7 @@ def recode_date(d):
 
 # Extraction d'informations élémentaires
 # 1.
-nom_fichier = "eco-counter-data_clean.json"
+nom_fichier = "TD3/Corrige/eco-counter-data_clean.json"
 fp = open(nom_fichier, "r")
 donnees = json.load(fp)
 
@@ -69,7 +69,7 @@ print(f"Noms des compteurs dans le jeu de données: {noms_c}")
 nombre_passages(donnees, noms_c)
 
 # 4. 
-nombre_passages_3_juin(donnees, noms_c)
+nombre_passages_4_septembre(donnees, noms_c)
 
 # 5.
 passages = passages_par_creneau(donnees)

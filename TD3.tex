@@ -31,7 +31,7 @@
 \end{enumerate}
 
 Ce TD se concentre sur un jeu de données de comptage du nombre de passages de vélos à Rennes au niveau d'un certain nombres de bornes de comptage. 
-Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois de Juin 2022. Les données sont fournies au format JSON (JavaScript Object Notation).
+Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois de Septembre 2023. Les données sont fournies au format JSON (JavaScript Object Notation).
 
 \section{Chargement des données}
 
@@ -46,15 +46,15 @@ Dans la suite de ce sujet, on nomme \og enregistrement\fg ~chaque dictionnaire i
 Pour information, une date codée sous la forme :
 \begin{verbatim}
 {
-    "year": 2022,
-    "month": 6,
+    "year": 2023,
+    "month": 9,
     "day": 3,
     "hour": 20
 }
 \end{verbatim}
 
 \noindent
-correspond au créneau \verb+20h-21h+ le 3 Juin 2022 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
+correspond au créneau \verb+20h-21h+ le 3 Septembre 2023 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
 
 \section{Extraction d'informations élémentaires}
 
@@ -67,7 +67,7 @@ Les questions suivantes nécessitent de manipuler les données depuis Python et 
 
 \item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur (\emph{i.e.} pour chaque valeur différente de l'attribut \verb+name+), le nombre total de passages de vélos.
 
-\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur, le nombre total de passages de vélos en date du 3 Juin 2022.
+\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur, le nombre total de passages de vélos en date du 4 Septembre 2023.
 
 \item Écrire une fonction qui prend en entrée le jeu de données et retourne, dans une structure adaptée, le nombre de passages de vélo pour chaque heure de la journée (0h-1h, 1h-2h, ..., 23h-24h), tous compteurs et tous jours confondus.
 
