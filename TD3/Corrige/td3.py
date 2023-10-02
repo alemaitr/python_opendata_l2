@@ -23,7 +23,7 @@ def nombre_passages_4_septembre(d, noms):
         n_4_septembre = 0
         for elem in d:
             if elem["name"] == nom:
-                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2022, 6, 3):
+                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2023, 9, 4):
                     n_4_septembre += elem["counts"]
         print(f"Compteur '{nom}': {n_4_septembre} passages le 4 Septembre")
 
