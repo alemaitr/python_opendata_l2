@@ -113,7 +113,7 @@ trajets = corrige_couleurs(trajets)
 # afficher_carte(carte)
 
 #Exercice 4
-# carte_tous_points_2d(trajets)
+carte_tous_points_2d(trajets)
 
 #Exercice 5
 

@@ -1,0 +1,57 @@
+Le crime a eu lieu à 15h05 à l'UFR sc sociales.
+
+* Jean-Michel
+Jean Mi habite à Villejean, en face de l'UFR. Il passse le début d'après midi à Ikea. Il rentre chez lui décharger ses courses à 15h30, mais son tweet à Ikea à 14h58 l'innocente.
+    
+    Tweets :
+        la veille : tweet_suspect("suspect_jeanmi","Mon appartement ne ressemble à rien, il faut vraiment que j'aille chez Ikéa demain !","GastonBerger")
+        13h : tweet_suspect("suspect_jeanmi","Ma liste de courses est prête, allé 18 place 12... Ikea, j'arrive !","GastonBerger")
+        14h45 : tweet_suspect("suspect_jeanmi","Au rayon cuisine, je trouve un magnifique couteau de boucher !!","IKEA-Rennes")
+        14h58 : tweet_suspect("suspect_jeanmi","Ouf, je sors d'Ikéa, bien chargé !!","IKEA-Rennes")
+        15h25 : tweet_suspect("suspect_jeanmi","Tout est déchargé, je m'attaque au montage des Billy !","GastonBerger")
+		21h : tweet_suspect("suspect_jeanmi","J'ai vaincu le montage ! fier de mon appartement témoin Ikéa ! Et le couteau tranche parfaitement !","GastonBerger")
+
+    Bornage : 
+        Pacé : 14h00,14h15,14h30,14h45
+        Villejean : 15h15, 15h30, 15h45
+
+* Georges
+Georges mange au RU de Villejean le midi, où il twitte sa localisation.
+Puis il arrête de se géolocaliser, mais il passe l'après midi en cours à Beaulieu. 
+Il sera innocenté par le bornage téléphonique à Beaulieu.
+    
+    Tweets :
+        la veille : tweet_suspect("suspect_georges","En pleines révisions, grosse journée de cours demain !")
+        13h : tweet_suspect("suspect_georges","Déjeuner avec les potes, Miam le RU de Villejean :-(","RU-Villejean")
+        14h45 : tweet_suspect("suspect_georges","Mais que ce cours est long est pénible... ")
+        14h58 : tweet_suspect("suspect_georges","L'étudiante derrière moi pourrait elle arrêter de me tousser dessus ?")
+        15h25 : tweet_suspect("suspect_georges","Bon, ben y'a du boulot pour les partiels...")
+    Bornage : 
+        Beaulieu : 14h15,14h30,15h00,15h15,15h30,15h45
+
+* Christiane
+Christiane passe la matinée à la BU. Elle y est encore à 14h45. Puis elle part au Mont Saint Michel. Son tweet sur le parking du mont Saint Michel l'innocente. 
+
+    Tweets :
+        la veille : "Je fais du tourisme en Bretagne, aujourd'hui Paimpont, demain Mont-Saint Michel !!"
+        la veille : tweet_suspect("suspect_christiane","C'est vraiment un paysage magnifique","Brocéliande")
+        13h : tweet_suspect("suspect_christiane","Que de monde au Métronome ce midi !!","RU-Villejean")
+        14h45 : tweet_suspect("suspect_christiane","Merci la BU Rennes 2, collecté plein d'infos sur l'Abbaye du Mt St Michel. Allons voir en vrai maintenant !","BU")
+        15h40 : tweet_suspect("suspect_christiane","Ouh là là, c'est le bazard le parking du Mont Saint Michel !","Pk-Mt-St-Michel")
+        16h10 : tweet_suspect("suspect_christiane","Magnifique visite de l'abbaye !!","Abbaye-Mt-St-Michel")
+    Bornage :
+        Villejean : 14h00, 14h15, 14h30, 14h45
+
+
+* Robert
+
+Rien ne peut innocenter Robert. Il fait croire dans ses messages qu'il va passer la journée à Paris. Son dernier tweet géolocalisé est à la gare de Rennes vers 13h. Ses tweets suivants ne sont pas géolocalisés. Il a coupé son téléphone portable pour ne pas se faire repérer. Il n'a donc pas de bornage téléphonique. 
+
+    Tweets :
+        la veille : tweet_suspect("suspect_robert","Quelqu'un saurait où on peut acheter des tickets de métro parisien à Rennes ?","Sainte-Anne")
+        13h00 : tweet_suspect("suspect_robert","Un sandwich vite fait en gare de Rennes, avant de monter dans le TGV pour Paris","Gare")
+        15h06 : tweet_suspect("suspect_robert","Cool, mon train est à l'heure !! Bien arrivé à Montparnasse")
+        15h25 : tweet_suspect("suspect_robert","Les ascenseurs de la Tour Eiffel sont en panne... ça va être sportif !!")
+        16h10 : tweet_suspect("suspect_robert","Paris pluvieux, mais Paris heureux !!")
+        21h00 : tweet_suspect("suspect_robert","Retour à Rennes après cette escapade parisienne","Gare")
+
