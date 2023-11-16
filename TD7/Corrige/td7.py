@@ -16,7 +16,7 @@ def lesfrancois(content):
 #Fonction exercice 3
 def genre_nom(genre,nom_famille=None):
     #On filtre sur le genre
-    lst = requests.get(f"http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016?genre={genre}").json()
+    lst = requests.get(f"http://my-json-server.typicode.com/rtavenar/db_opendata/cesars2016?genre={genre}").json()
     films=[]
     for film in lst :
         acteurs = [a.get("nom","") for a in film["acteurs"]]
@@ -85,7 +85,7 @@ def prepare_real(contenu):
         del film["réalisateur"]
     return contenu
 #Exercice 1
-contenu = requests.get("http://my-json-server.typicode.com/alemaitr/python_opendata_l2/cesars2016").json()
+contenu = requests.get("http://my-json-server.typicode.com/rtavenar/db_opendata/cesars2016").json()
 print(f"Nombre de films : {len(contenu)}")
 # Nombre de films : 8
 
