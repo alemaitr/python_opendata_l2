@@ -18,63 +18,76 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD 10-11 : Projet Cluedo}
+\titre{TD 10-11 : Projet Rennes2 Express}
 \begin{document}
 
 
 \section{Préambule}
 
-Pour ce projet, vous devrez travailler par groupes de 2 ou 3.
+Pour ce projet, vous devrez travailler par groupes de 2.
 
 Le projet sera réalisé essentiellement lors des deux dernières séances de TD, et votre présence lors de ces séances de TD est obligatoire.
 
 La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt.
 
+\section{Rennes2 Express}
+\begin{center}
+\includegraphics[width=8cm]{ProjetRennes2Express/logo.jpg}
+\end{center}
+Lors de l'émission télévisée Rennes2 Express, 8 équipes s'affrontent pour tenter de remporter un grand prix !
+Les concurrents s'élancent de Marseille le lundi 13 novembre, et ils ont 4 jours pour rallier l'Université Rennes 2, le plus rapidement possible.
 
-\section{L'enquête}
-
-Le 28 novembre 2022, à 15h05, un crime a été commis à l’UFR Sciences Sociales de l’Université Rennes 2 (48.11859, -1.70322). Quatre suspects ont été ciblés grâce aux premiers éléments de l’enquête. 
-
-Votre rôle sera de déterminer si leur géolocalisation sur les réseaux sociaux est compatible avec leur présence sur les lieux du crime à l’heure dite.
-
-Vous disposez de deux sources d'indices de géolocalisation : 
+Chaque journée de jeu se déroule de la manière suivante :
 \begin{itemize}
-    \item le compte Twitter des suspects : chacun a pu émettre des tweets, dont certains sont géolocalisés. 
-    \item un relevé du bornage téléphonique sur 3 pylones (Beaulieu, Villejean et Pacé) pour les numéros de téléphone de nos quatre suspects.
+    \item Une étape le matin, entre 8h et 12h, dont le déplacement se fait à pieds ou en voiture. 
+    \item Une épreuve le midi, entre 12h et 14h. Les équipes s'affrontent, et l'équipe gagnante obtient le droit d'utiliser le train pour l'étape de l'après-midi.
+    \item Une étape l'après-midi à partir de 14h, dont le déplacement se fait à pieds ou en voiture, sauf pour l'équipe gagnante de l'épreuve du midi qui peut utiliser le train.
 \end{itemize}
 
-Les enquêteurs ont déterminé que chacun des suspects se déplace exclusivement en voiture. 
+Au début et à la fin de chaque étape, une borne est disposée sur le parcours, et les candidats doivent badger pour valider leur temps de parcours de l'étape.
 
-Vous devrez donc étudier les géolocalisations disponibles pour chacun des suspects. Vous pourrez ainsi innocenter les suspects qui, compte tenu de leur localisation avant ou après le crime, n'avaient pas le temps de se rendre (en voiture) à l'UFR Sciences sociales à 15h05. 
+Ainsi, le déplacement en train est interdit, en dehors du cas de l'équipe gagnante. On considère qu'une équipe qui parvient à se déplacer plus rapidement que le temps de trajet d'une voiture a triché, par exemple en empruntant un TGV.
 
-S'il ne reste qu'un seul suspect, il sera désigné coupable !
+\vspace{2em}
+Lors de l'édition 2023, des bruits courent\dots ~Certaines équipes auraient triché, en empruntant un TGV alors qu'elles n'y étaient pas autorisées !
+
+
+La société de production de Rennes2 Express nous fournit les informations suivantes : 
+\begin{itemize}
+    \item La liste des équipes
+    \item La liste des bornes de début et de fin de parcours, avec leur position GPS.
+    \item La liste de tous les enregistrements des équipes sur les bornes, avec l'horaire précis de validation.
+    \item La liste des épreuves du midi, et le nom des vainqueurs.
+\end{itemize}
+
+
+Votre rôle sera de déterminer quelles sont la ou les équipes qui ont triché !
+
+\section{Travail attendu}
+
+Pour valider votre projet, vous devrez fournir un script Python produisant les résultats ci-dessous. Différents niveaux de rendus sont proposés, et seront valorisés dans la note finale. 
+
+\begin{description}
+    \item[Niveau 0] Afficher le nom de la ou des équipes qui ont triché, c'est à dire qui ont pris un TGV alors qu'elles n'avaient pas le droit. 
+    \item[Niveau 1] Afficher le nom de l'équipe ganantes, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
+    \item[Niveau 2] Afficher l'ordre du classement complet des équipes (en enlevant celles qui ont triché), selon le temps cumulé des étapes.
+    \item[Niveau 3] Proposer d'autres classements : journalier, à points...
+    \item[Bonus] Produire une carte des étapes et des épreuves.
+\end{description}
+
+Il est également attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes.
 
 \section{Implémentation en Python}
-
-Concrètement, votre programme devra afficher, pour chaque suspect listé dans le fichier suspects.csv, ses nom et prénom et s’il est possible ou non, d’après ses traces de géolocalisation qu’il ait commis le crime.
 
 
 Pour mener à bien votre mission, vous pourrez utiliser (outre votre intelligence) :
 \begin{itemize}
 \item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points ;
-\item le package tweepy pour interroger Twitter ;
-\item le package requests pour interroger la base de bornage téléphonique : \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/bornage}
-\item le package datetime pour la gestion des dates et des temps écoulés entre deux dates.
+\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/equipes} et des épreuves \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/epreuves}
+\item le package csv et les DataFrame pandas pour l'analyse des deux fichiers csv de la production (disponibles sur Cursus). 
+\item le package datetime pour la gestion des dates et des durées.
 \end{itemize}
 
-
-\section{Niveaux de rendu attendu}
-
-Pour valider le projet, votre code devra fournir le nom du coupable (le seul suspect non innocenté par la géo-localisation).
-\\
-
-Des travaux plus élaborés seront valorisés dans la note finale, tels que : 
-\begin{itemize}
-    \item fournir un code clair et lisible ;
-    \item limiter les traitements inutiles et les requêtes redondantes ;
-    \item prendre en compte l'imprecision du bornage téléphonique : être capté par la borne signifie être autour de la borne à plus ou moins 2 minutes en voiture ;
-    \item tracer des cartes...
-\end{itemize}
 
 
 \section{Rendu de devoir}
@@ -89,13 +102,8 @@ import ...
 \end{verbatim}
 Les fichiers déposés sur CURSUS ne devront surtout pas contenir vos clés d’API. Celles-ci devront être lues par votre programme dans un fichier credentials.json (que vous ne fournirez pas pour ne pas divulguer votre clé d’API) au format :
 \begin{verbatim}
-{"twitter": {
-    "CONSUMER_KEY":"...",
-    "CONSUMER_SECRET":"...",
-    "ACCESS_TOKEN":"...",
-    "ACCESS_TOKEN_SECRET":"..."
-    },
-"graphhopper": "..."
+{
+    "graphhopper": "..."
 }
 \end{verbatim}
 

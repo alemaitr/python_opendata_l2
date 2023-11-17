@@ -5,49 +5,45 @@ from pytz import timezone
 
 # Q 2.1 Tous les passages
 
-def tous_passages_metro():
-    url = "https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=100&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.precision=Temps+r%C3%A9el&timezone=Europe%2FParis"
-    contenu = requests.get(url)
-    dico = contenu.json()
+def extrait_infos_passages(lst_brute):
     liste_passage = []
-    for metro in dico["records"] :
-        if "depart" in metro["fields"].keys() :
-            passage = {}
-            passage["depart"] = datetime.fromisoformat(metro["fields"]["depart"])
-            passage["destination"] = metro["fields"]["destination"]
-            passage["nomarret"] = metro["fields"]["nomarret"]
-            passage["ligne"]= metro["fields"]["nomcourtligne"]
-            liste_passage.append(passage)
+    for metro in lst_brute :
+        if "depart" in metro.keys() and metro["depart"]: #Sous entendu not None
+            if "arrivee" in metro.keys() and metro["arrivee"]: #Sous entendu not None
+                passage = {}
+                passage["depart"] = datetime.fromisoformat(metro["depart"])
+                format_arrivee ="%Y-%m-%d %H:%M:%S%z"
+                passage["arrivee"] = datetime.strptime(metro["arrivee"],format_arrivee)
+                # print(metro["arrivee"], "----->", passage["arrivee"])
+                passage["destination"] = metro["destination"]
+                passage["nomarret"] = metro["nomarret"]
+                passage["ligne"]= metro["nomcourtligne"]                
+                liste_passage.append(passage)
     return liste_passage
 
-#Q2.2 Passages à venir
-def a_venir(t, lespassages):
-    passages_avenir = []
+# #Q2.2 durée moyenne
 
-    for passage in lespassages :
-        heuremetro = passage["depart"]
-        maintenant = datetime.now(timezone("Europe/Paris"))
-        if maintenant + timedelta(minutes=t)  > heuremetro and heuremetro> maintenant:
-            passages_avenir.append(passage)
+def duree_moyenne(lst_passages):
+    duree_cumulee = timedelta(0)
+    for passage in lst_passages:
+        duree = passage["depart"]-passage["arrivee"]
+        duree_cumulee+=duree
+    return duree_cumulee/len(lst_passages)
 
-    return passages_avenir
+# def a_venir(t, lespassages):
+#     passages_avenir = []
+
+#     for passage in lespassages :
+#         heuremetro = passage["depart"]
+#         maintenant = datetime.now(timezone("Europe/Paris"))
+#         if maintenant + timedelta(minutes=t)  > heuremetro and heuremetro> maintenant:
+#             passages_avenir.append(passage)
+
+#     return passages_avenir
 
 #Q3.1 Passages dans une station
-def passages_station(station):
-    url = f"https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=10&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.nomarret={station}&refine.precision=Temps+r%C3%A9el"
-    contenu = requests.get(url)
-    dico = contenu.json()
-    liste_passage = []
-    # print(dico["nhits"])
-    for metro in dico["records"] :
-        if "depart" in metro["fields"].keys() :
-            passage = {}
-            passage["depart"] = datetime.fromisoformat(metro["fields"]["depart"])
-            passage["destination"] = metro["fields"]["destination"]
-            # passage["nomarret"] = metro["fields"]["nomarret"]
-            passage["ligne"]= metro["fields"]["nomcourtligne"]
-            liste_passage.append(passage)
-    return liste_passage
+def passages_station(station, les_passages):
+    return [passage for passage in les_passages if passage['nomarret']==station]
 
 #Q3.3 Prochains passages dans une station
 
@@ -58,17 +54,17 @@ def prochain_passage_station(lespassages):
         cle=(passage["ligne"],passage["destination"])
         horaire = passage["depart"]
         maintenant = datetime.now(timezone("Europe/Paris"))
-        if horaire > maintenant:
+        if horaire > maintenant: #On vérifie que l'horaire de départ n'est pas encore passé
             if cle in dico.keys() :
-                if dico[cle]>horaire :
+                if horaire < dico[cle]: #Si on a trouvé un horaire avant le précédent
                     dico[cle]=horaire
             else:
                 dico[cle]=horaire
 
     return dico
 
-def affichage_station(station):
-    passages = passages_station(station)
+def affichage_station(station,lstpassages):
+    passages = passages_station(station,lstpassages)
     prochains = prochain_passage_station(passages)
     print("********************************************")
     print(f"Bienvenue à la station {station}")
@@ -78,28 +74,43 @@ def affichage_station(station):
         heureformat = heure.astimezone(timezone("Europe/Paris")).strftime("%H:%M:%S")
         print(f"Ligne {cle[0]}, direction {cle[1]} : prochain métro à {heureformat}")
     print("********************************************")
-# # Q 1.7 Récupération des passages de métro
-# passages_brut = requests.get("https://data.explore.star.fr/api/records/1.0/search/?dataset=tco-metro-circulation-passages-tr&q=&rows=100&facet=nomcourtligne&facet=sens&facet=destination&facet=nomarret&facet=precision&refine.precision=Temps+r%C3%A9el&timezone=Europe%2FParis")
-# passages = passages_brut.json()
 
-# # Q 1.8 Nombre de passages
-# print(f"Nombre de passages annoncés : {passages['nhits']}")
-# print(f"Nombre de passages comptés : {len(passages['records'])}")
-# print("Note : différence normale puisque notre requête renvoie les 100 prochains passages")
+if __name__=="__main__":
 
-#Test fonctions exercice 2
-passages = tous_passages_metro()
-# pprint(passages)
-print(len(passages))
-avenir = a_venir(10,passages)
-# pprint(avenir)
-print(len(avenir)," passages dans les 10 prochaines minutes")
+    # Q 1.6 Récupération des passages de métro
+    url = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records?limit=100&refine=precision%3A%22Temps%20r%C3%A9el%22"
+    reponse = requests.get(url).json()
+    # print(reponse)
 
-#Tests exercice 3
-pass_gare = passages_station("Gares")
-# pprint(pass_gare)
-# procgare = prochain_passage_station(pass_gare)
-# pprint(procgare)
-affichage_station("Gares")
-# affichage_station("La Poterie")
-# affichage_station("Saint-Germain")
+    # Q 1.7 Nombre de passages
+    print(f"Nombre de passages annoncés : {reponse['total_count']}")
+    print(f"Nombre de passages comptés dans la première requête: {len(reponse['results'])}")
+    print("Note : différence normale puisque notre requête renvoie seulement les 100 prochains passages")
+
+    # Q 1.8 Liste des passages
+    liste_passages_bruts = reponse["results"]
+    # Q 1.9 Complément avec Offset de 100
+    url2 = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records?offset=100&limit=100&refine=precision%3A%22Temps%20r%C3%A9el%22"
+    reponse2 = requests.get(url2).json()
+    print(f"Nombre de passages comptés dans la seconde requete : {len(reponse2['results'])}")
+    liste_passages_bruts+=reponse2['results']
+    print(f"Nombre de passages disponibles au final : {len(liste_passages_bruts)}")
+
+    # Exercice 2
+    liste_passages = extrait_infos_passages(liste_passages_bruts)
+    # pprint(liste_passages)
+    print(f"Nombre de passages apres filtrage arrivee/depart non vide : {len(liste_passages)}")
+
+    moyenne = duree_moyenne(liste_passages)
+    print(f"Temps moyen passé dans chaque station : {moyenne}")
+
+    # Exercice 3
+    #Q3.2
+    
+    pass_gare = passages_station("Gares",liste_passages)
+    # print("Prochains passages à la station Gares :")
+    # pprint(pass_gare)
+    procgare = prochain_passage_station(pass_gare)
+    # pprint(procgare)
+    affichage_station("Gares",liste_passages)
+    affichage_station("Saint-Germain",liste_passages)
