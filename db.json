@@ -8,21 +8,21 @@
             {
                 "epreuve_id": "Ep1",
                 "ville": "Avignon",
-                "vainqueur": "E3",
+                "vainqueur": "E7",
                 "date": "13/11/2023 11:30",
                 "type_epreuve": "quizz"
             },
             {
                 "epreuve_id": "Ep2",
                 "ville": "Macon",
-                "vainqueur": "E4",
+                "vainqueur": "E3",
                 "date": "14/11/2023 12:30",
                 "type_epreuve": "logique"
             },
             {
                 "epreuve_id": "Ep3",
                 "ville": "Auxerre",
-                "vainqueur": "E7",
+                "vainqueur": "E4",
                 "date": "15/11/2023 13:00",
                 "type_epreuve": "sport"
             },
