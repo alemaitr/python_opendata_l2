@@ -1,7 +1,8 @@
-{
-    "emission": "Rennes2Express",
+{ "rennes2express":{
+    "emission":"Rennes 2 Express",
     "edition": "2023",
     "saison": "19",
+    "dates":"Du 13 au 16 novembre 2023",
     "epreuves": [
         {
             "epreuve_id": "Ep1",
@@ -140,4 +141,5 @@
             "borne_arrivee": "B16"
         }
     ]
+}
 }
