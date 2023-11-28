@@ -39,25 +39,29 @@ Les concurrents s'élancent de Marseille le lundi 13 novembre, et ils ont 4 jour
 
 Chaque journée de jeu se déroule de la manière suivante :
 \begin{itemize}
-    \item Une étape le matin, entre 8h et 12h, dont le déplacement se fait à pieds ou en voiture. 
-    \item Une épreuve le midi, entre 12h et 14h. Les équipes s'affrontent, et l'équipe gagnante obtient le droit d'utiliser le train pour l'étape de l'après-midi.
-    \item Une étape l'après-midi à partir de 14h, dont le déplacement se fait à pieds ou en voiture, sauf pour l'équipe gagnante de l'épreuve du midi qui peut utiliser le train.
+    \item Une étape le matin, lors de laquelle les concurrents doivent rallier le plus rapidement possible la ville suivante.
+    \item Une épreuve le midi. Les équipes s'affrontent, et l'équipe gagnante obtient un bonus "Ticket de train" !
+    \item Une étape l'après-midi, lors de laquelle les concurrents doivent rallier la ville suivante.
 \end{itemize}
+
+Tous les déplacement doivent se faire à pied ou en voiture. Les équipes ayant gagné un bonus "Ticket de train" ont le droit 
+d'emprunter une fois le train sur une étape de 
+leur choix lors de la suite de l'aventure. 
 
 Au début et à la fin de chaque étape, une borne est disposée sur le parcours, et les candidats doivent badger pour valider leur temps de parcours de l'étape.
 
-Ainsi, le déplacement en train est interdit, en dehors du cas de l'équipe gagnante. On considère qu'une équipe qui parvient à se déplacer plus rapidement que le temps de trajet d'une voiture a triché, par exemple en empruntant un TGV.
+
 
 \vspace{2em}
 Lors de l'édition 2023, des bruits courent\dots ~Certaines équipes auraient triché, en empruntant un TGV alors qu'elles n'y étaient pas autorisées !
 
+La règle est simple : on considère qu'une équipe qui parvient à se déplacer plus rapidement que le temps de trajet d'une voiture a emprunté le train.
 
 La société de production de Rennes2 Express nous fournit les informations suivantes : 
 \begin{itemize}
-    \item La liste des équipes
-    \item La liste des bornes de début et de fin de parcours, avec leur position GPS.
-    \item La liste de tous les enregistrements des équipes sur les bornes, avec l'horaire précis de validation.
-    \item La liste des épreuves du midi, et le nom des vainqueurs.
+    \item les informations sur l'édition 2023 de l'émission avec les étapes, les épreuves et leur gagnants ;
+    \item la liste des bornes de début et de fin de parcours, avec leur position GPS ;
+    \item la liste de tous les enregistrements des équipes sur les bornes, avec l'horaire précis de validation.
 \end{itemize}
 
 
@@ -65,30 +69,29 @@ Votre rôle sera de déterminer quelles sont la ou les équipes qui ont triché 
 
 \section{Travail attendu}
 
-Pour valider votre projet, vous devrez fournir un script Python produisant les résultats ci-dessous. Différents niveaux de rendus sont proposés, et seront valorisés dans la note finale. 
+Pour valider votre projet, vous devrez fournir un script Python produisant les résultats ci-dessous.
+ Différents niveaux de rendus sont proposés, et seront valorisés dans la note finale. 
 
 \begin{description}
     \item[Niveau 0] Afficher le nom de la ou des équipes qui ont triché, c'est à dire qui ont pris un TGV alors qu'elles n'avaient pas le droit. 
-    \item[Niveau 1] Afficher le nom de l'équipe ganantes, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
+    \item[Niveau 1] Afficher le nom de l'équipe gagnante, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
     \item[Niveau 2] Afficher l'ordre du classement complet des équipes (en enlevant celles qui ont triché), selon le temps cumulé des étapes.
-    \item[Niveau 3] Proposer d'autres classements : journalier, à points...
-    \item[Bonus] Produire une carte des étapes et des épreuves.
+    \item[Niveau 3] Proposer d'autres classements : classement journalier, classement à points (3 points pour le premier de l'étape, 2 points pour le second, un point pour le troisième)
+
 \end{description}
 
 Il est également attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes.
 
 \section{Implémentation en Python}
 
-
 Pour mener à bien votre mission, vous pourrez utiliser (outre votre intelligence) :
 \begin{itemize}
 \item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points ;
-\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/equipes} et des épreuves \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/epreuves}
-\item le package csv et les DataFrame pandas pour l'analyse des deux fichiers csv de la production (disponibles sur Cursus). 
-\item le package datetime pour la gestion des dates et des durées.
+\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/rennes2express} ;
+\item le package csv pour l'analyse des deux fichiers csv de la production (disponibles sur Cursus) ;
+\item le package datetime pour la gestion des dates et des durées ;
+\item les structures de donnes appropriées : listes, dictionnaires, DataFrame Pandas, tuples, ensembles.
 \end{itemize}
-
-
 
 \section{Rendu de devoir}
 Votre rendu se fera sous la forme d’un
@@ -103,7 +106,7 @@ import ...
 Les fichiers déposés sur CURSUS ne devront surtout pas contenir vos clés d’API. Celles-ci devront être lues par votre programme dans un fichier credentials.json (que vous ne fournirez pas pour ne pas divulguer votre clé d’API) au format :
 \begin{verbatim}
 {
-    "graphhopper": "..."
+    "GraphHopper": "..."
 }
 \end{verbatim}
 
