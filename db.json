@@ -66,104 +66,105 @@
             "E8": {
                 "nom": "Caroline et Sabrina",
                 "couleur": "brown"
-            },
-            "etapes": [
-                {
-                    "code_etape": "Etape 1",
-                    "depart": {
-                        "lieu": "Marseille",
-                        "heure_theorique": "13/11/2023 08:00",
-                        "borne": "B01"
-                    },
-                    "arrivee": {
-                        "lieu": "Avignon",
-                        "borne": "B02"
-                    }
+            }
+        },
+        "etapes": [
+            {
+                "code_etape": "Etape 1",
+                "depart": {
+                    "lieu": "Marseille",
+                    "heure_theorique": "13/11/2023 08:00",
+                    "borne": "B01"
                 },
-                {
-                    "code_etape": "Etape 2",
-                    "depart": {
-                        "lieu": "Avignon",
-                        "heure_theorique": "13/11/2023 14:00",
-                        "borne": "B03"
-                    },
-                    "arrivee": {
-                        "lieu": "Lyon",
-                        "borne": "B04"
-                    }
-                },
-                {
-                    "code_etape": "Etape 3",
-                    "depart": {
-                        "lieu": "Lyon",
-                        "heure_theorique": "14/11/2023 08:00",
-                        "borne": "B05"
-                    },
-                    "arrivee": {
-                        "lieu": "Macon",
-                        "borne": "B06"
-                    }
-                },
-                {
-                    "code_etape": "Etape 4",
-                    "depart": {
-                        "lieu": "Macon",
-                        "heure_theorique": "14/11/2023 14:00",
-                        "borne": "B07"
-                    },
-                    "arrivee": {
-                        "lieu": "Dijon",
-                        "borne": "B08"
-                    }
-                },
-                {
-                    "code_etape": "Etape 5",
-                    "depart": {
-                        "lieu": "Dijon",
-                        "heure_theorique": "15/11/2023 10:00",
-                        "borne": "B09"
-                    },
-                    "arrivee": {
-                        "lieu": "Auxerre",
-                        "borne": "B10"
-                    }
-                },
-                {
-                    "code_etape": "Etape 6",
-                    "depart": {
-                        "lieu": "Auxerre",
-                        "heure_theorique": "15/11/2023 15:00",
-                        "borne": "B11"
-                    },
-                    "arrivee": {
-                        "lieu": "Paris",
-                        "borne": "B12"
-                    }
-                },
-                {
-                    "code_etape": "Etape 7",
-                    "depart": {
-                        "lieu": "Paris",
-                        "heure_theorique": "16/11/2023 09:00",
-                        "borne": "B13"
-                    },
-                    "arrivee": {
-                        "lieu": "Le Mans",
-                        "borne": "B14"
-                    }
-                },
-                {
-                    "code_etape": "Etape 8",
-                    "depart": {
-                        "lieu": "Le Mans",
-                        "heure_theorique": "16/11/2023 15:00",
-                        "borne": "B15"
-                    },
-                    "arrivee": {
-                        "lieu": "Rennes",
-                        "borne": "B16"
-                    }
+                "arrivee": {
+                    "lieu": "Avignon",
+                    "borne": "B02"
                 }
-            ]
-        }
+            },
+            {
+                "code_etape": "Etape 2",
+                "depart": {
+                    "lieu": "Avignon",
+                    "heure_theorique": "13/11/2023 14:00",
+                    "borne": "B03"
+                },
+                "arrivee": {
+                    "lieu": "Lyon",
+                    "borne": "B04"
+                }
+            },
+            {
+                "code_etape": "Etape 3",
+                "depart": {
+                    "lieu": "Lyon",
+                    "heure_theorique": "14/11/2023 08:00",
+                    "borne": "B05"
+                },
+                "arrivee": {
+                    "lieu": "Macon",
+                    "borne": "B06"
+                }
+            },
+            {
+                "code_etape": "Etape 4",
+                "depart": {
+                    "lieu": "Macon",
+                    "heure_theorique": "14/11/2023 14:00",
+                    "borne": "B07"
+                },
+                "arrivee": {
+                    "lieu": "Dijon",
+                    "borne": "B08"
+                }
+            },
+            {
+                "code_etape": "Etape 5",
+                "depart": {
+                    "lieu": "Dijon",
+                    "heure_theorique": "15/11/2023 10:00",
+                    "borne": "B09"
+                },
+                "arrivee": {
+                    "lieu": "Auxerre",
+                    "borne": "B10"
+                }
+            },
+            {
+                "code_etape": "Etape 6",
+                "depart": {
+                    "lieu": "Auxerre",
+                    "heure_theorique": "15/11/2023 15:00",
+                    "borne": "B11"
+                },
+                "arrivee": {
+                    "lieu": "Paris",
+                    "borne": "B12"
+                }
+            },
+            {
+                "code_etape": "Etape 7",
+                "depart": {
+                    "lieu": "Paris",
+                    "heure_theorique": "16/11/2023 09:00",
+                    "borne": "B13"
+                },
+                "arrivee": {
+                    "lieu": "Le Mans",
+                    "borne": "B14"
+                }
+            },
+            {
+                "code_etape": "Etape 8",
+                "depart": {
+                    "lieu": "Le Mans",
+                    "heure_theorique": "16/11/2023 15:00",
+                    "borne": "B15"
+                },
+                "arrivee": {
+                    "lieu": "Rennes",
+                    "borne": "B16"
+                }
+            }
+        ]
     }
+}
