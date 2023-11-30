@@ -37,27 +37,27 @@
         "equipes": {
             "E1": {
                 "nom": "Xavier et Céline",
-                "couleur": "red"
+                "couleur": "rouge"
             },
             "E2": {
                 "nom": "Inès et Anaïs",
-                "couleur": "blue"
+                "couleur": "bleu"
             },
             "E3": {
                 "nom": "Lucas et Nicolas",
-                "couleur": "green"
+                "couleur": "vert"
             },
             "E4": {
                 "nom": "Christophe et Claire",
-                "couleur": "yellow"
+                "couleur": "jaune"
             },
             "E5": {
                 "nom": "Julie et Denis",
-                "couleur": "pink"
+                "couleur": "rose"
             },
             "E6": {
                 "nom": "Christina et Didier",
-                "couleur": "purple"
+                "couleur": "violet"
             },
             "E7": {
                 "nom": "Pierre et Jean-Pierre",
@@ -65,7 +65,7 @@
             },
             "E8": {
                 "nom": "Caroline et Sabrina",
-                "couleur": "brown"
+                "couleur": "marron"
             }
         },
         "etapes": [

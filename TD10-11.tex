@@ -73,10 +73,11 @@ Pour valider votre projet, vous devrez fournir un script Python produisant les r
  Différents niveaux de rendus sont proposés, et seront valorisés dans la note finale. 
 
 \begin{description}
-    \item[Niveau 0] Afficher le nom de la ou des équipes qui ont triché, c'est à dire qui ont pris un TGV alors qu'elles n'avaient pas le droit. 
-    \item[Niveau 1] Afficher le nom de l'équipe gagnante, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
-    \item[Niveau 2] Afficher l'ordre du classement complet des équipes (en enlevant celles qui ont triché), selon le temps cumulé des étapes.
-    \item[Niveau 3] Proposer d'autres classements : classement journalier, classement à points (3 points pour le premier de l'étape, 2 points pour le second, un point pour le troisième)
+    \item[Niveau 1] Afficher la ou les équipes qui ont triché, c'est à dire qui ont pris un train alors qu'elles n'avaient pas le droit. 
+    \item[Niveau 2] Afficher le nom de l'équipe gagnante au classement général, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
+    \item[Niveau 2 bis] Afficher le classement complet des équipes (qui n'ont pas triché), au classement au temps.
+    \item[Niveau 3] Afficher le nom de l'équipe gagnante en nombre de points (3 points pour le premier de l'étape, 2 points pour le second, un point pour le troisième).
+    \item[Niveau 3 bis] Afficher le classement complet des équipes (qui n'ont pas triché), au classement aux points.
 
 \end{description}
 
@@ -86,12 +87,14 @@ Il est également attendu de fournir un code clair et lisible, qui limite les tr
 
 Pour mener à bien votre mission, vous pourrez utiliser (outre votre intelligence) :
 \begin{itemize}
-\item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points ;
-\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/rennes2express} ;
 \item le package csv pour l'analyse des deux fichiers csv de la production (disponibles sur Cursus) ;
+\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/rennes2express} ;
+\item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points. Attention de ne pas utiliser tous vos crédits graphHopper trop vite !
 \item le package datetime pour la gestion des dates et des durées ;
-\item les structures de donnes appropriées : listes, dictionnaires, DataFrame Pandas, tuples, ensembles.
+\item les structures de donnes appropriées : listes, dictionnaires, tuples, ensembles.
 \end{itemize}
+
+Nb : il n'est pas recommandé d'utiliser les Dataframes Pandas ici, car il vous manquerait quelques notions non vues en TD. 
 
 \section{Rendu de devoir}
 Votre rendu se fera sous la forme d’un
