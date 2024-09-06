@@ -50,27 +50,27 @@ def duree_lieux(ghclient, lieu1, lieu2):
 liste_dicos = [
     {
         "nom": "Pauline",
-        "sport": "Tennis",
+        "sports": ["Tennis","Squash"],
         "localisation": "Place du recteur Henri Le Moal, Rennes, France"
     },
     {
         "nom": "Ernest",
-        "sport": "Football",
+        "sports": ["Football","Course à pied"],
         "localisation": "Place du Parlement de Bretagne, Rennes, France"
     },
     {
         "nom": "Felix",
-        "sport": "Tennis",
-        "localisation": "Rue Lebastard, Rennes, France"
+        "sports": ["Tennis", "Football"],
+        "localisation": "182, rue de l'Alma, Rennes, France"
     },
     {
         "nom": "Sarah",
-        "sport": "Football",
-        "localisation": "Place du Parlement de Bretagne, Rennes, France"
+        "sports": ["Football","Squash", "Tennis"],
+        "localisation": "88, rue Alphone Guérin, Rennes, France"
     },
     {
         "nom": "Ingrid",
-        "sport": "Course à pied",
-        "localisation": "Mail François Mitterrand, Rennes, France"
+        "sports": ["Course à pied"],
+        "localisation": "3, Mail François Mitterrand, Rennes, France"
     }
 ]

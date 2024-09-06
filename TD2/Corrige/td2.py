@@ -61,8 +61,9 @@ def plus_proche_partenaire(position, contacts, sport, client):
     dist_min = math.inf
     qui = None
     for partenaire in contacts:
-        if partenaire['sport']==sport:
+        if sport in partenaire['sports'] :
             dist = distance_lieux(client ,position,partenaire['localisation'])
+            print(f"Distance avec {partenaire['nom']} : {dist}")
             if dist < dist_min :
                 dist_min = dist
                 qui = partenaire["nom"]
@@ -92,30 +93,31 @@ print(f"La ville la plus proche est {ville2}")
 liste_dicos = [
     {
         "nom": "Pauline",
-        "sport": "Tennis",
+        "sports": ["Tennis","Squash"],
         "localisation": "Place du recteur Henri Le Moal, Rennes, France"
     },
     {
         "nom": "Ernest",
-        "sport": "Football",
+        "sports": ["Football","Course à pied"],
         "localisation": "Place du Parlement de Bretagne, Rennes, France"
     },
     {
         "nom": "Felix",
-        "sport": "Tennis",
-        "localisation": "Rue Lebastard, Rennes, France"
+        "sports": ["Tennis", "Football"],
+        "localisation": "182, rue de l'Alma, Rennes, France"
     },
     {
         "nom": "Sarah",
-        "sport": "Football",
-        "localisation": "Place du Parlement de Bretagne, Rennes, France"
+        "sports": ["Football","Squash", "Tennis"],
+        "localisation": "88, rue Alphone Guérin, Rennes, France"
     },
     {
         "nom": "Ingrid",
-        "sport": "Course à pied",
-        "localisation": "Mail François Mitterrand, Rennes, France"
+        "sports": ["Course à pied"],
+        "localisation": "3, Mail François Mitterrand, Rennes, France"
     }
 ]
 
-qui =plus_proche_partenaire("Cesson-Sévigné", liste_dicos, "Tennis", gh_client)
-print(f"Le plus proche de Cesson pour jouer au tennis est {qui}")
+lieu = "Place de la République, Rennes, France"
+qui =plus_proche_partenaire(lieu, liste_dicos, "Tennis", gh_client)
+print(f"Le plus proche de {lieu} pour jouer au tennis est {qui}")
