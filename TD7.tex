@@ -17,7 +17,7 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD6 : Données CSV des transports bretons}
+\titre{TD7 : Données CSV des transports bretons}
 \begin{document}
 
 La région Bretagne fournit des données sur les lignes de transports en communs.
@@ -30,10 +30,10 @@ Une grande partie du travail va donc consister à homogénéiser et rendre acces
 
 \section*{Préambule}
 \begin{itemize}
-    \item Créer sur votre disque un dossier TD6 dans PythonOpenData. 
-    \item Télécharger sur Cursus l'archive contenant les données sources du TD6, et la décompresser.
+    \item Créer sur votre disque un dossier TD7 dans PythonOpenData. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD7, et la décompresser.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD6. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD7. 
 \end{itemize}
 
 
@@ -41,7 +41,7 @@ Une grande partie du travail va donc consister à homogénéiser et rendre acces
 \section{Chargement et analyse des données}
 
 \begin{enumerate}
-    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg, et enregistrer le fichier csv dans le dossier PythonOpenData/TD6.
+    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg, et enregistrer le fichier csv dans le dossier PythonOpenData/TD7.
     \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ? Noter que certaines lignes sont très longues...
     \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont parfois manquantes.
     \item Donner 2 exemples de valeurs indiquées dans la colonne "color". A quoi ces valeurs correspondent-elles ?
@@ -49,7 +49,7 @@ Une grande partie du travail va donc consister à homogénéiser et rendre acces
 
 \section{Préparation des données}
 Dans la suite de ce sujet, on nomme \og trajet\fg ~chaque ligne issue du fichier csv.
-Tout le code produit devra être inclus dans le fichier td6.py.
+Tout le code produit devra être inclus dans le fichier td7.py.
 \begin{enumerate}
 \item La fonction fournie \verb+taille_max+ prend en entrée un nom de fichier texte, et renvoie la longueur maximale d'une ligne dans ce fichier texte. Utiliser cette fonction pour afficher la taille maximale des lignes dans le fichier mobibreizh-lignes.csv.
 
