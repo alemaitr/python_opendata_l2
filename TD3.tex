@@ -26,12 +26,12 @@
 \section*{Préambule}
 \begin{enumerate}
     \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD3 dans lequel vous réaliserez l'ensemble des travaux.
-    \item Lancer l'éditeur Visual Studio Code.
+    \item Lancer l'éditeur Visual Studio Code depuis Anaconda Navigator.
     \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD3. 
 \end{enumerate}
 
 Ce TD se concentre sur un jeu de données de comptage du nombre de passages de vélos à Rennes au niveau d'un certain nombres de bornes de comptage. 
-Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois de Septembre 2023. Les données sont fournies au format JSON (JavaScript Object Notation).
+Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois d'avril 2024. Les données sont fournies au format JSON (JavaScript Object Notation).
 
 \section{Chargement des données}
 
@@ -43,31 +43,31 @@ Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et 
 \end{enumerate}
 
 Dans la suite de ce sujet, on nomme \og enregistrement\fg ~chaque dictionnaire issu du fichier JSON.
-Pour information, une date codée sous la forme :
+Notons que chaque enregistrement contient une date. Ainsi, une date codée sous la forme :
 \begin{verbatim}
-{
-    "year": 2023,
-    "month": 9,
-    "day": 3,
-    "hour": 20
-}
+    "date": {
+        "year": 2024,
+        "month": 4,
+        "day": 2,
+        "hour": 10
+    }
 \end{verbatim}
 
 \noindent
-correspond au créneau \verb+20h-21h+ le 3 Septembre 2023 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
+correspond au créneau \verb+10h-11h+ le 2 avril 2024 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
 
 \section{Extraction d'informations élémentaires}
 
 Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans le fichier \verb+td3.py+.
 
 \begin{enumerate}
-\item Charger le contenu du fichier \verb+eco-counter-data_clean.json+ dans une liste de dictionnaires, chaque dictionnaire représentant un enregistrement.
+\item Charger le contenu du fichier \verb+eco-counter-data_clean.json+ dans une variable \verb+donnees+. \verb+donnees+ doit être une liste des enregistrements, chaque enregistrement étant stocké dans un dictionnaire.
 
-\item Écrire une fonction qui retourne une liste sans doublon de tous les noms de compteurs (attribut \verb+name+) contenus dans le jeu de données.
+\item Écrire une fonction qui prend en entree la liste des enregistrements et retourne une liste sans doublon de tous les noms de compteurs (attribut \verb+name+) contenus dans le jeu de données.
 
 \item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur (\emph{i.e.} pour chaque valeur différente de l'attribut \verb+name+), le nombre total de passages de vélos.
 
-\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur, le nombre total de passages de vélos en date du 4 Septembre 2023.
+\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur, le nombre total de passages de vélos en date du 9 avril 2024.
 
 \item Écrire une fonction qui prend en entrée le jeu de données et retourne, dans une structure adaptée, le nombre de passages de vélo pour chaque heure de la journée (0h-1h, 1h-2h, ..., 23h-24h), tous compteurs et tous jours confondus.
 

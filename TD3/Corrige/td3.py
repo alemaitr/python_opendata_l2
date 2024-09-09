@@ -11,21 +11,21 @@ def noms_compteurs(d):
 
 def nombre_passages(d, noms):
     for nom in noms:
-        n_sept = 0
+        n_avril = 0
         for elem in d:
             if elem["name"] == nom:
-                n_sept += elem["counts"]
-        print(f"Compteur '{nom}': {n_sept} passages durant le mois de Septembre")
+                n_avril += elem["counts"]
+        print(f"Compteur '{nom}': {n_avril} passages durant le mois d'avril")
 
 
-def nombre_passages_4_septembre(d, noms):
+def nombre_passages_9_avril(d, noms):
     for nom in noms:
-        n_4_septembre = 0
+        n_9_avril = 0
         for elem in d:
             if elem["name"] == nom:
-                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2023, 9, 4):
-                    n_4_septembre += elem["counts"]
-        print(f"Compteur '{nom}': {n_4_septembre} passages le 4 Septembre")
+                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2024, 4, 9):
+                    n_9_avril += elem["counts"]
+        print(f"Compteur '{nom}': {n_9_avril} passages le 9 avril")
 
 
 def passages_par_creneau(d):
@@ -69,7 +69,7 @@ print(f"Noms des compteurs dans le jeu de données: {noms_c}")
 nombre_passages(donnees, noms_c)
 
 # 4. 
-nombre_passages_4_septembre(donnees, noms_c)
+nombre_passages_9_avril(donnees, noms_c)
 
 # 5.
 passages = passages_par_creneau(donnees)
