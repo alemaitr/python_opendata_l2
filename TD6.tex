@@ -17,124 +17,98 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD6 : Données CSV des transports bretons}
+\titre{TD7 : Les Cesars 2016 (récupération de données via des requêtes HTTP)}
+
 \begin{document}
 
-La région Bretagne fournit des données sur les lignes de transports en communs.
-Il est possible de télécharger les données au format CSV. 
-Notre objectif est de produire une carte de ces données.
+Pour cette séances, vous travaillerez sur les données disponibles à l'adresse suivante :
 
-Note : nous utiliserons ici des données brutes, directement téléchargées sur le site web du fournisseur de données. 
-Une grande partie du travail va donc consister à homogénéiser et rendre accessible le format des données. 
+\begin{center}
+    \url{http://my-json-server.typicode.com/rtavenar/db_opendata/cesars2016}
+\end{center}
 
+Ces données concernent des films récompensés lors de la cérémonie des Césars 2016.
 
 \section*{Préambule}
 \begin{itemize}
-    \item Créer sur votre disque un dossier TD6 dans PythonOpenData. 
-    \item Télécharger sur Cursus l'archive contenant les données sources du TD6, et la décompresser.
+    \item Créer sur votre disque un dossier TD7 dans PythonOpenData.
     \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD6. 
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD7 et créez un fichier \verb+td7.py+. 
 \end{itemize}
 
 
 
-\section{Chargement et analyse des données}
+\section{Un premier coup d'\oe{}il aux données}
 
 \begin{enumerate}
-    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg, et enregistrer le fichier csv dans le dossier PythonOpenData/TD6.
-    \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ? Noter que certaines lignes sont très longues...
-    \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont parfois manquantes.
-    \item Donner 2 exemples de valeurs indiquées dans la colonne "color". A quoi ces valeurs correspondent-elles ?
-   \end{enumerate}
+    \item À l'aide d'un navigateur web, visualisez les données disponibles à l'URL citée ci-dessus.
+    \item Quel est le format de ces données ?
+    \item Combien de films sont décrits dans ces données ?
+    \item Dans votre fichier \verb+td7.py+, récupérez le jeu de données en question et vérifiez que le nombre de films est conforme à ce que vous aviez noté précédemment.
+\end{enumerate}
 
-\section{Préparation des données}
-Dans la suite de ce sujet, on nomme \og trajet\fg ~chaque ligne issue du fichier csv.
-Tout le code produit devra être inclus dans le fichier td6.py.
+\section{Les ``François'' réalisateurs}
+
 \begin{enumerate}
-\item La fonction fournie \verb+taille_max+ prend en entrée un nom de fichier texte, et renvoie la longueur maximale d'une ligne dans ce fichier texte. Utiliser cette fonction pour afficher la taille maximale des lignes dans le fichier mobibreizh-lignes.csv.
+    \item Écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne la liste des réalisateurs dont le prénom est ``François''.
+\end{enumerate}
 
-\item Charger le contenu du fichier mobibreizh-lignes.csv dans une liste de dictionnaires, chaque dictionnaire représentant un trajet.
-\item Afficher le nombre de trajets disponibles.
-\item Afficher les clés du dictionnaire disponibles pour un trajet.
-\item Nous allons supprimer les trajets pour lesquels les coordonnées ne sont pas fournies. Ecrire une fonction \verb+elimine_sans_coordonnnees+ qui prend en entrée la liste des trajets, et renvoie une liste des trajets dans laquelle on a enlevé les trajets pour lesquels le champ \emph{geo\_point\_2d} est vide. Combien de trajets sont maintenant disponibles ? 
-\item Ecrire une fonction \verb+liste_couleurs+ qui prend en entrée la liste des trajets, en renvoie la liste des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher la liste des couleurs. Le format des couleurs est-il homogène ? 
-\item Il faut parfois ajouter le symbole \verb+#+ devant les couleurs lorsqu'il n'est pas présent. Ecrire une fonction  \verb+corrige_couleurs+ qui prend en entrée la liste des trajets, et renvoie la liste 
-des trajets dans laquelle les couleurs ont été corrigée, par ajout du symbole \verb+#+, lorsque c'est nécessaire. Utiliser à nouveau la fonction  \verb+liste_couleurs+ pour s'assurer que les corrections sont effectives.
+\section{Les \emph{biopics}}
+
+Il est à noter que l'API qui fournit les données peut être interrogée de la façon suivante :
+\begin{center}
+    \url{http://my-json-server.typicode.com/rtavenar/db_opendata/cesars2016?attribut=valeur}
+\end{center}
+auquel cas ne seront retournés que les films pour lesquels le champ \verb+attribut+ vaut \verb+valeur+.
+
+
+\begin{enumerate}
+    \item Écrivez une fonction qui prend en entrée un genre cinématographique \verb+genre+ et un nom (de famille) d'acteur/actrice \verb+nom_famille+ et retourne la liste des titres de films du genre donné pour lesquels au moins un acteur ou une actrice a pour nom de famille \verb+nom_famille+.
+    La requête HTTP devra être incluse dans le corps de la fonction et vous ferez en sorte de minimiser la quantité de données à récupérer par votre script.
+
+    \item Affichez la liste des ``Biopic'' dans lesquels joue une actrice ou un acteur du nom de ``de Lencquesaing''.
+    \item Modifiez la fonction précédente pour que si l'argument \verb+nom_famille+ n'est pas fourni lors de l'appel, la fonction retourne l'ensemble des titres de films du genre voulu.
+    \item Testez la fonction précédente pour afficher la liste des films du genre ``Biopic''.
+   
 \end{enumerate}
 
 
-\section{Prise en main du module cartographie}
 
-Il est mis à votre disposition un fichier \verb+cartographie.py+ contenant plusieurs fonctions codées par les enseignants. 
-Ces fonctions permettent de créer et d'afficher une carte dans un navigateur web.
-
-Voici les fonctions disponibles : 
-
-\vspace{1em}
-
-\begin{tabular}{|l|l|l|}
-    \hline
-    Nom de la fonction & Paramètres d'entrée & Valeur renvoyée \\
-    \hline
-    \verb+creer_carte(titre)+ & \verb+titre+ : titre à afficher au dessus de la carte & la carte créée \\
-    \hline
-    \verb+tracer_point(carte,+ &\verb+carte+ : la carte sur laquelle afficher le point & aucun \\
-    \verb+long,lat,label,+& \verb+long+ : la longitude du point, ex : -1.65 & \\
-    \verb+couleur)+& \verb+lat+ : la latitude du point, ex : 48.652 & \\
-    & \verb+label+ : l'étiquette à afficher au survol du point & \\
-    & \verb+couleur+ (facultatif) : la couleur du point, &\\
-    &au format chaine de caractère ex : \verb+"green"+ &\\
-    & ou hexa ex : \verb+#45A6B9+.&\\  
-    \hline
-    \verb+tracer_ligne(carte,+ &\verb+carte+ : la carte sur laquelle afficher la ligne & aucun \\
-    \verb+lst_long,lst_lat,+& \verb+lst_long+ : la liste des longitudes de la ligne, &\\
-    \verb+label,couleur)+& \hspace{2cm} ex : [-1.65, -1.67, -1.85] & \\
-    & \verb+lst_lat+ : la liste des latitudes de la ligne,  & \\
-    & \hspace{2cm} ex : [48.65, 47.25, 46.23] & \\
-    & \verb+label+ : l'étiquette à afficher au survol de la ligne & \\
-    & \verb+couleur+ (facultatif) : la couleur de la ligne, &\\
-    &au format chaine de caractère ex : \verb+"green"+ &\\
-    & ou hexa ex : \verb+#45A6B9+.&\\ 
-    \hline
-    \verb+afficher_carte(carte)+ &\verb+carte+ : la carte à afficher & aucun \\ 
-    \hline
-\end{tabular}
-
-\vspace{1em}
-Pour réaliser une carte, il faut d'abord la créer, puis tracer tous les élements nécessaires, et enfin demander l'affichage de cette carte.
+\section{Les actrices et acteurs}
 
 \begin{enumerate}
-\item En utilisant les fonctions ci-dessus, créer une carte ayant pour titre "Bretagne", y tracer un point aux coordonnées de la ville de Rennes (-1.6742900,48.1119800), en bleu, et afficher la carte.
-\item Ajouter un point sur cette carte pour Saint-Malo, aux coordonnées (-2.025674, 48.649337), en jaune.
-\item Ajouter une point sur cette carte pour Nantes, aux coordonnées (-1.553621, 47.218371), en vert.
-\item Ajouter une ligne sur cette carte, reliant Nantes, Rennes et Saint-Malo, en couleur \verb+#FF5533+.
+    \item Écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne une liste avec doublons des actrices et acteurs contenus dans le jeu de données.
+    
+    \item Écrivez une fonction qui prend en entrée un acteur et retourne son nom de famille, s'il existe, ou sinon son surnom. La chaîne de caractères retournée devra être en caractères majuscules.
+    
+    \item \textbf{En utilisant les fonctions codées aux deux questions précédentes}, écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne une liste sans doublon des actrices et acteurs contenus dans le jeu de données, triés dans l'ordre alphabétique des noms de famille (ou \verb+surnom+ si le nom de famille n'est pas spécifié).
+    
+    \item \textbf{En utilisant la fonction codée à la question 4.1}, écrivez une fonction qui prend en entrée un jeu de données tel que retourné par l'API qui nous intéresse et retourne la liste des acteurs ayant joué dans plusieurs films.
 \end{enumerate}
 
-\section{Cartographie des points des trajets}
-L'objectif de cette partie est de tracer sur une carte les points de chaque trajet, représentés dans le fichier dans la colonne \emph{'geo\_point\_2d'}. Note : on trace bien ici des points et pas des lignes.
+\section{Pour aller plus loin : export des données au format CSV}
+
+On souhaiterait maintenant exporter les données récupérées au format CSV.
+Malheureusement, le format CSV attend des données sous formes de tableaux, ce qui n'est pas très commode pour stocker des listes d'acteurs par films.
+La stratégie à suivre pour enregistrer ces données sera donc d'enregistrer 3 fichiers CSV :
+\begin{itemize}
+    \item Un premier fichier qui contiendra les informations concernant les films du jeu de données ;
+    \item Un deuxième fichier qui contiendra les informations concernant les actrices et acteurs du jeu de données ;
+    \item Un troisième fichier qui listera les associations entre films et actrices/acteurs.
+\end{itemize}
 
 \begin{enumerate}
-    \item Écrire une fonction \verb+ajoute_point_trajet+ qui prend en paramètre une carte, un trajet (un dictionnaire), et trace sur la carte le point 
-    correspondant de coordonnées \emph{'geo\_point\_2d'}, en utilisant la couleur \emph{Color}, et en utilisant le \emph{long\_name} en tant que légende.
-    \item Écrire une fonction \verb+carte_tous_points_2d+ qui prend en entrée la liste des trajets, qui crée une carte, ajoute un point pour chacun des trajets puis affiche la carte.
+    \item Pour permettre de faire les liens souhaités entre films et acteurs, il faut fournir à chaque film un identifiant unique. Note : les acteurs disposent déjà d'un identifiant unique. Écrivez une fonction qui prend en entrée un jeu de données et retourne une nouvelle version de ce jeu de données dans laquelle chaque film a un nouvel attribut \verb+id_film+ unique.
+    
+    \item Appliquez cette fonction à votre jeu de données.
+    
+    \item Enregistrez les informations relatives aux acteurs dans un premier fichier \verb+acteurs.csv+ qui contiendra 4 colonnes : \verb+id_acteur+, \verb+prénom+, \verb+nom+, \verb+surnom+.
+    
+    \item Écrivez une fonction qui prend en entrée un jeu de données et retourne deux listes : la première correspondant au jeu de données dans lequel on a supprimé toutes les informations concernant les acteurs et la seconde stockant les liens entre acteurs et films sous la forme de paires stockées dans un dictionnaire \verb+{"id_film":idf, "id_acteur":ida}+.
+    
+    \item Enregistrez les informations relatives aux films dans un fichier \verb+films.csv+ qui contiendra 7 colonnes : \verb+id_film+, \verb+titre+, \verb+date_sortie+, \verb+durée+, \verb+réalisateur.prénom+, \verb+réalisateur.nom+ et \verb+genre+.
+    
+    \item Enregistrez les informations permettant de lier les actrices et acteurs aux films dans un fichier \verb+liens.csv+ qui contiendra 2 colonnes : \verb+id_film+ et \verb+id_acteur+.
 \end{enumerate}
 
-\section{Pour aller plus loin : cartographie des lignes des trajets}
-L'objectif de cette partie est de tracer sur une carte les lignes de chaque trajet, représentées dans le fichier dans la colonne \emph{'Shape'}. La colonne  \emph{'Shape'} du fichier csv contient une structure, de type dictionnaire. Le champs \emph{coordinates} contient plusieurs listes de coordonnées, on se focalise sur la première liste de coordonnées.
- \begin{enumerate}
- \item Afficher le champ \emph{Shape} du premier trajet. Quel est son type ? 
- \item Il faut préparer les données pour en extraire les listes de coordonnées. Écrire une fonction \verb+prepare_lst_coord+ qui prend en entrée un trajet
- et qui renvoie le trajet enrichi avec les listes de coordonnées préparées pour ce trajet. 
- Il faudra notamment : 
-  \begin{itemize}
-    \item convertir la chaine de caractère du champ \emph{Shape} en dictionnaire, en utilisant \verb+json.loads(chaine)+
-    \item accéder à la première liste des coordonnées,
-    \item créer et remplir deux listes \verb+lst_long+ et \verb+lst_lat+,
-    \item ajouter ces deux listes comme 2 éléments du dictionnaire du trajet.
-  \end{itemize}
-\item Écrire une fonction \verb+ajoute_ligne_trajet+, qui prend en paramètre une carte, un trajet (un dictionnaire), et trace sur la carte la ligne de coordonnées \emph{'lst\_long'} et \emph{lst\_lat},
- en utilisant la couleur \emph{Color}, et en utilisant le \emph{long\_name} en tant que légende.
- \item Écrire une fonction \verb+carte_toutes_lignes+ qui prend en entrée la liste des trajets, qui crée une carte, ajoute un point pour chacun des trajets puis affiche la carte.
-
- \end{enumerate}
 \end{document}
