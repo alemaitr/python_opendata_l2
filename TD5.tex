@@ -51,9 +51,11 @@ On rappelle que la documentation de graphh est disponible à cette adresse : \ur
 \section{Dénivelés}
 
 En utilisant la fonction écrite à la question précédente, écrire
-une fonction qui prend en entrée une liste de positions GPS et un client GraphHopper et retourne la somme des dénivelés positifs (d’une part) et négatifs (d’autre part). 
+une fonction qui prend en entrée une liste de positions GPS et un client GraphHopper et retourne la somme des dénivelés positifs (d’une part) et négatifs (d’autre part), entre les points GPS successifs. 
 
-Par exemple, si on a une liste de coordonnées GPS pour lesquelles on a obtenu les altitudes suivantes : \verb+[35.29, 64.36, 48.78, 35.81]+ on devrait retourner la paire de valeurs : \verb+(29.07, 28.55)+
+Par exemple, en appelant cette fonction avec la liste de de coordonnées GPS précedente, on devrait obtenir la paire de dénivelé \verb+(29.07, 28.55)+.
+En effet, les altitudes des points GPS étant les suivantes :
+\verb+[35.29, 64.36, 48.78, 35.81]+,  la somme des dénivelés positife et négatifs donne \verb+(29.07, 28.55)+.
 
 \section{Analyse de randonnées}
 
@@ -62,35 +64,35 @@ En utilisant la fonction écrite à la question précédente, écrire une foncti
 Pour le fichier mini-rando\_gps.json, on doit obtenir (après quelque temps, le nombre de requêtes à effectuer étant assez grand) une sortie du type :
 \begin{verbatim}
 TraceGPS Le long de la quincampoix - Pire-sur-Seiche 
-    - Dénivelé positif cumulé : 21.87
-    - Dénivelé négatif cumulé : 21.87
+  - Dénivelé positif cumulé : 22.14
+  - Dénivelé négatif cumulé : 22.14
 TraceGPS Issued  Messac - CIRCUIT DU PORT 
-    - Dénivelé positif cumulé : 12.71
-    - Dénivelé négatif cumulé : 12.71
+  - Dénivelé positif cumulé : 12.81
+  - Dénivelé négatif cumulé : 12.81
 TraceGPS Issued  Coemes-Retiers  
-    - Dénivelé positif cumulé : 67.63
-    - Dénivelé négatif cumulé : 67.63
+  - Dénivelé positif cumulé : 66.99
+  - Dénivelé négatif cumulé : 66.99
 \end{verbatim}
 \section{Fichier de synthèse des randonnées}
 
 Écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et un client GraphHopper, et écrit dans un nouveau fichier JSON (dont le nom sera passé en paramètre de la fonction) une liste de dictionnaires contenant le nom de la randonnée et les informations de dénivelés positif et négatif), soit quelque chose du type :
 \begin{verbatim}
-    [
-        {
-          "name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
-          "D+": 21.87,
-          "D-": 21.87
-        },
-        {
-          "name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
-          "D+": 12.71,
-          "D-": 12.71
-        },
-        {
-          "name": "TraceGPS Issued  Coemes-Retiers ",
-          "D+": 67.63,
-          "D-": 67.63
-        }
-      ]
+  [
+    {
+      "name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
+      "D+": 22.14,
+      "D-": 22.14
+    },
+    {
+      "name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
+      "D+": 12.81,
+      "D-": 12.81
+    },
+    {
+      "name": "TraceGPS Issued  Coemes-Retiers ",
+      "D+": 66.99,
+      "D-": 66.99
+    }
+  ]
 \end{verbatim}
 \end{document}
