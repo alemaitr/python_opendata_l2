@@ -107,7 +107,7 @@ lst_gps = [
 
 # Exercice 2
 # print(deniveles(lst_gps,gh_client))
-# (29.07, 28.55)
+# (29.07, 28.549999999999997)
 
 # Exercice 3
 # les_randos("../Donnees/mini-rando_gps.json",gh_client)
