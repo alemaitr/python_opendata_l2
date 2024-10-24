@@ -84,7 +84,7 @@ def carte_toutes_lignes(lst_trajets):
 #######################################################################
 
 #Exercice 2
-os.chdir("TD6/Corrige/")
+os.chdir("TD7/Corrige/")
 nom_fichier = "mobibreizh-lignes.csv"
 print(f"La taille maximale du fichier est {taille_max(nom_fichier)}")
 

@@ -24,7 +24,7 @@ La région Bretagne fournit des données sur les lignes de transports en communs
 Il est possible de télécharger les données au format CSV. 
 Notre objectif est de produire une carte de ces données.
 
-Note : nous utiliserons ici des données brutes, directement téléchargées sur le site web du fournisseur de données. 
+Note : nous utiliserons ici des données brutes, telles que fournies par le site web MOBIBREIZH.
 Une grande partie du travail va donc consister à homogénéiser et rendre accessible le format des données. 
 
 
@@ -41,11 +41,10 @@ Une grande partie du travail va donc consister à homogénéiser et rendre acces
 \section{Chargement et analyse des données}
 
 \begin{enumerate}
-    \item Sur le site web \url{https://data.bretagne.bzh/explore/dataset/mobibreizh-lignes/export/}, télécharger les données au format CSV du jeu de données \og MOBIBREIZH - Lignes \fg, et enregistrer le fichier csv dans le dossier PythonOpenData/TD7.
-    \item Visualiser avec Visual Studio Code le contenu du fichier csv. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ? Noter que certaines lignes sont très longues...
+    \item Visualiser avec Visual Studio Code le contenu du fichier csv fourni dans l'archive. Quel est le séparateur utilisé ? Quels sont les champs présents dans le fichier ? Noter que certaines lignes sont très longues...
     \item Trouver une ligne sur laquelle tous les champs ne sont pas renseignés : constater que les coordonnées sont parfois manquantes.
     \item Donner 2 exemples de valeurs indiquées dans la colonne "color". A quoi ces valeurs correspondent-elles ?
-   \end{enumerate}
+\end{enumerate}
 
 \section{Préparation des données}
 Dans la suite de ce sujet, on nomme \og trajet\fg ~chaque ligne issue du fichier csv.
@@ -100,8 +99,11 @@ Voici les fonctions disponibles :
     \hline
 \end{tabular}
 
+
+
 \vspace{1em}
 Pour réaliser une carte, il faut d'abord la créer, puis tracer tous les élements nécessaires, et enfin demander l'affichage de cette carte.
+Le main du fichier cartographie.py contient un exemple d'utilisation.
 
 \begin{enumerate}
 \item En utilisant les fonctions ci-dessus, créer une carte ayant pour titre "Bretagne", y tracer un point aux coordonnées de la ville de Rennes (-1.6742900,48.1119800), en bleu, et afficher la carte.

@@ -18,7 +18,7 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD 10-11 : Projet Rennes2 Express}
+\titre{TD 10-11 : Projet Terra Aventura}
 \begin{document}
 
 
@@ -30,71 +30,62 @@ Le projet sera réalisé essentiellement lors des deux dernières séances de TD
 
 La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt.
 
-\section{Rennes2 Express}
+\section{Terra Aventura}
+
 \begin{center}
-\includegraphics[width=8cm]{ProjetRennes2Express/logo.jpg}
+\includegraphics[width=8cm]{ProjetTerraAventura/logo.jpg}
 \end{center}
-Lors de l'émission télévisée Rennes2 Express, 8 équipes s'affrontent pour tenter de remporter un grand prix !
-Les concurrents s'élancent de Marseille le lundi 13 novembre, et ils ont 4 jours pour rallier l'Université Rennes 2, le plus rapidement possible.
 
-Chaque journée de jeu se déroule de la manière suivante :
+La région Nouvelle Aquitaine propose une chasse aux trésors touristique, nommée Terra Aventura : \url{https://www.terra-aventura.fr/}. Ainsi, sur tout le territoire de Nouvelle Aquitaine, environ 600 trésors ont été dissimulés. Chaque \emph{trésor} (aussi appelé \emph{cache}) peut être trouvé en collectant des indices, lors de la découverte d'un lieu. Les aventures sont triées par thématique, et associées à un personnage. Par exemple, le personnage de Zabeth correspond à des aventures de type "Histoire". 
+
+\section{Problème posé}
+
+Deux amis explorateurs, Marco et Polo, souhaitent partir en vacances dans la région Nouvelle Aquitaine, avec pour objectif de dénicher le maximum de trésors possibles. Ils cherchent donc un hébergement qui leur permette d'avoir accès à de nombreux trésors, sachant qu'ils ne souhaitent pas faire plus de 60 minutes de voiture, autour de leur hébergement. 
+
+\subsection{Sélection des trésors}\label{tresor}
+Terra Aventura propose plus de 600 trésors. Mais Marco et Polo en ont déjà trouvé un certain nombre ! Ils veulent donc se focaliser sur ceux qu'ils n'ont pas encore trouvé. 
+Par ailleurs, Marco et Polo sont férus d'histoire, ils se focaliseront donc sur les trésors de type "Zabeth". 
+
+Deux fichiers sont à votre disposition : 
 \begin{itemize}
-    \item Une étape le matin, lors de laquelle les concurrents doivent rallier le plus rapidement possible la ville suivante.
-    \item Une épreuve le midi. Les équipes s'affrontent, et l'équipe gagnante obtient un bonus "Ticket de train" !
-    \item Une étape l'après-midi, lors de laquelle les concurrents doivent rallier la ville suivante.
+\item \verb+tresors.json+ est un export du site web Terra Aventura. Il contient la liste de tous les trésors disponibles dans la région Nouvelle Aquitaine.
+\item \verb+trouvailles.csv+ contient la liste des trésors déjà trouvés par Marco et Polo (identifiant du trésor et date de découverte).
 \end{itemize}
 
-Tous les déplacement doivent se faire à pied ou en voiture. Les équipes ayant gagné un bonus "Ticket de train" ont le droit 
-d'emprunter une fois le train sur une étape de 
-leur choix lors de la suite de l'aventure. 
+\subsection{Choix de l'hôtel}\label{hotel}
 
-Au début et à la fin de chaque étape, une borne est disposée sur le parcours, et les candidats doivent badger pour valider leur temps de parcours de l'étape.
+Pour le choix de l'hébergement, vous aurez à votre disposition l'API suivante, qui rassemble plus de 50000 lieux d'hébergments touristiques en France et dans le monde. 
+\url{https://data.opendatasoft.com/explore/dataset/osm-hosting-fr%40babel/}
 
+Marco et Polo ont récemment gagné un bon de réduction dans la chaîne d'hotel IBIS. Ils souhaitent donc loger dans un hôtel IBIS. \emph{Indice : on pourra filtrer la requête à l'API en précisant la valeur "Ibis" pour le champ "Operator"}.
 
+Puisque les Terra Aventura sont situées en Nouvelle-Aquitaine, on s'assurera de ne conserver que les hôtels situés dans un des départements de la région Nouvelle-Aquitaine. On pourra réutiliser le fichier \verb+dico_dpt.py+ vu en TD de "SDD en Python" pour obtenir la liste des numéros de départements de Nouvelle Aquitaine. 
 
-\vspace{2em}
-Lors de l'édition 2023, des bruits courent\dots ~Certaines équipes auraient triché, en empruntant un TGV alors qu'elles n'y étaient pas autorisées !
+Enfin, Marco et Polo ont bien noté que leur bon de réduction n'est pas valable dans les hôtels "Ibis Styles", il faudra donc exclure ces hôtels des potentiels résultats.
 
-La règle est simple : on considère qu'une équipe qui parvient à se déplacer plus rapidement que le temps de trajet d'une voiture a emprunté le train.
+\subsection{Résumé}
+Le problème posé est donc : 
 
-La société de production de Rennes2 Express nous fournit les informations suivantes : 
 \begin{itemize}
-    \item les informations sur l'édition 2023 de l'émission avec les étapes, les épreuves et leur gagnants ;
-    \item la liste des bornes de début et de fin de parcours, avec leur position GPS ;
-    \item la liste de tous les enregistrements des équipes sur les bornes, avec l'horaire précis de validation.
+    \item Étant définie une liste de trésors de type Zabeth, non encore trouvées par Marco et Polo
+    \item Étant donné la liste des hôtels Ibis en région Nouvelle Aqutaine (Ibis Styles exclus)
+    \item Trouver parmi ces hôtels lequel a le plus de trésors dans son entourage à moins de 60 minutes de voiture.
 \end{itemize}
 
-
-Votre rôle sera de déterminer quelles sont la ou les équipes qui ont triché !
-
+Pour le calcul de temps de trajet, vous pourrez utiliser le package graphh. Attention de ne pas utiliser tous vos crédits graphHopper trop vite !
 \section{Travail attendu}
 
 Pour valider votre projet, vous devrez fournir un script Python produisant les résultats ci-dessous.
  Différents niveaux de rendus sont proposés, et seront valorisés dans la note finale. 
 
 \begin{description}
-    \item[Niveau 1] Afficher la ou les équipes qui ont triché, c'est à dire qui ont pris un train alors qu'elles n'avaient pas le droit. 
-    \item[Niveau 2] Afficher le nom de l'équipe gagnante au classement général, c'est à dire l'équipe qui a mis le moins de temps cumulé sur l'ensemble des étapes. 
-    \item[Niveau 2 bis] Afficher le classement complet des équipes (qui n'ont pas triché), au classement au temps.
-    \item[Niveau 3] Afficher le nom de l'équipe gagnante en nombre de points (3 points pour le premier de l'étape, 2 points pour le second, un point pour le troisième).
-    \item[Niveau 3 bis] Afficher le classement complet des équipes (qui n'ont pas triché), au classement aux points.
-
+    \item [Niveau 0] Produire la liste des trésors candidats telle que décrite dans la section \ref{tresor}, ainsi que la liste des hotels telle que décrite dans la section \ref{hotel}.
+    \item[Niveau 1] Afficher le nom de l'hôtel IBIS qui permet d'avoir le plus de trésors à moins de 60 minutes en voiture. 
+    \item[Niveau 2] Produire un fichier csv contenant les trésors Zabeth placés autours de l'hôtel retenu.
+    \item[Niveau bonus] Produire un affichage cartographique présentant le point de l'hôtel, des trésors à proximité etc...
 \end{description}
 
-Il est également attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes.
-
-\section{Implémentation en Python}
-
-Pour mener à bien votre mission, vous pourrez utiliser (outre votre intelligence) :
-\begin{itemize}
-\item le package csv pour l'analyse des deux fichiers csv de la production (disponibles sur Cursus) ;
-\item le package requests pour interroger la base des équipes \url{http://my-json-server.typicode.com/alemaitr/python_opendata_l2/rennes2express} ;
-\item le package graphh pour calculer des temps de trajet théoriques en voiture entre deux points. Attention de ne pas utiliser tous vos crédits graphHopper trop vite !
-\item le package datetime pour la gestion des dates et des durées ;
-\item les structures de donnes appropriées : listes, dictionnaires, tuples, ensembles.
-\end{itemize}
-
-Nb : il n'est pas recommandé d'utiliser les Dataframes Pandas ici, car il vous manquerait quelques notions non vues en TD. 
+Il est également attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes. Il faudra également utiliser les structures de données appropriées :  listes, dictionnaires, tuples, ensembles.
 
 \section{Rendu de devoir}
 Votre rendu se fera sous la forme d’un

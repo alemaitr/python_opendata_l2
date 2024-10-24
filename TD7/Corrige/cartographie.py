@@ -1,7 +1,7 @@
 
 
 from bokeh.plotting import figure, show
-from bokeh.tile_providers import get_provider, Vendors
+
 import numpy as np
 
 
@@ -16,9 +16,9 @@ def coor_wgs84_to_web_mercator(lon, lat):
 def creer_carte(Titre):
     #Création de la figure avec arrière plan
     TOOLTIPS = [("", "$name")]
-    p = figure(x_axis_type="mercator", y_axis_type="mercator",tooltips=TOOLTIPS, title=Titre,x_range=(-500000, 500000), y_range=(6000000, 6500000),)
-    tile_provider = get_provider(Vendors.CARTODBPOSITRON)
-    p.add_tile(tile_provider)
+    p = figure(x_axis_type="mercator", y_axis_type="mercator",tooltips=TOOLTIPS, title=Titre)
+
+    p.add_tile("CartoDB Positron")
 
     return p
 
@@ -40,12 +40,13 @@ def tracer_ligne(carte, lst_long, lst_lat, label, couleur="red"):
 
     carte.line(x=x,y=y,color = couleur,width=2,name=label)
 
+if __name__ == "__main__" :
 
-# carte = creer_carte("Bretagne")
-# tracer_point(carte,-1.6742900,48.1119800,"Rennes","blue")
-# tracer_point(carte, -2.025674, 48.649337, "Saint-Malo","yellow")
-# tracer_ligne(carte,[-1.6742900,-1.8,-2.025674],[48.1119800,48.42,48.649337],"Rennes - Saint-Malo" )
+    carte = creer_carte("Bretagne")
+    tracer_point(carte,-1.6742900,48.1119800,"Rennes","blue")
+    tracer_point(carte, -2.025674, 48.649337, "Saint-Malo","yellow")
+    tracer_ligne(carte,[-1.6742900,-1.8,-2.025674],[48.1119800,48.42,48.649337],"Rennes - Saint-Malo" )
 
-# afficher_carte(carte)
+    afficher_carte(carte)
 
 
