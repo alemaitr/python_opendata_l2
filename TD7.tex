@@ -56,9 +56,8 @@ Tout le code produit devra être inclus dans le fichier td7.py.
 \item Afficher le nombre de trajets disponibles.
 \item Afficher les clés du dictionnaire disponibles pour un trajet.
 \item Nous allons supprimer les trajets pour lesquels les coordonnées ne sont pas fournies. Ecrire une fonction \verb+elimine_sans_coordonnnees+ qui prend en entrée la liste des trajets, et renvoie une liste des trajets dans laquelle on a enlevé les trajets pour lesquels le champ \emph{geo\_point\_2d} est vide. Combien de trajets sont maintenant disponibles ? 
-\item Ecrire une fonction \verb+liste_couleurs+ qui prend en entrée la liste des trajets, en renvoie la liste des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher la liste des couleurs. Le format des couleurs est-il homogène ? 
-\item Il faut parfois ajouter le symbole \verb+#+ devant les couleurs lorsqu'il n'est pas présent. Ecrire une fonction  \verb+corrige_couleurs+ qui prend en entrée la liste des trajets, et renvoie la liste 
-des trajets dans laquelle les couleurs ont été corrigée, par ajout du symbole \verb+#+, lorsque c'est nécessaire. Utiliser à nouveau la fonction  \verb+liste_couleurs+ pour s'assurer que les corrections sont effectives.
+\item Ecrire une fonction \verb+ensemble_couleurs+ qui prend en entrée la liste des trajets, en renvoie l'ensemble, sans doublons, des valeurs du champ \emph{Color}. Utiliser cette fonction pour afficher l'ensemble des couleurs utilisées. Le format des couleurs est-il homogène ? 
+\item Il faut parfois ajouter le symbole \verb+#+ devant les couleurs lorsqu'il n'est pas présent. De plus, certaines lignes contiennent uniquement la couleur '0'. Ecrire une fonction  \verb+corrige_couleurs+ qui prend en entrée la liste des trajets, et renvoie la liste des trajets dans laquelle les couleurs ont été corrigée, par ajout du symbole \verb+#+, lorsque c'est nécessaire, on en remplaçant \verb+0+ par \verb+#000000+. Utiliser à nouveau la fonction  \verb+ensemble_couleurs+ pour s'assurer que les corrections sont effectives.
 \end{enumerate}
 
 

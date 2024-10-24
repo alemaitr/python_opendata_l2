@@ -22,16 +22,16 @@ def elimine_sans_coordonnees(liste_trajets):
             nv_lst.append(trajet)
     return nv_lst
 
-def liste_couleurs(liste_trajets):
-    lst_color = []
-    for trajet in liste_trajets:
-        lst_color.append(trajet['Color'])
-    return lst_color
+def ensemble_couleurs(liste_trajets):
+    return set(trajet['Color'] for trajet in liste_trajets)
+
 
 def corrige_couleurs(liste_trajets):
     for trajet in liste_trajets:
         if len(trajet['Color']) == 6:
             trajet['Color'] ="#"+trajet['Color']
+        if trajet['Color'] == '0':
+            trajet['Color']='#000000'
     return liste_trajets 
 
 #Fonctions pour l'exercice 4
@@ -40,8 +40,9 @@ def ajoute_point_trajet(carte, trajet):
     x = float(coords[1])
     y = float(coords[0])
     nom = trajet['Long Name']
-    couleur = trajet["Color"]        
+    couleur = trajet["Color"]
     tracer_point(carte,x,y,nom,couleur)
+    
 
 def carte_tous_points_2d(lst_trajets):
     carte = creer_carte("Points 2D")
@@ -82,47 +83,47 @@ def carte_toutes_lignes(lst_trajets):
 #######################################################################
 #Tests et appels de fonctions
 #######################################################################
+if __name__ == "__main__" :
+    #Exercice 2
+    os.chdir("TD7/Corrige/")
+    nom_fichier = "mobibreizh-lignes.csv"
+    print(f"La taille maximale d'une lligne du fichier est {taille_max(nom_fichier)} caractères")
 
-#Exercice 2
-os.chdir("TD7/Corrige/")
-nom_fichier = "mobibreizh-lignes.csv"
-print(f"La taille maximale du fichier est {taille_max(nom_fichier)}")
+    csv.field_size_limit(4000000)
+    with open(nom_fichier, "r", encoding="utf-8") as fp :
+        trajets = []
+        for ligne in csv.DictReader(fp, delimiter=";"):
+            trajets.append(ligne)
+        
+    print(f"Nb de trajets : {len(trajets)}")
+    print(f"Intitulés des champs disponibles : {trajets[0].keys()}")
 
-csv.field_size_limit(4000000)
-fp = open(nom_fichier, "r", encoding="utf-8")
-trajets = []
-for ligne in csv.DictReader(fp, delimiter=";"):
-    trajets.append(ligne)
-    
-print(f"Nb de trajets : {len(trajets)}")
-print(f"Intitulés des champs disponibles : {trajets[0].keys()}")
+    trajets = elimine_sans_coordonnees(trajets)
+    print(f"Nb de trajets après supression des trajets sans coordonnees: {len(trajets)}")
 
-trajets = elimine_sans_coordonnees(trajets)
-print(f"Nb de trajets après supression des trajets sans coordonnees: {len(trajets)}")
+    # print(f"Les couleurs avant traitement {ensemble_couleurs(trajets)}")
+    trajets = corrige_couleurs(trajets)
+    # print(f"Les couleurs après traitement {ensemble_couleurs(trajets)}")
 
-# print(f"Les couleurs avant traitement {liste_couleurs(trajets)}")
-trajets = corrige_couleurs(trajets)
-# print(f"Les couleurs après traitement {liste_couleurs(trajets)}")
+    #Exercice 3
+    # carte = creer_carte("Bretagne")
+    # tracer_point(carte,-1.6742900,48.1119800,"Rennes","blue")
+    # tracer_point(carte, -2.025674, 48.649337, "Saint-Malo","yellow")
+    # tracer_point(carte,  -1.553621, 47.218371, "Nantes","green")
+    # tracer_ligne(carte, [-1.553621,-1.6742900,-2.025674],[47.218371,48.1119800,48.649337],"Nantes - Rennes - Saint-Malo","#FF5533")
+    # afficher_carte(carte)
 
-#Exercice 3
-# carte = creer_carte("Bretagne")
-# tracer_point(carte,-1.6742900,48.1119800,"Rennes","blue")
-# tracer_point(carte, -2.025674, 48.649337, "Saint-Malo","yellow")
-# tracer_point(carte,  -1.553621, 47.218371, "Nantes","green")
-# tracer_ligne(carte, [-1.553621,-1.6742900,-2.025674],[47.218371,48.1119800,48.649337],"Nantes - Rennes - Saint-Malo","#FF5533")
-# afficher_carte(carte)
+    #Exercice 4
+    # carte_tous_points_2d(trajets)
 
-#Exercice 4
-carte_tous_points_2d(trajets)
+    #Exercice 5
 
-#Exercice 5
-
-# coords = trajets[0]['Shape']
-# print(type(coords))
-# <class 'str'>
-#Au chargement, le type est une chaine de caractères.
+    coords = trajets[0]['Shape']
+    print(type(coords))
+    # <class 'str'>
+    #Au chargement, le type est une chaine de caractères.
 
 
-for trajet in trajets :
-    trajet = prepare_lst_coord(trajet)
-carte_toutes_lignes(trajets)
+    for trajet in trajets :
+        trajet = prepare_lst_coord(trajet)
+    carte_toutes_lignes(trajets)
