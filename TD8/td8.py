@@ -105,11 +105,10 @@ if __name__=="__main__":
     print(f"Temps moyen passé dans chaque station : {moyenne}")
 
     # Exercice 3
-    #Q3.2
-    
+    # Q3.2
     pass_gare = passages_station("Gares",liste_passages)
-    # print("Prochains passages à la station Gares :")
-    # pprint(pass_gare)
+    print("Prochains passages à la station Gares :")
+    pprint(pass_gare)
     procgare = prochain_passage_station(pass_gare)
     # pprint(procgare)
     affichage_station("Gares",liste_passages)

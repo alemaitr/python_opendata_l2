@@ -64,8 +64,8 @@ pprint(mon_joli_dictionnaire)
 Les horaires fournis par la STAR sont fournis avec précision du fuseau horaire (timezone). Curieusement, les horaires ne sont pas homogènes entre l'arrivée et le départ.
 Ainsi, un passage peut être défini avec les horaires suivants : 
 \begin{description}
-    \item[depart] \verb'2023-11-17T07:47:09+00:00' : il s'agit d'une heure au format ISO, avec précision du fuseau horaire (timezone). Ici, elle est exprimée dans le fuseau horaire avec UTC+0 (\verb'+00:00'), ce qui correspond à 8h47 et 9 secondes en France.
-    \item[arrivee] \verb'2023-11-17 08:46:58+0100' : il s'agit d'une heure \emph{presque} au format ISO puisqu'il manque le caractère T pour séparer la date et l'heure. Ici, elle est exprimée dans le fuseau horaire avec UTC+1 (\verb'+0100'), ce qui correspond à 8h46 et 58 secondes en France.
+    \item[depart] \verb'2024-11-17T07:47:09+00:00' : il s'agit d'une heure au format ISO, avec précision du fuseau horaire (timezone). Ici, elle est exprimée dans le fuseau horaire avec UTC+0 (\verb'+00:00'), ce qui correspond à 8h47 et 9 secondes en France.
+    \item[arrivee] \verb'2024-11-17 08:46:58+0100' : il s'agit d'une heure \emph{presque} au format ISO puisqu'il manque le caractère T pour séparer la date et l'heure. Ici, elle est exprimée dans le fuseau horaire avec UTC+1 (\verb'+0100'), ce qui correspond à 8h46 et 58 secondes en France.
 \end{description}
 
 
@@ -94,7 +94,7 @@ Ainsi, un passage peut être défini avec les horaires suivants :
 On souhaite renseigner un panneau d'affichage en entrée d'une station de métro, avec l'horaire de chaque prochain passage, pour chaque ligne de métro, dans chaque direction (voir exemple à la fin du sujet). 
 
 \begin{enumerate}
-    \item Écrire une fonction qui prend en entrée le nom d'une station de métro, la la liste des passages de métro complète, et qui renvoie la liste des passages à cette station. 
+    \item Écrire une fonction qui prend en entrée le nom d'une station de métro, la liste des passages de métro complète, et qui renvoie la liste des passages à cette station. 
     \item Tester cette fonction pour afficher les passages à la station Gares.
     
     \item Écrire une fonction qui prend en entrée une liste de passages dans une station, telle que retournée ci-dessus, et qui recherche pour chaque ligne de métro, et chaque direction l'heure du prochain départ à venir. 
