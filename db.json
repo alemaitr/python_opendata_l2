@@ -1,39 +1,9 @@
 {
     "rennes2express": {
         "emission": "Rennes 2 Express",
-        "edition": "2023",
+        "edition": "2024",
         "saison": "19",
-        "dates": "Du 13 au 16 novembre 2023",
-        "epreuves": [
-            {
-                "epreuve_id": "Ep1",
-                "ville": "Avignon",
-                "vainqueur": "E7",
-                "date": "13/11/2023 11:30",
-                "type_epreuve": "quizz"
-            },
-            {
-                "epreuve_id": "Ep2",
-                "ville": "Macon",
-                "vainqueur": "E3",
-                "date": "14/11/2023 12:30",
-                "type_epreuve": "logique"
-            },
-            {
-                "epreuve_id": "Ep3",
-                "ville": "Auxerre",
-                "vainqueur": "E4",
-                "date": "15/11/2023 13:00",
-                "type_epreuve": "sport"
-            },
-            {
-                "epreuve_id": "Ep4",
-                "ville": "Le Mans",
-                "vainqueur": "E8",
-                "date": "16/11/2023 12:30",
-                "type_epreuve": "adresse"
-            }
-        ],
+        "dates": "Du 13 au 16 novembre 2024",
         "equipes": {
             "E1": {
                 "nom": "Xavier et Céline",
@@ -73,7 +43,7 @@
                 "code_etape": "Etape 1",
                 "depart": {
                     "lieu": "Marseille",
-                    "heure_theorique": "13/11/2023 08:00",
+                    "heure_theorique": "13/11/2024 08:00",
                     "borne": "B01"
                 },
                 "arrivee": {
@@ -85,7 +55,7 @@
                 "code_etape": "Etape 2",
                 "depart": {
                     "lieu": "Avignon",
-                    "heure_theorique": "13/11/2023 14:00",
+                    "heure_theorique": "13/11/2024 14:00",
                     "borne": "B03"
                 },
                 "arrivee": {
@@ -97,7 +67,7 @@
                 "code_etape": "Etape 3",
                 "depart": {
                     "lieu": "Lyon",
-                    "heure_theorique": "14/11/2023 08:00",
+                    "heure_theorique": "14/11/2024 08:00",
                     "borne": "B05"
                 },
                 "arrivee": {
@@ -109,7 +79,7 @@
                 "code_etape": "Etape 4",
                 "depart": {
                     "lieu": "Macon",
-                    "heure_theorique": "14/11/2023 14:00",
+                    "heure_theorique": "14/11/2024 14:00",
                     "borne": "B07"
                 },
                 "arrivee": {
@@ -121,7 +91,7 @@
                 "code_etape": "Etape 5",
                 "depart": {
                     "lieu": "Dijon",
-                    "heure_theorique": "15/11/2023 10:00",
+                    "heure_theorique": "15/11/2024 10:00",
                     "borne": "B09"
                 },
                 "arrivee": {
@@ -133,7 +103,7 @@
                 "code_etape": "Etape 6",
                 "depart": {
                     "lieu": "Auxerre",
-                    "heure_theorique": "15/11/2023 15:00",
+                    "heure_theorique": "15/11/2024 15:00",
                     "borne": "B11"
                 },
                 "arrivee": {
@@ -145,7 +115,7 @@
                 "code_etape": "Etape 7",
                 "depart": {
                     "lieu": "Paris",
-                    "heure_theorique": "16/11/2023 09:00",
+                    "heure_theorique": "16/11/2024 09:00",
                     "borne": "B13"
                 },
                 "arrivee": {
@@ -157,7 +127,7 @@
                 "code_etape": "Etape 8",
                 "depart": {
                     "lieu": "Le Mans",
-                    "heure_theorique": "16/11/2023 15:00",
+                    "heure_theorique": "16/11/2024 15:00",
                     "borne": "B15"
                 },
                 "arrivee": {
