@@ -50,4 +50,16 @@ ProjetRennes2Express/evaluationProjet.odt
 ProjetRennes2Express/grille_correction.odt
 ProjetRennes2Express/test_donnees_aurelie.py
 
+ ProjetTerraAventura/Data_ProjetTerraAventura.7z
+ ProjetTerraAventura/__pycache__/cartographie.cpython-39.pyc
+ ProjetTerraAventura/__pycache__/dico_dpt.cpython-39.pyc
+ ProjetTerraAventura/a_trouver.csv
+ ProjetTerraAventura/cartographie.py
+ ProjetTerraAventura/credentials.json
+ ProjetTerraAventura/dico_dpt.py
+ ProjetTerraAventura/lecture_liste_parcours.py
+ ProjetTerraAventura/logo.svg
+ ProjetTerraAventura/terra_aventura.html
+ ProjetTerraAventura/terra_aventura_corrige.py
+
 .DS_Store
