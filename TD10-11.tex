@@ -36,17 +36,17 @@ La date limite de rendu est indiquée sur CURSUS dans l’espace de dépôt.
 \includegraphics[width=8cm]{ProjetTerraAventura/logo.jpg}
 \end{center}
 
-La région Nouvelle Aquitaine propose une chasse aux trésors touristique, nommée Terra Aventura : \url{https://www.terra-aventura.fr/}. Ainsi, sur tout le territoire de Nouvelle Aquitaine, environ 600 trésors ont été dissimulés. Chaque \emph{trésor} (aussi appelé \emph{cache}) peut être trouvé en collectant des indices, lors de la découverte d'un lieu. Les aventures sont triées par thématique, et associées à un personnage. Par exemple, le personnage de Zabeth correspond à des aventures de type "Histoire". 
+La région Nouvelle Aquitaine propose une chasse aux trésors touristique, nommée Terra Aventura : \url{https://www.terra-aventura.fr/}. Ainsi, sur tout le territoire de Nouvelle Aquitaine, environ 600 trésors ont été dissimulés. Chaque \emph{trésor} (aussi appelé \emph{cache} ou \emph{aventure}) peut être trouvé en collectant des indices, lors de la découverte d'un lieu. Les aventures sont triées par thématique, et associées à un personnage. Par exemple, le personnage de Zabeth correspond à des aventures de type "Histoire". 
 
 \section{Problème posé}
 
-Deux amis explorateurs, Marco et Polo, souhaitent partir en vacances dans la région Nouvelle Aquitaine, avec pour objectif de dénicher le maximum de trésors possibles. Ils cherchent donc un hébergement qui leur permette d'avoir accès à de nombreux trésors, sachant qu'ils ne souhaitent pas faire plus de 60 minutes de voiture, autour de leur hébergement. 
+Deux amis explorateurs, Marco et Polo, souhaitent partir en vacances dans la région Nouvelle Aquitaine, avec pour objectif de dénicher le maximum de trésors possibles. Ils cherchent donc un hébergement qui leur permette d'avoir accès à de nombreux trésors à proximité, sachant qu'ils ne souhaitent pas faire plus de 60 minutes de voiture, autour de leur hébergement. 
 
 \subsection{Sélection des trésors}\label{tresor}
 Terra Aventura propose plus de 600 trésors. Mais Marco et Polo en ont déjà trouvé un certain nombre ! Ils veulent donc se focaliser sur ceux qu'ils n'ont pas encore trouvé. 
 Par ailleurs, Marco et Polo sont férus d'histoire, ils se focaliseront donc sur les trésors de type "Zabeth". 
 
-Deux fichiers sont à votre disposition : 
+Deux fichiers sont à votre disposition sur Cursus : 
 \begin{itemize}
 \item \verb+tresors.json+ est un export du site web Terra Aventura. Il contient la liste de tous les trésors disponibles dans la région Nouvelle Aquitaine.
 \item \verb+trouvailles.csv+ contient la liste des trésors déjà trouvés par Marco et Polo (identifiant du trésor et date de découverte).
@@ -59,7 +59,7 @@ Pour le choix de l'hébergement, vous aurez à votre disposition l'API suivante,
 
 Marco et Polo ont récemment gagné un bon de réduction dans la chaîne d'hotel IBIS. Ils souhaitent donc loger dans un hôtel IBIS. \emph{Indice : on pourra filtrer la requête à l'API en précisant la valeur "Ibis" pour le champ "Operator"}.
 
-Puisque les Terra Aventura sont situées en Nouvelle-Aquitaine, on s'assurera de ne conserver que les hôtels situés dans un des départements de la région Nouvelle-Aquitaine. On pourra réutiliser le fichier \verb+dico_dpt.py+ vu en TD de "SDD en Python" pour obtenir la liste des numéros de départements de Nouvelle Aquitaine. 
+Puisque les Terra Aventura sont situées en Nouvelle-Aquitaine, on s'assurera de ne conserver que les hôtels situés dans un des départements de la région Nouvelle-Aquitaine. 
 
 Enfin, Marco et Polo ont bien noté que leur bon de réduction n'est pas valable dans les hôtels "Ibis Styles", il faudra donc exclure ces hôtels des potentiels résultats.
 
@@ -67,8 +67,8 @@ Enfin, Marco et Polo ont bien noté que leur bon de réduction n'est pas valable
 Le problème posé est donc : 
 
 \begin{itemize}
-    \item Étant définie une liste de trésors de type Zabeth, non encore trouvées par Marco et Polo
-    \item Étant donné la liste des hôtels Ibis en région Nouvelle Aqutaine (Ibis Styles exclus)
+    \item Étant définie une liste de trésors de type Zabeth, non encore trouvés par Marco et Polo
+    \item Étant donnée la liste des hôtels Ibis en région Nouvelle Aqutaine (Ibis Styles exclus)
     \item Trouver parmi ces hôtels lequel a le plus de trésors dans son entourage à moins de 60 minutes de voiture.
 \end{itemize}
 
@@ -85,8 +85,8 @@ Pour valider votre projet, vous devrez fournir un script Python produisant les r
     \item[Niveau bonus] Produire un affichage cartographique présentant le point de l'hôtel, des trésors à proximité etc...
 \end{description}
 
-Il est également attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes. Il faudra également utiliser les structures de données appropriées :  listes, dictionnaires, tuples, ensembles.
-
+Il est attendu de fournir un code clair et lisible, qui limite les traitements inutiles et les requêtes redondantes. Il faudra également utiliser les structures de données appropriées :  listes, dictionnaires, tuples, ensembles.
+\newpage
 \section{Rendu de devoir}
 Votre rendu se fera sous la forme d’un
 fichier Python. Ce fichier devra être nommé td10-11.py et contenir les noms et numéros étudiant de tous
