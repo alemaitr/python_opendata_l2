@@ -58,8 +58,11 @@ ProjetRennes2Express/test_donnees_aurelie.py
  ProjetTerraAventura/credentials.json
  ProjetTerraAventura/dico_dpt.py
  ProjetTerraAventura/lecture_liste_parcours.py
- ProjetTerraAventura/logo.svg
  ProjetTerraAventura/terra_aventura.html
  ProjetTerraAventura/terra_aventura_corrige.py
 
 .DS_Store
+ProjetTerraAventura/grille_correction.odt
+ProjetTerraAventura/terra_aventura_corrige.html
+TD9_2024/corrige/td9_aurelie.py
+PythonOpenData-planning2025-26.ods
