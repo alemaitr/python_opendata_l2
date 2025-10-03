@@ -1,0 +1,12 @@
+[{
+	"name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
+	"coords": [{"lon": -1.426533, "lat": 48.005135},
+        {"lon": -1.404587, "lat": 48.004507},
+        {"lon": -1.427987, "lat": 47.986044},
+        {"lon": -1.426533, "lat": 48.005138}]},
+{
+	"name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
+	"coords": [{"lon": -1.822523, "lat": 47.820791},
+        {"lon": -1.839792, "lat": 47.815539},
+        {"lon": -1.822819, "lat": 47.822329},
+        {"lon": -1.822523, "lat": 47.820791}]}]
