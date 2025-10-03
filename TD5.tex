@@ -61,38 +61,30 @@ En effet, les altitudes des points GPS étant les suivantes :
 
 En utilisant la fonction écrite à la question précédente, écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et un client GraphHopper et affiche, pour chaque randonnée, son nom (attribut "name") et la somme de ses dénivelés positifs (d’une part) et négatifs (d’autre part). 
 
-Pour le fichier mini-rando\_gps.json, on doit obtenir (après quelque temps, le nombre de requêtes à effectuer étant assez grand) une sortie du type :
+Pour le fichier mini-mini-rando\_gps.json, on doit obtenir (après quelque temps, le nombre de requêtes à effectuer étant assez grand) une sortie du type :
 \begin{verbatim}
 TraceGPS Le long de la quincampoix - Pire-sur-Seiche 
-  - Dénivelé positif cumulé : 22.14
-  - Dénivelé négatif cumulé : 22.14
+         - Dénivelé positif cumulé : 15.08
+         - Dénivelé négatif cumulé : 15.08
 TraceGPS Issued  Messac - CIRCUIT DU PORT 
-  - Dénivelé positif cumulé : 12.81
-  - Dénivelé négatif cumulé : 12.81
-TraceGPS Issued  Coemes-Retiers  
-  - Dénivelé positif cumulé : 66.99
-  - Dénivelé négatif cumulé : 66.99
+         - Dénivelé positif cumulé : 4.47
+         - Dénivelé négatif cumulé : 4.47
 \end{verbatim}
 \section{Fichier de synthèse des randonnées}
 
 Écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et un client GraphHopper, et écrit dans un nouveau fichier JSON (dont le nom sera passé en paramètre de la fonction) une liste de dictionnaires contenant le nom de la randonnée et les informations de dénivelés positif et négatif), soit quelque chose du type :
 \begin{verbatim}
-  [
-    {
-      "name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
-      "D+": 22.14,
-      "D-": 22.14
-    },
-    {
-      "name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
-      "D+": 12.81,
-      "D-": 12.81
-    },
-    {
-      "name": "TraceGPS Issued  Coemes-Retiers ",
-      "D+": 66.99,
-      "D-": 66.99
-    }
-  ]
+[
+  {
+    "name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
+    "D+": 15.08,
+    "D-": 15.08
+  },
+  {
+    "name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
+    "D+": 4.47,
+    "D-": 4.47
+  }
+]
 \end{verbatim}
 \end{document}
