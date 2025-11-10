@@ -99,7 +99,7 @@ lst_gps = [
 # (29.07, 28.549999999999997)
 
 # Exercice 3
-# les_randos("../Donnees/mini-rando_gps.json",gh_client)
+# les_randos("../Donnees/mini-mini-rando_gps.json",gh_client)
 
 # Exercice 4
-ecrit_dico("../Donnees/mini-rando_gps.json", gh_client, "randos_finales.json")
+ecrit_dico("../Donnees/mini-mini-rando_gps.json", gh_client, "randos_finales.json")
