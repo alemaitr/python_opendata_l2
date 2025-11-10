@@ -1,0 +1,139 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+
+\renewcommand\thesection{Exercice \arabic{section} : }
+\renewcommand\thesubsection{Question \arabic{section}.\arabic{subsection} : }
+\renewcommand{\theenumi}{Q.\arabic{section}.\arabic{enumi}}
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L2 MIASHS}
+\titre{TD9 : Combinaison de sources : Terra Aventura}
+\begin{document}
+
+
+\section*{Préambule}
+\begin{itemize}
+    \item Dans votre dossier PythonOpenData créez un sous-dossier TD9.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD9 et créer un fichier TD9.py dans lequel vous écrirez votre code. 
+\end{itemize}
+
+
+
+\section*{Problème posé}
+
+\begin{center}
+\includegraphics[width=8cm]{ProjetTerraAventura/logo.jpg}
+\end{center}
+
+La région Nouvelle Aquitaine propose une chasse aux trésors touristique, nommée Terra Aventura : \url{https://www.terra-aventura.fr/}. Ainsi, sur tout le territoire de Nouvelle Aquitaine, environ 600 trésors ont été dissimulés. Chaque \emph{trésor} (aussi appelé \emph{cache} ou \emph{aventure}) peut être trouvé en collectant des indices, lors de la découverte d'un lieu. Les aventures sont triées par thématique, et associées à un personnage. Par exemple, le personnage de Zabeth correspond à des aventures de type "Histoire". 
+
+
+Deux amis explorateurs, Marco et Polo, souhaitent partir en vacances dans la région Nouvelle Aquitaine, avec pour objectif de dénicher le maximum de trésors possibles. Terra Aventura propose plus de 600 trésors. Mais Marco et Polo en ont déjà trouvé un certain nombre !
+
+Deux fichiers sont à votre disposition sur Cursus : 
+\begin{itemize}
+\item \verb+tresors.json+ est un export du site web Terra Aventura. Il contient la liste de tous les trésors disponibles dans la région Nouvelle Aquitaine.
+\item \verb+trouvailles.csv+ contient la liste des trésors déjà trouvés par Marco et Polo (identifiant du trésor et date de découverte).
+\end{itemize}
+
+
+\section{Etiquetage des trésors déjà trouvés}
+
+
+\begin{enumerate}
+  \item Écrire une fonction \verb+charge_tresors+, qui ne prend pas de paramètre. Cette fonction doit ouvrir le fichier tresors.json et renvoyer la liste de trésors sous forme d'une liste de dictionnaires.
+  \emph{Indice : la liste renvoyée doit contenir 596 trésors.}
+  
+  \item Écrire une fonction \verb+charge_trouvailles+, qui ne prend par de paramètre. Cette fonction doit ouvrir le fichier trouvailles.csv et renvoyer un dictionnaire qui associe à chaque identifiant de trésor trouvé, la date au format datetime. 
+  \emph{Indice : le dictionnaire renvoyé doit contenir 50 clés, et commence par : \{'314': datetime.datetime(2022, 1, 1, 0, 5), '505': datetime.datetime(2022, 1, 13, 0, 7), '380': datetime.datetime(2022, 1, 13, 0, 7),...\}}
+
+  \item Écrire une fonction \verb+enrichit_dico+ qui prend en entrée : une liste de trésors, telle que renvoyée par la question 1.1, et une liste d'identifiants de trouvailles, telle que renvoyé par la question 1.2. 
+  Cette fonction doit compléter les dictionnaires contenus dans la liste de trésors en ajoutant un champ \verb+"trouvaille"+. Si le trésor a été trouvé, le champ "trouvaille" contiendra la date de découverte, None sinon. 
+  Voici les résultats attendus pour les deux premiers trésors :
+  \begin{verbatim}
+  {'difficulte': '3',
+ 'dpt': '16',
+ 'lat': '45.6808667',
+ 'lng': '0.4190667',
+ 'nid': '1980',
+ 'nom': 'À la pierre et au moulin…',
+ 'saison': '14',
+ 'terrain': '3',
+ 'trouvaille': None,
+ 'type': 'Zectonic',
+ 'ville': 'Vilhonneur'},
+{'difficulte': '2',
+ 'dpt': '16',
+ 'lat': '46.0151',
+ 'lng': '0.6730333',
+ 'nid': '72',
+ 'nom': "Remontez le temps, au fil de l'eau",
+ 'saison': '5',
+ 'terrain': '2',
+ 'trouvaille': datetime.datetime(2022, 1, 15, 0, 7),
+ 'type': 'Zabeth',
+ 'ville': 'Confolens'}
+  \end{verbatim}
+
+  
+\end{enumerate}
+
+\section{Trésor de prédilection}
+Marco et Polo ont un type de trésor de prédilection... Lequel est-ce ? 
+
+\begin{enumerate}
+    \item Ecrire une fonction \verb+analyse_donnee+ qui prend en entrée une liste de trésors, enrichie des trouvailles. 
+    Cette fonction doit construire et renvoyer un dictionnaire de dictionnaire, permettant de compter pour chaque type de trésor le nombre de trésors associés, ainsi que le nombre de trouvailles. 
+    Voici le format attendu : 
+    \begin{verbatim}
+{ 'Zabdo': {'nb': 10, 'trouvé': 0},
+ ...
+ 'Zarthus': {'nb': 49, 'trouvé': 1},
+ ...
+ 'Zenight': {'nb': 11, 'trouvé': 1},
+ ...
+}
+    \end{verbatim}
+
+\end{enumerate}
+\newpage
+\section{Affichage des découvertes dans l'ordre}
+Marco et Polo sont nostalgiques... Ils voudraient visualiser leurs trouvailles dans l'ordre des découvertes. 
+\begin{enumerate}
+    \item Ecrire une fonction \verb+affiche_trouvailles_ordonnees+ qui prend en entrée une liste de trésors, enrichie des trouvailles. 
+    Cette fonction doit conserver uniquement les trésors trouvés, les ordonner selon la date de trouvaille, et les afficher au format suivant : 
+    
+    \begin{verbatim}
+_____________________________________________
+Liste des trouvailles par ordre de découverte
+_____________________________________________
+Le 01/05/2022 : Pau, c’est royal ! à Pau
+Le 02/08/2022 : La première pierre du nouvel Oradour à Oradour-sur-Glane
+Le 02/08/2022 : Des viaducs à la Pars urbana d’Antone à Pierre-Buffière
+Le 03/08/2022 : Vous z’avez dit "trésor" ? à Le Chalard
+    \end{verbatim}
+  \end{enumerate}
+
+\section{Cartographie}
+
+En utilisant le module de cartographie vue dans un TD précédent, on souhaite cartographier les trésors. 
+
+\begin{enumerate}
+    \item Ecrire une fonction \verb+cartographie_tresors+ qui prend en entrée une liste de trésors, enrichie des trouvailles. 
+    Cette fonction doit créer puis cartographier les trésors. Les trésors trouvés seront affichés dans une couleur différente des trésors non trouvés. On pourra afficher le nom du trésor au survol.
+
+  \end{enumerate}
+
+\end{document}
