@@ -276,18 +276,6 @@
         "dpt": "16"
     },
     {
-        "nid": "175",
-        "lat": "46.051885",
-        "lng": "0.683633",
-        "nom": "Le parchemin des Sages - Part. 2",
-        "terrain": "4",
-        "difficulte": "5",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "6",
-        "dpt": "16"
-    },
-    {
         "nid": "197",
         "lat": "45.429536",
         "lng": "0.269297",
@@ -813,18 +801,6 @@
         "ville": "Fouras",
         "type":"Zelle",
         "saison": "7",
-        "dpt": "17"
-    },
-    {
-        "nid": "677",
-        "lat": "45.809902",
-        "lng": "-1.19397",
-        "nom": "Le diable s'habille en caban",
-        "terrain": "0",
-        "difficulte": "5",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "10",
         "dpt": "17"
     },
     {
@@ -3384,18 +3360,6 @@
         "dpt": "33"
     },
     {
-        "nid": "670",
-        "lat": "44.82168",
-        "lng": "-0.70743",
-        "nom": "Jouez à l'espace game !",
-        "terrain": "0",
-        "difficulte": "5",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "10",
-        "dpt": "33"
-    },
-    {
         "nid": "950",
         "lat": "44.8033333",
         "lng": "-0.6874333",
@@ -5100,18 +5064,6 @@
         "dpt": "64"
     },
     {
-        "nid": "656",
-        "lat": "43.059033",
-        "lng": "-1.029722",
-        "nom": "Les 4 Fantaz'tiques & la légende de Tartaro",
-        "terrain": "0",
-        "difficulte": "4",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "10",
-        "dpt": "64"
-    },
-    {
         "nid": "481",
         "lat": "43.05485",
         "lng": "-0.43115",
@@ -5928,18 +5880,6 @@
         "dpt": "86"
     },
     {
-        "nid": "669",
-        "lat": "46.7114667",
-        "lng": "0.5176333",
-        "nom": "Bienvenue chez les Pinailhos",
-        "terrain": "2",
-        "difficulte": "5",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "10",
-        "dpt": "86"
-    },
-    {
         "nid": "731",
         "lat": "46.4266333",
         "lng": "0.2622667",
@@ -6252,18 +6192,6 @@
         "dpt": "86"
     },
     {
-        "nid": "676",
-        "lat": "46.580495",
-        "lng": "0.34888",
-        "nom": "Qui peut vaincre la Grand'Goule ?",
-        "terrain": "0",
-        "difficulte": "4",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "10",
-        "dpt": "86"
-    },
-    {
         "nid": "577",
         "lat": "46.3088833",
         "lng": "0.9321167",
@@ -6501,18 +6429,6 @@
         "ville": "Saint-Junien",
         "type":"Zouti",
         "saison": "5",
-        "dpt": "87"
-    },
-    {
-        "nid": "174",
-        "lat": "45.79403",
-        "lng": "1.253865",
-        "nom": "Télégrammes Bad Poï'z",
-        "terrain": "0",
-        "difficulte": "5",
-        "ville": null,
-        "type":"Légendaire",
-        "saison": "6",
         "dpt": "87"
     },
     {
