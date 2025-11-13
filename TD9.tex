@@ -40,7 +40,7 @@
 La région Nouvelle Aquitaine propose une chasse aux trésors touristique, nommée Terra Aventura : \url{https://www.terra-aventura.fr/}. Ainsi, sur tout le territoire de Nouvelle Aquitaine, environ 600 trésors ont été dissimulés. Chaque \emph{trésor} (aussi appelé \emph{cache} ou \emph{aventure}) peut être trouvé en collectant des indices, lors de la découverte d'un lieu. Les aventures sont triées par thématique, et associées à un personnage. Par exemple, le personnage de Zabeth correspond à des aventures de type "Histoire". 
 
 
-Deux amis explorateurs, Marco et Polo, souhaitent partir en vacances dans la région Nouvelle Aquitaine, avec pour objectif de dénicher le maximum de trésors possibles. Terra Aventura propose plus de 600 trésors. Mais Marco et Polo en ont déjà trouvé un certain nombre !
+Deux amis explorateurs, Marco et Polo, ont pour objectif de dénicher le maximum de trésors possibles. Terra Aventura propose plus de 600 trésors, mais Marco et Polo en ont déjà trouvé un certain nombre !
 
 Deux fichiers sont à votre disposition sur Cursus : 
 \begin{itemize}
@@ -54,16 +54,31 @@ Deux fichiers sont à votre disposition sur Cursus :
 
 \begin{enumerate}
   \item Écrire une fonction \verb+charge_tresors+, qui ne prend pas de paramètre. Cette fonction doit ouvrir le fichier tresors.json et renvoyer la liste de trésors sous forme d'une liste de dictionnaires.
-  \emph{Indice : la liste renvoyée doit contenir 596 trésors.}
-  
-  \item Écrire une fonction \verb+charge_trouvailles+, qui ne prend par de paramètre. Cette fonction doit ouvrir le fichier trouvailles.csv et renvoyer un dictionnaire qui associe à chaque identifiant de trésor trouvé, la date au format datetime. 
-  \emph{Indice : le dictionnaire renvoyé doit contenir 50 clés, et commence par : \{'314': datetime.datetime(2022, 1, 1, 0, 5), '505': datetime.datetime(2022, 1, 13, 0, 7), '380': datetime.datetime(2022, 1, 13, 0, 7),...\}}
 
-  \item Écrire une fonction \verb+enrichit_dico+ qui prend en entrée : une liste de trésors, telle que renvoyée par la question 1.1, et une liste d'identifiants de trouvailles, telle que renvoyé par la question 1.2. 
-  Cette fonction doit compléter les dictionnaires contenus dans la liste de trésors en ajoutant un champ \verb+"trouvaille"+. Si le trésor a été trouvé, le champ "trouvaille" contiendra la date de découverte, None sinon. 
+  \emph{Indice : la liste renvoyée doit contenir 589 trésors.}
+  
+  \item Écrire une fonction \verb+charge_trouvailles+, qui ne prend pas de paramètre. Cette fonction doit ouvrir le fichier trouvailles.csv et renvoyer un dictionnaire qui associe à chaque identifiant de trésor trouvé, la date de trouvaille au format datetime. 
+   
+  \emph{Indice : le dictionnaire renvoyé doit contenir 51 clés, et commence par : }
+  \begin{verbatim}
+{'1367': datetime.datetime(2024, 10, 30, 0, 0),
+ '1566': datetime.datetime(2024, 8, 14, 0, 0),
+ '167': datetime.datetime(2023, 5, 2, 0, 0),
+ ...
+  \end{verbatim}
+  
+  
+  \item Écrire une fonction \verb+enrichit_dico+ qui prend en entrée : une liste de trésors, telle que renvoyée par la question 1.1, et un dictionnaire de trouvailles, tel que renvoyé par la question 1.2. 
+  Cette fonction doit compléter les dictionnaires contenus dans la liste de trésors en ajoutant :
+  \begin{itemize}
+   \item un champ \verb+"trouvé"+, qui vaut True si le trésor a été trouvé, False sinon.
+   \item si le trésor a été trouvé, un champ \verb+date+ qui contient la date de la trouvaille au format datetime.
+  \end{itemize} 
+\end{enumerate}
+
   Voici les résultats attendus pour les deux premiers trésors :
   \begin{verbatim}
-  {'difficulte': '3',
+ [{'difficulte': '3',
  'dpt': '16',
  'lat': '45.6808667',
  'lng': '0.4190667',
@@ -71,10 +86,11 @@ Deux fichiers sont à votre disposition sur Cursus :
  'nom': 'À la pierre et au moulin…',
  'saison': '14',
  'terrain': '3',
- 'trouvaille': None,
+ 'trouvé': False,
  'type': 'Zectonic',
  'ville': 'Vilhonneur'},
-{'difficulte': '2',
+{'date': datetime.datetime(2022, 7, 15, 0, 0),
+ 'difficulte': '2',
  'dpt': '16',
  'lat': '46.0151',
  'lng': '0.6730333',
@@ -82,14 +98,13 @@ Deux fichiers sont à votre disposition sur Cursus :
  'nom': "Remontez le temps, au fil de l'eau",
  'saison': '5',
  'terrain': '2',
- 'trouvaille': datetime.datetime(2022, 1, 15, 0, 7),
+ 'trouvé': True,
  'type': 'Zabeth',
  'ville': 'Confolens'}
+ ...]
   \end{verbatim}
 
   
-\end{enumerate}
-
 \section{Trésor de prédilection}
 Marco et Polo ont un type de trésor de prédilection... Lequel est-ce ? 
 
@@ -106,10 +121,11 @@ Marco et Polo ont un type de trésor de prédilection... Lequel est-ce ?
  ...
 }
     \end{verbatim}
-
+\item Écrire une fonction \verb+type_preferé+ qui prend en entrée un dictionnaire de trouvaille par type (tel que renvoyé par la question 2.1) et qui renvoie le nom du type préféré, c'est à dire celui pour lequel le nombre de "trouvé" est le plus grand. 
+\item Écrire une fonction \verb+type_plus_avancé+ qui prend n entrée un dictionnaire de trouvaille par type (tel que renvoyé par la question 2.1) et qui renvoie le nom du type le plus avancé, c'est à dire celui dont le pourcentage de trésors trouvés est le plus grand.
 \end{enumerate}
-\newpage
-\section{Affichage des découvertes dans l'ordre}
+
+\section{Dates de découverte}
 Marco et Polo sont nostalgiques... Ils voudraient visualiser leurs trouvailles dans l'ordre des découvertes. 
 \begin{enumerate}
     \item Ecrire une fonction \verb+affiche_trouvailles_ordonnees+ qui prend en entrée une liste de trésors, enrichie des trouvailles. 
@@ -119,14 +135,20 @@ Marco et Polo sont nostalgiques... Ils voudraient visualiser leurs trouvailles d
 _____________________________________________
 Liste des trouvailles par ordre de découverte
 _____________________________________________
-Le 01/05/2022 : Pau, c’est royal ! à Pau
-Le 02/08/2022 : La première pierre du nouvel Oradour à Oradour-sur-Glane
-Le 02/08/2022 : Des viaducs à la Pars urbana d’Antone à Pierre-Buffière
-Le 03/08/2022 : Vous z’avez dit "trésor" ? à Le Chalard
+Le 01/05/2022 à Pau : Pau, c’est royal ! 
+Le 13/07/2022 à Chef-Boutonne : Le vent tourne !
+Le 13/07/2022 à Saint-Maixent-l’Ecole : Les Poï’z prennent du galon
+Le 14/07/2022 à Chalais : Chalais, inimitable !
     \end{verbatim}
+
+
+\item Marco et Polo ne peuvent pas aller régulièrement trouver des trésors. Certains mois de l'année sont plus propices aux découvertes que d'autres. Écrire une fonction \verb+analyse_mois_trouvaille+ qui prend un dictionnaire de trouvailles, tel que renvoyé par la question 1.2. Cette fonction doit renvoyer un dictionnaire associant à chaque mois de l'année le nombre de trouvailles.
+
+On doit obtenir : \verb+{1: 0, 2: 0, 3: 0, 4: 8, 5: 7, 6: 0, 7: 22, 8: 8, 9: 0, 10: 5, 11: 0, 12: 1}+
+
   \end{enumerate}
 
-\section{Cartographie}
+\section{Pour aller plus loin : cartographie}
 
 En utilisant le module de cartographie vue dans un TD précédent, on souhaite cartographier les trésors. 
 
