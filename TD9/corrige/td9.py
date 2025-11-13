@@ -101,8 +101,7 @@ def analyse_mois_trouvaille(trouvailles):
 def cartographier_trouvailles(tresors):
     carte = creer_carte("Terra Aventura")
     for tres in tresors :
-        trouvé = tres["trouvaille"]
-        if trouvé :
+        if tres["trouvé"] :
             couleur = 'blue'
         else : 
             couleur = 'red'
@@ -146,6 +145,6 @@ print(mois)
 
 ## Exercice 4 : Cartographie
 
-# cartographier_trouvailles(carte,tresors)
+cartographier_trouvailles(tresors)
 
    
