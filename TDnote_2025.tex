@@ -1,0 +1,162 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tpl} %tdtp
+\usepackage{aeguill}
+\usepackage{epsfig,graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs}
+\usepackage{eurosym}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\makeatletter
+
+\sorte{TD}
+\siglemat{Python et Open data}
+\formation{L2 MIASHS}
+\titre{TD : Les villes où il fait bon vivre}
+\begin{document}
+
+\section{Préambule}
+
+Ce travail se fait par groupes de 2 étudiants (éventuellement 3).  
+Le TP est conçu pour être réalisé en 2 heures lors de la séance de TD.  
+La date limite de rendu (dépôt) précisée sur CURSUS correspond à l'heure de fin du TD.
+
+\section{Contexte}
+
+L'objectif de ce TP est d'appliquer des compétences d'accès aux données (fichiers et APIs), de nettoyage et de croisement, et d'analyse basique pour répondre à une question concrète : \emph{où il fait bon aller demain} parmi les chefs-lieux de région français en conciliant météo et pollution.
+
+Les jeux de données proviennent d'Open Data (INSEE pour les communes/régions) et d'APIs publiques (prévisions météo et pollution). Deux modalités d'accès aux données sont proposées (A : hors-ligne ou B : en ligne) : ne traitez la modalité B que si vous avez le temps.
+
+\section{Énoncé}
+
+% \subsection{But final}
+
+À partir de données Open Data, évaluer les chefs-lieux de région français sur trois critères et produire un classement de la \emph{douceur de ville} pour le jour courant.
+
+\subsection{Critères (pour chaque ville)}
+
+\begin{enumerate}
+    % \item \textbf{Nombre de vélos en libre-service disponibles} (plus il y en a, mieux c'est).
+    \item \textbf{Température actuelle} (idéalement proche de 20~\textdegree C).
+    \item \textbf{Niveau de pollution actuel} (concentration PM2.5 ; plus c'est faible, mieux c'est).
+\end{enumerate}
+
+\subsection{Données à utiliser}
+
+\begin{description}
+    \item[INSEE (fichiers fournis)] Deux fichiers :
+    \begin{itemize}
+        \item liste des communes avec leurs coordonnées GPS (code INSEE, nom, latitude, longitude) : \texttt{communes\_gps.json}
+        \item liste des régions avec la colonne \texttt{CHEFLIEU} (code INSEE du chef-lieu) : \texttt{v\_region\_2025.csv}
+    \end{itemize}
+    Ces fichiers permettent d'obtenir la liste des chefs-lieux et leurs coordonnées.
+    % \item[Vélos en libre-service] Deux options :
+    % \begin{itemize}
+    %     \item \textbf{Niveau A (hors-ligne)} : fichier CSV/JSON fourni indiquant le nombre de vélos disponibles par ville (par code INSEE ou nom de commune).
+    %     \item \textbf{Niveau B (en ligne)} : accès à une API réelle (dataset Open Data) pour récupérer le nombre de vélos disponibles.
+    % \end{itemize}
+    \item[Météo et pollution] :
+    \begin{itemize}
+        \item \textbf{Niveau A (hors-ligne)} : fichiers JSON simulant les réponses d'API pour la météo et la pollution : \texttt{villes\_pollution.json} et \texttt{villes\_temperature.json}.
+        \item \textbf{Niveau B (en ligne)} : appels réels aux API \texttt{OpenWeather} (Current Weather / Air Pollution) pour récupérer les données actuelles :
+        \begin{itemize}\item Page de création d'une clé d'API : \url{https://home.openweathermap.org/api_keys} (nécessite d'avoir crée un compte, gratuit)
+            \item Météo actuelle : \url{https://openweathermap.org/current}
+            \item Pollution actuelle (PM2.5) : \url{https://openweathermap.org/api/air-pollution}
+        \end{itemize}
+    \end{itemize}
+\end{description}
+
+% \subsection{Contraintes}
+% \begin{itemize}
+%     \item La liste de villes sur laquelle travailler est limitée aux \textbf{chefs-lieux de région} (obtenus via le fichier régions $\rightarrow$ colonne \texttt{CHEFLIEU}).
+%     \item Les scripts déposés ne doivent \textbf{pas} contenir de clés d'API en clair : lire les clés depuis un fichier \texttt{credentials.json} (voir section rendu).
+% \end{itemize}
+
+\section{Niveaux de réalisation}
+
+\subsection{Niveau 1 -- Extraction et affichage}
+\begin{itemize}
+    \item Charger les fichiers INSEE fournis et la source météo/pollution (fichiers locaux ou APIs selon l'approche retenue).
+    \item Pour chaque chef-lieu de région, afficher :
+    \begin{itemize}
+        % \item le nombre de vélos disponibles,
+        \item la température du moment,
+        \item le niveau de pollution courant (PM2.5).
+    \end{itemize}
+\end{itemize}
+
+\subsection{Niveau 2 -- Notation (étoiles)}
+\begin{itemize}
+    \item Transformer chaque indicateur en une note sur 5 étoiles.
+    \item Exemple de règle proposée : pour chaque ville, la température et la pollution sont converties en 1 à 5 étoiles selon des seuils fixes.
+
+    Les intervalles pour la température sont évalués du plus strict au plus large : la première condition satisfaite donne la note.
+
+    \begin{center}
+    \begin{tabular}{@{}lc@{}}
+    \toprule
+    Température (°C) & Étoiles \\
+    \midrule
+    19 -- 21 & 5 \\
+    18 -- 22 & 4 \\
+    15 -- 25 & 3 \\
+    10 -- 30 & 2 \\
+    autres & 1 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+
+    Pour la pollution (PM2.5 en µg/m³), les seuils sont non chevauchants et augmentent avec la concentration (plus la pollution est faible, plus la note est élevée) :
+
+    \begin{center}
+    \begin{tabular}{@{}lc@{}}
+    \toprule
+    PM2.5 (µg/m³) & Étoiles \\
+    \midrule
+    0 -- 1 & 5 \\
+    1 -- 2 & 4 \\
+    2 -- 5 & 3 \\
+    5 -- 10 & 2 \\
+    > 10 & 1 \\
+    \bottomrule
+    \end{tabular}
+    \end{center}
+    \item Afficher un tableau récapitulatif contenant, pour chaque ville, les deux notes (météo, pollution).
+\end{itemize}
+
+\subsection{Niveau 3 -- Classement final}
+\begin{itemize}
+    \item Combiner les deux critères (somme des étoiles) pour obtenir un score global de "douceur de vivre".
+    \item Afficher la ville la mieux classée (et idéalement le Top~5).
+\end{itemize}
+
+% \subsection{Niveau 4 -- Bonus (optionnel)}
+% \begin{itemize}
+%     \item Affichage cartographique interactif (par exemple via \texttt{folium}) montrant la ville retenue et les indicateurs des autres chefs-lieux.
+% \end{itemize}
+
+% \section{Deux approches d'accès aux données}
+
+% \begin{description}
+%     \item[Approche A -- Hors-ligne] Toutes les données (météo, pollution) sont fournies sous forme de fichiers CSV/JSON mock (c'est-à-dire simulés).
+%     \item[Approche B -- En ligne] Les données prévisions sont accédées via des API en ligne (OpenWeather). Les fichiers INSEE restent fournis en CSV.
+% \end{description}
+
+\section{Travail attendu et livrables}
+
+Vous devez produire un \textbf{fichier Python} nommé \texttt{tp\_villes\_bon\_vivre.py} qui réalise les traitements demandés. 
+Le code doit être clair, structuré en fonctions, et éviter les traitements redondants. Utilisez les structures de données appropriées (listes, dictionnaires).
+Le fichier Python devra contenir en en-tête, commentés, les noms et numéros étudiants des membres du groupe.
+
+% \subsection{Clés API}
+Ne mettez jamais vos clés d'API dans les fichiers déposés. Votre script lira les clés depuis un fichier \texttt{credentials.json} (que vous ne déposerez pas), au format suivant :
+
+\begin{verbatim}
+{
+    "OpenWeather": "VOTRE_CLEF_OPENWEATHER",
+}
+\end{verbatim}
+
+\end{document}
