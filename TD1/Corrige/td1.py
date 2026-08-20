@@ -57,7 +57,7 @@ def recode_date(d):
 
 # Extraction d'informations élémentaires
 # 1.
-nom_fichier = "TD3/Corrige/eco-counter-data_clean.json"
+nom_fichier = "TD1/Corrige/eco-counter-data_clean.json"
 fp = open(nom_fichier, "r")
 donnees = json.load(fp)
 
