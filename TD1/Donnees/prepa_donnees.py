@@ -2,9 +2,10 @@ import json
 import os
 import datetime
 
-os.chdir("TD3/Donnees")
+os.chdir("TD1/Donnees/")
 
-nom_fichier = "eco-counter-data_avril2024.json"
+mois = "avril2024"
+nom_fichier = f"Brutes/eco-counter-data_{mois}.json"
 
 with open(nom_fichier, "r", encoding="utf-8") as fp:
     dico = json.load(fp)
@@ -26,5 +27,5 @@ for rec in dico:
 
 print(fin[0])
 
-with open("eco-counter-data_clean.json", "w", encoding="utf-8") as fp :
+with open(f"counter_{mois}.json", "w", encoding="utf-8") as fp :
     json.dump(fin,fp,indent=4)
