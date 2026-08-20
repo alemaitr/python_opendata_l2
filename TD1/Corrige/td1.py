@@ -23,7 +23,7 @@ def nombre_passages_9_avril(d, noms):
         n_9_avril = 0
         for elem in d:
             if elem["name"] == nom:
-                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2024, 4, 9):
+                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2026, 4, 9):
                     n_9_avril += elem["counts"]
         print(f"Compteur '{nom}': {n_9_avril} passages le 9 avril")
 
