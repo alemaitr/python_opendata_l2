@@ -9,75 +9,79 @@ def noms_compteurs(d):
     return noms
 
 
-def nombre_passages(d, noms):
-    for nom in noms:
+def compte_passages_compteurs(d, noms):
+    dico = {}
+    for compteur in noms:
         n_avril = 0
         for elem in d:
-            if elem["name"] == nom:
+            if elem["name"] == compteur:
                 n_avril += elem["counts"]
-        print(f"Compteur '{nom}': {n_avril} passages durant le mois d'avril")
+        dico[compteur]=n_avril
+    return dico
 
 
-def nombre_passages_9_avril(d, noms):
-    for nom in noms:
-        n_9_avril = 0
-        for elem in d:
-            if elem["name"] == nom:
-                if (elem["date"]["year"], elem["date"]["month"], elem["date"]["day"]) == (2026, 4, 9):
-                    n_9_avril += elem["counts"]
-        print(f"Compteur '{nom}': {n_9_avril} passages le 9 avril")
-
-
-def passages_par_creneau(d):
+def compte_passages_horaire(d):
     passages_par_heure = {}
     for elem in d:
         heure = elem["date"]["hour"]
         passages_par_heure[heure] = passages_par_heure.get(heure, 0) + elem["counts"]
     return passages_par_heure
 
-
-def recode_gps(d):
+def compte_passages_jour(d, jour):
+    total = 0
     for elem in d:
-        lat, lon = elem["gps_coord"]
-        del elem["gps_coord"]
-        elem["latitude"] = lat
-        elem["longitude"] = lon
-    return d
+        if jour == elem["date"]["day"] :
+            total = total + elem["counts"]
+    return total
 
+def compare_tous_les_jours(d24,d26):
+    dico = {}
+    for jour in range(1,31): #30 jours en avril
+        val_2024 = compte_passages_jour(d24,jour)
+        val_2026 = compte_passages_jour(d26,jour)
+        dico[jour]={2024: val_2024,2026:val_2026}
+    return dico
 
-def recode_date(d):
-    for elem in d:
-        year, month, day, hour = (elem["date"]["year"], 
-                                  elem["date"]["month"], 
-                                  elem["date"]["day"], 
-                                  elem["date"]["hour"])
-        elem["date"] = f"{day:02d}/{month:02d}/{year} {hour:02d}h-{hour+1:02d}h"
-    return d
+def exporte_comparaison(d24, d26):
+    comparaison = compare_tous_les_jours(d24,d26)
+    file = "TD1/Corrige/nb_passages_avril-2024_2026.json"
+    with open(file,"w") as fp :
+        json.dump(comparaison, fp,indent=2)
+    
 
-
-# Extraction d'informations élémentaires
-# 1.
-nom_fichier = "TD1/Corrige/eco-counter-data_clean.json"
+############################################
+# Exercice 2 - Extraction d'informations élémentaires
+############################################
+# 1.Chargement
+nom_fichier = "TD1/Donnees/counter_avril2026.json"
 fp = open(nom_fichier, "r")
-donnees = json.load(fp)
+donnees_2026 = json.load(fp)
 
-# 2.
-noms_c = noms_compteurs(donnees)
+# 2.Nombre d'enregistrements
+print(f"Il y a {len(donnees_2026)} enregistrements")
+
+# 3. Premier enregistrement
+print(donnees_2026[0])
+
+# 4. Nom des compteurs
+noms_c = noms_compteurs(donnees_2026)
 print(f"Noms des compteurs dans le jeu de données: {noms_c}")
 
-# 3.
-nombre_passages(donnees, noms_c)
+############################################
+# Exercice 3 - Comptage des vélos
+############################################
 
-# 4. 
-nombre_passages_9_avril(donnees, noms_c)
+# 1. Passage par compteurs
+passage_compteur = compte_passages_compteurs(donnees_2026, noms_c)
+print("Passage par compteurs :\n",passage_compteur)
 
-# 5.
-passages = passages_par_creneau(donnees)
+# 2. Passages par horaire
+passages = compte_passages_horaire(donnees_2026)
 print(f"Nombre de passages heure par heure:")
 for heure in range(24):
     print(f"* {heure}h-{heure+1}h : {passages.get(heure, 0)}")
 
-# 6.
+# 3. Heure fréquentée
 heure_max = -1
 n_max = -1
 for heure, nb in passages.items():
@@ -86,16 +90,27 @@ for heure, nb in passages.items():
         heure_max = heure
 print(f"L'heure la plus fréquentée est {heure_max}h-{heure_max+1}h")
 
-# Export au format JSON
+############################################
+# Exercice 4 - Comparaison 2024-2026
+############################################
 
-# 1.
-donnees = recode_gps(donnees)
+# 2.Chargement
+nom_fichier = "TD1/Donnees/counter_avril2024.json"
+fp = open(nom_fichier, "r")
+donnees_2024 = json.load(fp)
 
-# 2.
-donnees = recode_date(donnees)
+# 4. Comptage pour un jour le 9 avril
+passages_9avril2024 = compte_passages_jour(donnees_2024,9)
+passages_9avril2026 = compte_passages_jour(donnees_2026,9)
 
-# 3.
-nom_fichier = "eco-counter-data_out.json"
-fp = open(nom_fichier, "w")
-json.dump(donnees, fp, indent=2)
-fp.close()
+print(f"Le 9 avril, on a compté {passages_9avril2024} passages en 2024 et {passages_9avril2026} en 2026.")
+
+# 5. Comparaison de tous les jours
+comparaison = compare_tous_les_jours(donnees_2024,donnees_2026)
+print(comparaison)
+
+
+############################################
+# Exercice 5. Export json
+############################################
+exporte_comparaison(donnees_2024,donnees_2026)

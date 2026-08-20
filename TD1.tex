@@ -8,6 +8,7 @@
 \usepackage{eurosym}
 \usepackage{enumitem}
 \usepackage{hyperref}
+\usepackage{xcolor}
 \makeatletter
 
 
@@ -32,22 +33,30 @@
 \end{enumerate}
 
 Ce TD se concentre sur un jeu de données de comptage du nombre de passages de vélos à Rennes au niveau d'un certain nombres de bornes de comptage. 
-Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois d'avril 2024. Les données sont fournies au format JSON (JavaScript Object Notation).
 
-\section{Chargement des données}
+
+\section{Etude des données}
+
+Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et l'on s'est restreint ici au mois d'avril 2026. Les données sont fournies au format JSON (JavaScript Object Notation).
 
 \begin{enumerate}
-    \item Sur CURSUS, télécharger le jeu de données \verb+eco-counter-data_clean.json+ et l'enregistrer dans le dossier PythonOpenData/TD1.
+    \item Sur CURSUS, télécharger le jeu de données \verb+counter_avril2026.json+ et l'enregistrer dans le dossier PythonOpenData/TD1.
     \item Visualiser avec Visual Studio Code le contenu du fichier JSON.
-    \item Quels sont les attributs (clés de dictionnaires) de ce jeu de données ? Que contient l'attribut \verb+date+ ?
-    \item Noter quelques uns des noms de compteurs (attribut \verb+name+).
+    \item Répondre - en groupe - aux questions suivantes : 
+    \begin{itemize}
+        \item Quelle est la nature python du contenu du json ?
+         \item Quels sont les attributs (clés de dictionnaires) de ce jeu de données ? 
+         \item Que contient l'attribut \verb+date+ ?
+         \item Donner quelques uns des noms de compteurs (attribut \verb+name+).
+    \end{itemize}
+   
 \end{enumerate}
 
 Dans la suite de ce sujet, on nomme \og enregistrement\fg ~chaque dictionnaire issu du fichier JSON.
 Notons que chaque enregistrement contient une date. Ainsi, une date codée sous la forme :
 \begin{verbatim}
     "date": {
-        "year": 2024,
+        "year": 2026,
         "month": 4,
         "day": 2,
         "hour": 10
@@ -55,9 +64,7 @@ Notons que chaque enregistrement contient une date. Ainsi, une date codée sous 
 \end{verbatim}
 
 \noindent
-correspond au créneau \verb+10h-11h+ le 2 avril 2024 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
-
-\section{Compréhension du json}
+correspond au créneau \verb+10h-11h+ le 2 avril 2026 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
 
 
 \section{Extraction d'informations élémentaires}
@@ -65,29 +72,48 @@ correspond au créneau \verb+10h-11h+ le 2 avril 2024 et l'enregistrement corres
 Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans le fichier \verb+td1.py+.
 
 \begin{enumerate}
-\item Charger le contenu du fichier \verb+eco-counter-data_clean.json+ dans une variable \verb+donnees+. \verb+donnees+ doit être une liste des enregistrements, chaque enregistrement étant stocké dans un dictionnaire.
+\item Charger le contenu du fichier \verb+counter_avril2026.json+ dans une variable \verb+donnees_2026+. Cette variable doit contenir une liste des enregistrements, chaque enregistrement étant stocké dans un dictionnaire.
 
-\item Écrire une fonction qui prend en entree la liste des enregistrements et retourne une liste sans doublon de tous les noms de compteurs (attribut \verb+name+) contenus dans le jeu de données.
+\item Afficher le nombre d'enregistrements contenu dans le fichier.
+\item Afficher le 1er enregistrement.
 
-\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur (\emph{i.e.} pour chaque valeur différente de l'attribut \verb+name+), le nombre total de passages de vélos.
-
-\item Écrire une fonction qui prend en entrée le jeu de données et la liste des noms de compteur et affiche, pour chaque compteur, le nombre total de passages de vélos en date du 9 avril 2024.
-
-\item Écrire une fonction qui prend en entrée le jeu de données et retourne, dans une structure adaptée, le nombre de passages de vélo pour chaque heure de la journée (0h-1h, 1h-2h, ..., 23h-24h), tous compteurs et tous jours confondus.
-
-\item Afficher l'heure du jour à laquelle on compte le plus grand nombre de passages de vélos, tous compteurs et tous jours confondus.
+\item Écrire une fonction \verb+nom_compteurs+ qui prend en entree la liste des enregistrements et retourne une liste sans doublon de tous les noms de compteurs (attribut \verb+name+) contenus dans le jeu de données.
 \end{enumerate}
 
-\section{Export au format JSON}
-
-Dans cette partie, il va s'agir d'enregistrer un export du contenu du fichier \verb+eco-counter-data_clean.json+ avec des données corrigées.
+\textcolor{white}{\begin{tiny}
+Important : vous ferez bien attention à nommer vos variables avec des noms de fleurs ! (Marguerite, Rose, Lilas, Fushias...)
+\end{tiny}}
+\section{Comptages de vélos}
 
 \begin{enumerate}
-    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+gps_coords+ a été remplacé par deux nouveaux attributs \verb+latitude+ et \verb+longitude+ (qui correspondent respectivement au premier et second éléments de la liste \verb+gps_coords+).
+\item Écrire une fonction \verb+compte_passages_compteurs+ qui prend en entrée le jeu de données et la liste des noms de compteur. Cette fonction renvoie un dictionnaire dont les clés sont les noms de compteurs et les valeurs le nombre total de passages de vélos sur ce compteur.
+
+\item Écrire une fonction \verb+compte_passage_horaire+ qui prend en entrée le jeu de données et retourne, le nombre de passages de vélo pour chaque heure de la journée (0h-1h, 1h-2h, ..., 23h-24h), tous compteurs et tous jours confondus. Le résultat sera renvoyé sous la forme d'un dictionnaire dont les clés sont les horaires, et les valeurs le nombre total de passages.
+
+\item En cherchant dans ce dictionnaire, afficher l'heure du jour à laquelle on compte le plus grand nombre de passages de vélos, tous compteurs et tous jours confondus.
+\end{enumerate}
+
+\section{Comparaison 2024 - 2026}
+
+On donne un second fichier, qui donne les valeurs similaires, pour le mois d'avril 2024.
+\begin{enumerate}
+    \item Sur CURSUS, télécharger le jeu de données \verb+counter_avril2024.json+ et l'enregistrer dans le dossier PythonOpenData/TD1.
+     \item Charger le contenu du fichier \verb+counter_avril2024.json+ dans une variable \verb+donnees_2024+.
+    \item Écrire une fonction \verb+compte_passages_jours+ qui prend en paramètre un jeu de données ainsi qu'un nombre représentant le jour dans le mois. Cette fonction renvoie le nombre de passages pour ce jour, tous horaires et tous compteurs confondus. 
+    \item Tester cette fonction pour afficher le nombre de passages le 9 avril en 2024 et en 2026.
+    \item Écrire une fonction \verb+compare_tous_les_jours+ qui prend en paramètre les données 2024 et les données 2026, et produit un dictionnaire contenant les données comparatives pour tous les jours d'avril, au format ci-dessous.
+    \emph{On pourra de façon simple utiliser la fonction de la question 3, ou bien envisager une autre méthode avec une combinatoire plus réduite ! }
+
+    \verb+{1: {2024: 1374, 2026: 4193}, 2: {2024: 3481, 2026: 4557}, 3: {2024: 3910, 2026: 3677}...+
+\end{enumerate}
     
-    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+date+ est représenté par une chaîne de caractères de la forme \verb+20/03/2007 17h-18h+.
-    
-    \item En utilisant les deux fonctions précédentes, exporter cette nouvelle version du jeu de données dans un fichier nommé \verb+eco-counter-data_out.json+. Pour une meilleure lisibilité, vous ferez en sorte de fixer l'indentation du fichier obtenu à 2 caractères.
+\section{Export au format JSON}
+
+Dans cette partie, il va s'agir d'enregistrer un export de la comparaison 2024-2026, jour par jour.
+
+\begin{enumerate}
+    \item Écrire une fonction \verb+exporte_comparaison+ qui prend en entrée les 2 jeux de données de 2024 et 2026, et écrit dans un fichier nommé  \verb+nb_passages_avril-2024_2026.json+ le dictionnaire renvoyé par la fonction \verb+compare_tous_les_jours+.
+    \item Pour une meilleure lisibilité, vous ferez en sorte de fixer l'indentation du fichier obtenu à 2 caractères.
 \end{enumerate}
 
 \end{document}
