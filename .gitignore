@@ -2,6 +2,7 @@
 *.aux
 *.log
 *.fls
+*.bbl
 *.fdb_latexmk
 _build
 TD6/Corrige/*.csv
@@ -14,6 +15,7 @@ TD*.pdf
 ~$*
 TD3/Corrige/eco-counter-data_clean.json
 TD3/Corrige/eco-counter-data_out.json
+TD3/Corrige/eco-counter-data_out.csv
 TD3/Corrige/td3-aurelie.py
 TD1/TD1.7z
 cours1.pdf
@@ -27,6 +29,7 @@ TD5/Corrige/credentials.json
 TD5/Corrige/randos_finales.json
 Eval1/credentials.json
 TD9/corrige/credentials.json
+TD9/corrige/td9.html
 NotesEval1.ods
 CC1/SanFrancisco_restaurants.json
 CC1/Restaurant_Scores_SanFrancisco.csv
@@ -35,13 +38,15 @@ CC1/credentials.json
 CC1/essai.py
 CC1/restaurateurs.csv
 TD7/Corrige/*.csv
-
+TD10/corrige/td9_aurelie.py
 ProjetCluedo/credentials.json
 ProjetCluedo/ArchivesRomain
+ProjetMeteo/credentials.json
 
 Evaluations2022-23
 Evaluations2023-24
 Evaluations2024-25
+Evaluations2025-26
 TestsAPIS
 TD9_2023/vls-stations-topologie-td.csv
 TD9_2023/vls-stations-etat-tr.csv
