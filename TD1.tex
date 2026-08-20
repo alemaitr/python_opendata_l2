@@ -17,7 +17,7 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD3 : Compteurs de passages de vélos Rennes Métropole}
+\titre{TD1 : Compteurs de passages de vélos Rennes Métropole}
 \begin{document}
 
 %Ce sujet traite des fichiers JavaScript Object Notation (JSON).
@@ -25,9 +25,10 @@
 
 \section*{Préambule}
 \begin{enumerate}
-    \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD3 dans lequel vous réaliserez l'ensemble des travaux.
-    \item Lancer l'éditeur Visual Studio Code depuis Anaconda Navigator.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD3. 
+      \item Créer sur votre disque un dossier PythonOpenData dans lequel vous réaliserez l'ensemble des travaux de cette matière. 
+    \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD1.
+    \item Lancer l'éditeur Visual Studio Code.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD1. 
 \end{enumerate}
 
 Ce TD se concentre sur un jeu de données de comptage du nombre de passages de vélos à Rennes au niveau d'un certain nombres de bornes de comptage. 
@@ -36,7 +37,7 @@ Ce jeu de données est issu de la plateforme Open Data de Rennes Métropole, et 
 \section{Chargement des données}
 
 \begin{enumerate}
-    \item Sur CURSUS, télécharger le jeu de données \verb+eco-counter-data_clean.json+ et l'enregistrer dans le dossier PythonOpenData/TD3.
+    \item Sur CURSUS, télécharger le jeu de données \verb+eco-counter-data_clean.json+ et l'enregistrer dans le dossier PythonOpenData/TD1.
     \item Visualiser avec Visual Studio Code le contenu du fichier JSON.
     \item Quels sont les attributs (clés de dictionnaires) de ce jeu de données ? Que contient l'attribut \verb+date+ ?
     \item Noter quelques uns des noms de compteurs (attribut \verb+name+).
@@ -56,9 +57,12 @@ Notons que chaque enregistrement contient une date. Ainsi, une date codée sous 
 \noindent
 correspond au créneau \verb+10h-11h+ le 2 avril 2024 et l'enregistrement correspondant indique donc le nombre de passages de vélos au niveau de la borne de comptage considérée sur ce créneau.
 
+\section{Compréhension du json}
+
+
 \section{Extraction d'informations élémentaires}
 
-Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans le fichier \verb+td3.py+.
+Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans le fichier \verb+td1.py+.
 
 \begin{enumerate}
 \item Charger le contenu du fichier \verb+eco-counter-data_clean.json+ dans une variable \verb+donnees+. \verb+donnees+ doit être une liste des enregistrements, chaque enregistrement étant stocké dans un dictionnaire.
