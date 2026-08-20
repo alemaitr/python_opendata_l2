@@ -17,68 +17,83 @@
 \sorte{TD}
 \siglemat{Python et Open data}
 \formation{L2 MIASHS}
-\titre{TD4 : Restaurants new-yorkais}
+\titre{TD4 : Problèmes de trajets, co-voiturages et copains}
 \begin{document}
-
-Ce sujet traite des fichiers JavaScript Object Notation (JSON).
-Ce format permet de stocker des données structurées, par exemple avec une organisation hiérarchique.
 
 \section*{Préambule}
 \begin{enumerate}
-    \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD4 dans lequel vous réaliserez l'ensemble des travaux.
-    \item Lancer l'éditeur Visual Studio Code depuis Anaconda Navigator.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD4. 
+    \item Dans votre dossier PythonOpenData, créer un sous-répertoire TD2 dans lequel vous réaliserez l'ensemble des travaux. 
+    \item Télécharger sur Cursus l'archive contenant les données sources du TD2.
+    \item Lancer l'éditeur Visual Studio Code de puis Anaconda Navigator.
+    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD2. 
+    \item Copier le fichier credentials.json du TD1 dans le dossier PythonOpenData/TD2.
 \end{enumerate}
 
-Dans ce TD, on se tourne vers un jeu de données recensant des notes attribuées à des restaurants de la ville de New York.
+Ce TD présente trois problèmes de calculs de trajets. Pour chacun des problèmes, on pourra utiliser des fonctions disponibles dans le fichier source td2.py.
 
-\section{Chargement des données}
+\section{Quel co-voiturage ?}
 
-\begin{enumerate}
-    \item Sur Cursus, télécharger le jeu de données \verb+NYfood.json+ et l'enregistrer dans le dossier PythonOpenData/TD4.
-    \item Visualiser avec Visual Studio Code le contenu du fichier JSON.
-    \item Quels sont les attributs (clés de dictionnaires) de ce jeu de données ? Que contient l'attribut \verb+grades+ (qui signifie \verb+notes+ en français) ?
-\end{enumerate}
+Dans cette partie, on suppose que l’on cherche à déterminer, parmi plusieurs choix possibles, un trajet optimal avec les contraintes suivantes :
+\begin{itemize}
+    \item les points de départ et d’arrivée sont fixés
+    \item on doit récupérer, sur le trajet, une personne en covoiturage et l’on peut choisir entre plusieurs personnes situées à des positions différentes.
+\end{itemize}
 
-\section{Extraction d'informations élémentaires}
+La question peut par exemple être posée sous la forme suivante : \emph{
+    Lors d’un trajet Rennes - Marseille, vaut-il mieux (en termes de temps de trajet) prendre quelqu’un à “Paris 14ème arrondissement”, “Lyon 1er arrondissement” ou “Bordeaux” ? }
+\\
 
-Dans la suite de ce sujet, on nomme \og restaurant\fg ~chaque dictionnaire issu du fichier JSON.
-Les questions suivantes nécessitent de manipuler les données depuis Python et le code produit devra être inclus dans un nouveau fichier \verb+td4.py+.
+    Écrire une fonction qui prend en entrée :
+    \begin{itemize}
+        \item un lieu d’origine (sous la forme d’une chaîne de caractères)
+        \item une destination (sous la forme d’une chaîne de caractères)
+        \item une liste d’options sur le trajet (sous la forme d’une liste de chaînes de caractères)
+        \item un client d’API GraphHopper
+    \end{itemize}
+    et retourne l’option correspondant au trajet le plus court (en temps). En cas d’égalité, votre fonction retournera \emph{l’une des options} correspondant au trajet le plus court.
 
-\begin{enumerate}
-\item Charger le contenu du fichier \verb+NYfood.json+ dans une liste de dictionnaires, chaque dictionnaire représentant un restaurant.
+\section{Où se retrouver ?}
 
-\item Combien y a-t-il de restaurants dans ce fichier ?
-
-\item Combien y a-t-il de restaurants situés à Manhattan listés dans ce fichier ?
-
-\item Écrire une fonction qui prend en entrée la liste des restaurants et retourne une liste sans doublon des quartiers dans lesquels se situent les restaurants listés dans ce fichier.
-
-\item Écrire une fonction qui prend en entrée la liste des restaurants et affiche, pour chaque restaurant du quartier ``Manhattan'', un récapitulatif de la forme \verb+nom_du_restaurant: adresse+ où l'adresse est composée de \verb+building, street, zipcode New York, USA+
-
-\item Quel est le nombre total de notes attribuées aux restaurants du fichier ?
-
-\item Quelles sont les valeurs possibles de notes attribuées aux restaurants par les évaluateurs ?
-\end{enumerate}
-
-\section{Travail spécifique sur les dates}
-
-\begin{enumerate}
-    \item Remarquer que les dates associées aux notes n'ont pas été reconnues comme telles
-    \item Écrire une fonction qui prend en entrée la liste des restaurants et retourne une version transformée dans laquelle les dates sont codées au format \verb+datetime.datetime+.
-    \item Calculer, pour chaque mois de l'année 2014, le nombre total de notes attribuées (on rappelle que les variables de type \verb+datetime+ ont des attributs \verb+year+ et \verb+month+ accessibles via \verb+d.year+ et \verb+d.month+).
-\end{enumerate}
-
-\section{Export au format CSV}
-
-Dans cette partie, il va s'agir d'enregistrer un export du contenu du fichier \verb+NYfood.json+ au format CSV, en s'assurant donc que l'on n'ait plus d'attributs imbriqués.
-
-\begin{enumerate}
-    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+grades+ a été supprimé et remplacé par un attribut \verb+n_grades+ qui indique le nombre de notes reçues.
+Plusieurs ami(e)s souhaitent se retrouver, tout en minimisant leur distance de trajet. Plus précisément, ils souhaitent que la somme des distances parcourues par eux tous pour se retrouver soit la plus faible possible.
     
-    \item Écrire une fonction qui prend en entrée le jeu de données précédent et retourne une nouvelle version de ce jeu de données dans lequel l'attribut \verb+address+ est supprimé et remplacé par deux nouveaux attributs \verb+latitude+ et \verb+longitude+ (l'attribut \verb+coordinates+ est une liste contenant la longitude et la latitude, stockées dans cet ordre).
+La question peut par exemple être posée sous la forme suivante :
     
-    \item En utilisant les deux fonctions précédentes, exporter cette nouvelle version du jeu de données dans un fichier nommé \verb+NYfood.csv+.
-\end{enumerate}
+\emph{Pour trois amis habitant respectivement "Paris, 12ème arrondissement", "Auxerre" et "Lyon, 1er arrondissement", est-il préférable (selon le critère énoncé ci-dessus) de se rencontrer à Rennes, à Strasbourg ou à Dijon ?}
+\newpage
+
+Écrire une fonction qui prend en entrée :
+\begin{itemize}
+
+         \item une liste de positions des amis (chaque position étant représentée par une chaîne de caractères)
+           \item une liste de lieux de rencontres possibles (sous la forme d'une liste de chaînes de caractères)
+            \item un client d'API GraphHopper
+\end{itemize}
+        et retourne l'option la plus favorable (par rapport au critère énoncé plus haut). En cas d'égalité, votre fonction retournera \emph{l'une des options} les plus favorables.
+
+\section{Trouver un partenaire sportif}
+Ici, on suppose que l'on souhaite faire du sport et que, pour un sport donné, on veut chercher dans une liste de partenaires potentiels celui ou celle qui se trouve le plus proche de nous.
+
+La question peut par exemple être posée sous la forme suivante :
+
+      \emph{  Voici ma liste de contacts :
+      \begin{itemize}
+            \item Pauline, joue au tennis et au squash, se trouve "Place du recteur Henri Le Moal, Rennes, France"
+            \item Ernest, joue au football et pratique la course à pied, se trouve "Place du Parlement de Bretagne, Rennes, France"
+            \item Felix, joue au tennis et au football, se trouve "182 rue de l'Alma, Rennes, France"
+            \item Sarah, joue au football, au squash et au tennis, se trouve "88, rue Alphonse Guérin, Rennes, France"
+            \item Ingrid, pratique la course à pied, se trouve "3 Mail François Mitterrand, Rennes, France"
+      \end{itemize}
+        Sachant que je me trouve Place de la République à Rennes, quel est, dans ma liste de contacts, celui ou celle qui se trouve le plus proche de moi pour jouer au tennis ?}
+  \\      
+
+  Écrire une fonction qui prend en entrée :
+    \begin{itemize}
+        \item une position (représentée par une chaîne de caractères)
+        \item une liste de contacts (sous la forme d'une liste de dictionnaires telle que \verb+liste_dicos+ dans le fichier source)
+        \item une activité physique (représentée par une chaîne de caractères)
+        \item un client d'API GraphHopper
+    \end{itemize}
+    et retourne le nom de la personne dont la localisation est la plus proche de nous et qui pratique le sport voulu. En cas d'égalité, votre fonction retournera le nom \emph{ de l'une des personnes} dont la localisation est la plus proche de nous et qui pratique le sport voulu.
+
 
 \end{document}
