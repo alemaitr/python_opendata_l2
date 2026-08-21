@@ -2,7 +2,7 @@ import csv
 import os
 import sys
 import json
-import graphh
+
 
 
 #######################################################################
@@ -11,7 +11,7 @@ import graphh
 def acces_cle_api():
     fp = open("credentials.json", "r", encoding="utf-8")
     data = json.load(fp)
-    return data["GraphHopper"]
+    return data["OpenRouteService"]
     
 #Fonctions pour l'exercice 3
 
