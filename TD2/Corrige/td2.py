@@ -44,7 +44,7 @@ def recode_gps(donnees):
 
 # Exercice 2 : Extraction d'informations élémentaires
 # Q1.
-nom_fichier = "TD4/NYfood.json"
+nom_fichier = "TD2/Donnees/NYfood.json"
 fp = open(nom_fichier, "r")
 restos = json.load(fp)
 
