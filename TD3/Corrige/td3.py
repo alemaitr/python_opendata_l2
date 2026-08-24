@@ -13,26 +13,25 @@ def acces_cle_api():
     return data["OpenRouteService"]
     
 def adresse_vers_gps(cle, adresse):
-    reponse = requests.get("https://api.openrouteservice.org/geocode/search",
-        params={"api_key": cle, "text": adresse})
+    url = "https://api.openrouteservice.org/geocode/search"
+    dico_params = {"api_key": cle, "text": adresse}
+    reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
     longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
     return f"{longitude},{latitude}"
 
 def distance_trajet(cle, coord_lieu1, coord_lieu2):
-    
-    reponse = requests.get("https://api.openrouteservice.org/v2/directions/driving-car",
-            params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2})
-    
+    url = "https://api.openrouteservice.org/v2/directions/driving-car"
+    dico_params = {"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
+    reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
     distance = donnees["features"][0]["properties"]["summary"]["distance"]/1000  #La distance est renvoyée en mètres
     return distance
     
 def duree_trajet(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
-    
-    reponse = requests.get(f"https://api.openrouteservice.org/v2/directions/{mode}",
-            params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2})
-    
+    url = f"https://api.openrouteservice.org/v2/directions/{mode}"
+    dico_params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
+    reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
     duree = donnees["features"][0]["properties"]["summary"]["duration"] /60 #La durée est renvoyée en minutes
     return duree
@@ -45,7 +44,7 @@ def distances_etapes(cle, voyage):
     coord_voyage = []
     for lieu in voyage :
         coord_voyage.append(adresse_vers_gps(cle,lieu))
-    print("Coordonnées du voyage : ",coord_voyage)
+    # print("Coordonnées du voyage : ",coord_voyage)
 
     etapes = []
     for i in range(0,len(coord_voyage)-1):
