@@ -6,7 +6,7 @@
 *.fdb_latexmk
 _build
 TD6/Corrige/*.csv
-TD1/Corrige/credentials.json
+TD3/Corrige/credentials.json
 TD6/__pycache__/
 TestEtudiants/
 *.synctex.gz

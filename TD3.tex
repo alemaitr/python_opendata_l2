@@ -52,35 +52,34 @@ Il est donc nécessaire de se créer un compte avant le début du TD.
 \section{Obtenir des coordonnées GPS}
 \begin{enumerate}
     \item Etudier la documentation de l'API de géocodage.
-    \item Par similitude, obtenir les coordonnées GPS de "Rennes Beaulieu".
-    \item A partir de cet exemple, écrire une fonction \verb+adresse_vers_gps+ qui prend en entrée une clé d'api et une adresse textuelle, et renvoie les coordonnées gps, sous forme d'un tuple (longitude, latitude).
-    \item Tester cette fonction pour calculer les coordonnées GPS de "Rennes Villejean".
+    \item Par similitude, obtenir les coordonnées GPS de "Villejean Université Rennes".
+    \item A partir de cet exemple, écrire une fonction \verb+adresse_vers_gps+ qui prend en entrée une clé d'api et une adresse textuelle, et renvoie les coordonnées gps, sous forme d'une chaine de caractères \verb+"longitude,latitude"+ (sans espace).
+    \item Tester cette fonction pour calculer les coordonnées GPS de "Villejean Université Rennes", puis de "Campus Beaulieu Rennes".
 \end{enumerate}
 
 
 \section{Calculer la distance d'un trajet}
 
 \begin{enumerate}
-    \item Etudier la documentation de l'API d'itinéraires. 
-    \item Écrire une fonction \verb+distance_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la distance en kilomètre, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'un tuple (longitude, latitude).
+    \item Etudier la documentation de l'API d'itinéraires (directions). 
+    \item Écrire une fonction \verb+distance_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la distance \emph{en kilomètres}, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
     
     \emph{Indice :} On pourra s'inspirer largement de la fonction \verb+adresse_vers_gps+. Il faudra changer principalement 3 éléments : l'url de l'api appelée, les paramètres de la requête, la lecture du résultat.
     
-    \item Calculer la distance en voiture de Villejean à Beaulieu, puis de Beaulieu à Villejean.
-    \item Utiliser toutes les fonctions précédemment écrites pour calculer la distance de Rennes à Brest.
+    \item En utilisant les coordonnées obtenues précédemment, calculer la distance en voiture de Villejean à Beaulieu, puis de Beaulieu à Villejean.
+    \item Utiliser toutes les fonctions précédemment écrites pour calculer la distance de Rennes à Brest. Noter qu'il est probablement nécessaire de préciser "Brest, France".
 \end{enumerate}
 
 \section{Calculer la durée d'un trajet}
 
 \begin{enumerate}
-    \item  Écrire une fonction \verb+duree_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la duree en secondes, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'un tuple (longitude, latitude).
+    \item  Écrire une fonction \verb+duree_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la duree en minutes, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
     \item Tester cette fonction pour calculer la durée en voiture de Villejean à Beaulieu.
     \item Modifier la fonction \verb+duree_trajet+ pour qu'elle prenne un attribut facultatif \verb+mode+, correspondant au mode de transport. Cet attribut vaut \verb+driving-car+ par défaut.
     
-    \item Afficher la duree pour aller de Villejean à Beaulieu en vélo puis à pieds.
+    \item Afficher la duree pour aller de Villejean à Beaulieu en voiture, en vélo, puis à pieds.
     
 \end{enumerate}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO a continuer à partir d'ici%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Voyage à étapes}
 On définit un voyage comme une liste de lieux (chaines de caractère). Chaque lieu de la liste est une étape du voyage.

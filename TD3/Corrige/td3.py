@@ -12,39 +12,51 @@ def acces_cle_api():
     data = json.load(fp)
     return data["OpenRouteService"]
     
-def adresse_vers_gps(macle, adresse):
+def adresse_vers_gps(cle, adresse):
     reponse = requests.get("https://api.openrouteservice.org/geocode/search",
-        params={"api_key": macle, "text": adresse})
+        params={"api_key": cle, "text": adresse})
     donnees = reponse.json()
     longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
-    return (longitude, latitude)
+    return f"{longitude},{latitude}"
+
+def distance_trajet(cle, coord_lieu1, coord_lieu2):
+    
+    reponse = requests.get("https://api.openrouteservice.org/v2/directions/driving-car",
+            params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2})
+    
+    donnees = reponse.json()
+    distance = donnees["features"][0]["properties"]["summary"]["distance"]/1000  #La distance est renvoyée en mètres
+    return distance
+    
+def duree_trajet(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
+    
+    reponse = requests.get(f"https://api.openrouteservice.org/v2/directions/{mode}",
+            params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2})
+    
+    donnees = reponse.json()
+    duree = donnees["features"][0]["properties"]["summary"]["duration"] /60 #La durée est renvoyée en minutes
+    return duree
 
 
-# def distance_lieux(ghclient, lieu1, lieu2):
-#     coor1 = ghclient.address_to_latlong(lieu1)
-#     coor2 = ghclient.address_to_latlong(lieu2)
-#     dist = ghclient.distance([coor1,coor2],"km")
-#     return dist
+def distances_etapes(cle, voyage):
+    
+    # Calcul des coordonnées de tout le voyage
+    # C'est moint couteux de le faire une seule fois pour chaque étape avant.
+    coord_voyage = []
+    for lieu in voyage :
+        coord_voyage.append(adresse_vers_gps(cle,lieu))
+    print("Coordonnées du voyage : ",coord_voyage)
 
-# def duree_lieux(ghclient, lieu1, lieu2):
-#     coor1 = ghclient.address_to_latlong(lieu1)
-#     coor2 = ghclient.address_to_latlong(lieu2)
-#     duree = ghclient.duration([coor1,coor2],unit="min")
-#     return duree
-
-# #Fonctions pour l'exercice 4
-
-# def distances_etapes(voyage, ghclient):
-#     etapes = []
-#     for i in range(0,len(voyage)-1):
-#         dist = distance_lieux(ghclient, voyage[i], voyage[i+1])
-#         etapes.append(dist)
-#     return etapes
+    etapes = []
+    for i in range(0,len(coord_voyage)-1):
+        dist = distance_trajet(cle, coord_voyage[i], coord_voyage[i+1])
+        etapes.append(dist)
+    return etapes
 
 
-# def distance_totale(voyage, gh_client):
-#     etapes = distances_etapes(voyage, gh_client)
-#     return sum(etapes)
+def distance_totale(cle, voyage):
+    etapes = distances_etapes(cle, voyage)
+    return sum(etapes)
 
 
 
@@ -54,81 +66,67 @@ def adresse_vers_gps(macle, adresse):
 #######################################################################
 os.chdir("TD3/Corrige")
 
-# Quelques initialisations
-url_directions = "https://api.openrouteservice.org/v2/directions/"
-
-
-
 
 #-----------------------------------------------------------
 #Exercice 1
 #-----------------------------------------------------------
-# Campus Villejean : Latitude : 48.119229 | Longitude : -1.707596
-# Place Hoche : Latitude : 48.115263 | Longitude : -1.677296
-
-# cRennes =  [-1.68002,48.111339 ]
-# cParis =[2.348392,48.853495]
-# cNantes =[ -1.554136,47.218637]
-# cBrest =[-4.486009,48.390528]
-# coords = [cRennes,cParis,cNantes,cBrest]
 
 #Exercice 1
 macle = acces_cle_api()
 print(f"Ma clé d'API : {macle}")
 
-
 #Exercice 2
-adresse = "Rennes Beaulieu"
 
 #Test pour Rennes Beaulieu
+# adresse = "Rennes Beaulieu"
 # reponse = requests.get("https://api.openrouteservice.org/geocode/search", params={"api_key": macle, "text": adresse})
 # donnees = reponse.json()
 # longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
 # print(f"Latitude : {latitude}, Longitude : {longitude}")
 
 #Test avec la fonction
-coordVillejean = adresse_vers_gps(macle,"Rennes Villejean")
-print("Coordonnées de Villejean",coordVillejean)
+coor_villejean = adresse_vers_gps(macle,"Villejean Université Rennes")
+print("Coordonnées de Villejean",coor_villejean)
 
-coordBeaulieu= adresse_vers_gps(macle,"Rennes Beaulieu")
-print("Coordonnées de Beaulieu",coordBeaulieu)
+coor_beaulieu= adresse_vers_gps(macle,"Campus de Beaulieu Rennes")
+print("Coordonnées de Beaulieu",coor_beaulieu)
 
+#Exercice 3
 
-# #Exercice 2
-# gh_client = graphh.GraphHopper(api_key=macle)
-
-# coor_beaulieu = gh_client.address_to_latlong("Rennes Beaulieu")
-# coor_villejean = gh_client.address_to_latlong("Rennes Villejean")
-
-# print(f"Coordonnées de Beaulieu {coor_beaulieu}")
-# print(f"Coordonnées de Villejean {coor_villejean}")
-
-# dist_beaulieu_villejean = gh_client.distance([coor_beaulieu,coor_villejean],"km")
-# print(f"Distance de Beaulieu à Villejean {dist_beaulieu_villejean}km")
-
-# dist_villejean_beaulieu = gh_client.distance([coor_villejean,coor_beaulieu],"km")
+# dist_villejean_beaulieu = distance_trajet(macle,coor_villejean,coor_beaulieu)
 # print(f"Distance de Villejean à Beaulieu {dist_villejean_beaulieu}km")
 
-# duree_villejean_beaulieu_voit = gh_client.duration([coor_villejean,coor_beaulieu],unit="min")
+# dist_beaulieu_villejean = distance_trajet(macle, coor_beaulieu,coor_villejean)
+# print(f"Distance de Beaulieu à Villejean {dist_beaulieu_villejean}km")
+
+# dist_Rennes_Brest = distance_trajet(macle, adresse_vers_gps(macle, "Rennes, France"), adresse_vers_gps(macle, "Brest, France"))
+# print(f"Distance de Rennes à Brest {dist_Rennes_Brest}km")
+
+
+#Exercice 4
+
+# duree_villejean_beaulieu_voit = duree_trajet(macle,coor_villejean,coor_beaulieu)
 # print(f"Durée de Villejean à Beaulieu en voiture {duree_villejean_beaulieu_voit}min")
 
-# duree_villejean_beaulieu_velo = gh_client.duration([coor_villejean,coor_beaulieu],vehicle ="bike",unit="min")
+# duree_villejean_beaulieu_velo = duree_trajet(macle,coor_villejean,coor_beaulieu,"cycling-regular")
 # print(f"Durée de Villejean à Beaulieu en vélo {duree_villejean_beaulieu_velo}min")
 
-
-# #Exercice 3
-# dist = distance_lieux(gh_client,"Rennes", "Brest")
-# print(f"Distance entre Rennes et Brest {dist} km")
-# duree = duree_lieux(gh_client,"Rennes", "Brest")
-# print(f"Durée entre Rennes et Brest {duree} min")
+# duree_villejean_beaulieu_pied = duree_trajet(macle,coor_villejean,coor_beaulieu,"foot-walking")
+# print(f"Durée de Villejean à Beaulieu à pied {duree_villejean_beaulieu_pied}min")
 
 
-# #Exercice 4
-# voyage1 = ["Rennes","Le Mans", "Tours", "Clermont-Ferrand", "Avignon"]
-# voyage2 = ["Rennes", "Chateaugiron", "Chateaubourg", "Vitré", "Fougères"]
+#Exercice 5
+voyage1 = ["Rennes","Le Mans", "Tours", "Clermont-Ferrand", "Avignon"]
+voyage2 = ["Rennes", "Chateaugiron", "Chateaubourg", "Vitré", "Fougères"]
 
-# print(f"Distance des étapes du 1er voyage : {distances_etapes(voyage1,gh_client)}")
-# print(f"Distance des étapes du 2nd voyage : {distances_etapes(voyage2,gh_client)}")
+# print(f"Distance des étapes du 1er voyage : {distances_etapes(macle, voyage1)}")
+# print(f"Distance des étapes du 2nd voyage : {distances_etapes(macle, voyage2)}")
 
-# print(f"Distance totale du 1er voyage : {distance_totale(voyage1,gh_client)}km")
-# print(f"Distance totale du 2nd voyage : {distance_totale(voyage2,gh_client)}km")
+print(f"Distance totale du 1er voyage : {distance_totale(macle,voyage1)}km")
+print(f"Distance totale du 2nd voyage : {distance_totale(macle,voyage2)}km")
+
+# Distance des étapes du 1er voyage : [154.86, 97.3817, 336.3595, 386.72740000000005]
+# Distance totale du 1er voyage : 975.3286km
+
+# Distance des étapes du 2nd voyage : [15.9442, 10.9711, 19.0518, 30.902900000000002]
+# Distance totale du 2nd voyage : 76.87km
