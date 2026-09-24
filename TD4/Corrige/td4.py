@@ -3,6 +3,7 @@ import os
 import sys
 import json
 import requests
+import math
 
 
 #######################################################################
@@ -38,26 +39,76 @@ def duree_trajet_coord(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
     duree = donnees["features"][0]["properties"]["summary"]["duration"] /60 #La durée est renvoyée en minutes
     return duree
 
-
 #Fonctions pour l'exercice 1
+
+def plus_court_covoit(origine, dest, options, cle):
+    coord_orig = adresse_vers_gps(cle,origine)
+    coord_dest = adresse_vers_gps(cle,dest)
+    duree_min  = math.inf
+    option_min = None
+    for ville in options:
+        coord_ville = adresse_vers_gps(cle, ville)
+        temps = duree_trajet_coord(cle, coord_orig, coord_ville)+ duree_trajet_coord(cle, coord_ville,coord_dest)
+        if temps < duree_min :
+            duree_min = temps
+            option_min = ville
+        print(f"En passant par {ville} : {temps} minutes")
+    return option_min
 
 
 #Fonctions pour l'exercice 2
 
+def plus_proche_point(amis, lieux, cle):
+    dist_min = math.inf
+    lieu_min = None
+    for ville in lieux :
+        coord_ville = adresse_vers_gps(cle, ville)
+        somme_trajet = 0
+        for pos in amis:
+            coord_ami = adresse_vers_gps(cle,pos)
+            somme_trajet+=distance_trajet_coord(cle, coord_ami, coord_ville)
+        if somme_trajet < dist_min:
+            dist_min = somme_trajet
+            lieu_min = ville
+        print(f"A {ville} : distance cumulée {somme_trajet} km")
+    return lieu_min
+
 #Fonctions pour l'exercice 3
 
+def plus_proche_partenaire(position, contacts, sport, cle):
+    dist_min = math.inf
+    qui = None
+    coord_position = adresse_vers_gps(cle, position)
+    for partenaire in contacts:
+        if sport in partenaire['sports'] :
+            coord_partenaire = adresse_vers_gps(cle,partenaire['localisation'] )
+            dist = distance_trajet_coord(cle ,coord_position,coord_partenaire)
+            print(f"Distance avec {partenaire['nom']} : {dist}")
+            if dist < dist_min :
+                dist_min = dist
+                qui = partenaire["nom"]
+    return qui
 
 
 
 #######################################################################
 #Tests et appels de fonctions
 #######################################################################
-
+os.chdir("TD4/Corrige")
 #Exercice 1
 
+macle = acces_cle_api()
+
+# ville = plus_court_covoit("Rennes","Marseille",["Paris 14ème arrondissement", "Lyon 1er arrondissement", "Bordeaux"],macle)
+# print(f"Il est plus court de passer par {ville}")
 
 #Exercice 2
 
+
+# amis = ["Paris 14ème arrondissement", "Auxerre ", "Lyon 1er arrondissement"]
+# lieux = ["Rennes", "Strasbourg", "Dijon"]
+# ville2 = plus_proche_point(amis, lieux, macle)
+# print(f"La ville la plus proche est {ville2}")
 
 #Exercice 3
 
@@ -88,3 +139,8 @@ liste_dicos = [
         "localisation": "3, Mail François Mitterrand, Rennes, France"
     }
 ]
+
+
+lieu = "Place de la République, Rennes, France"
+qui =plus_proche_partenaire(lieu, liste_dicos, "Tennis", macle)
+print(f"Le plus proche de {lieu} pour jouer au tennis est {qui}")
