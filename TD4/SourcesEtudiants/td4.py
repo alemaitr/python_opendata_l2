@@ -2,7 +2,7 @@ import csv
 import os
 import sys
 import json
-import graphh
+import requests
 
 
 #######################################################################
@@ -11,19 +11,33 @@ import graphh
 def acces_cle_api():
     fp = open("credentials.json", "r", encoding="utf-8")
     data = json.load(fp)
-    return data["GraphHopper"]
+    return data["OpenRouteService"]
     
-def distance_lieux(ghclient, lieu1, lieu2):
-    coor1 = ghclient.address_to_latlong(lieu1)
-    coor2 = ghclient.address_to_latlong(lieu2)
-    dist = ghclient.distance([coor1,coor2],"km")
-    return dist
+def adresse_vers_gps(cle, adresse):
+    url = "https://api.openrouteservice.org/geocode/search"
+    dico_params = {"api_key": cle, "text": adresse}
+    reponse = requests.get(url,params=dico_params)
+    donnees = reponse.json()
+    longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
+    return f"{longitude},{latitude}"
 
-def duree_lieux(ghclient, lieu1, lieu2):
-    coor1 = ghclient.address_to_latlong(lieu1)
-    coor2 = ghclient.address_to_latlong(lieu2)
-    duree = ghclient.duration([coor1,coor2],unit="min")
+def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
+    url = "https://api.openrouteservice.org/v2/directions/driving-car"
+    dico_params = {"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
+    reponse = requests.get(url,params=dico_params)
+    donnees = reponse.json()
+    distance = donnees["features"][0]["properties"]["summary"]["distance"]/1000  #La distance est renvoyée en mètres
+    return distance
+
+
+def duree_trajet_coord(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
+    url = f"https://api.openrouteservice.org/v2/directions/{mode}"
+    dico_params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
+    reponse = requests.get(url,params=dico_params)
+    donnees = reponse.json()
+    duree = donnees["features"][0]["properties"]["summary"]["duration"] /60 #La durée est renvoyée en minutes
     return duree
+
 
 #Fonctions pour l'exercice 1
 
