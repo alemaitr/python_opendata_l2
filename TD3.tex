@@ -62,22 +62,29 @@ Il est donc nécessaire de se créer un compte avant le début du TD.
 
 \begin{enumerate}
     \item Etudier la documentation de l'API d'itinéraires (directions). 
-    \item Écrire une fonction \verb+distance_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la distance \emph{en kilomètres}, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
+    \item Écrire une fonction \verb+distance_trajet_coord+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la distance \emph{en kilomètres}, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
     
     \emph{Indice :} On pourra s'inspirer largement de la fonction \verb+adresse_vers_gps+. Il faudra changer principalement 3 éléments : l'url de l'api appelée, les paramètres de la requête, la lecture du résultat.
     
     \item En utilisant les coordonnées obtenues précédemment, calculer la distance en voiture de Villejean à Beaulieu, puis de Beaulieu à Villejean.
-    \item Utiliser toutes les fonctions précédemment écrites pour calculer la distance de Rennes à Brest. Noter qu'il est probablement nécessaire de préciser "Brest, France".
+
+    \item Écrire une fonction \verb+distance_trajet_adresse+ qui prend en entrée une clé d'api, l'adresse d'un premier lieu, l'adresse d'un second lieu et qui renvoie la distance  \emph{en kilomètres}, en voiture, entre les deux lieux. 
+    \item Tester cette fonction pour calculer la distance de Rennes à Brest. Noter qu'il est probablement nécessaire de préciser "Brest, France".
 \end{enumerate}
+
+
+
 
 \section{Calculer la durée d'un trajet}
 
 \begin{enumerate}
-    \item  Écrire une fonction \verb+duree_trajet+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la duree en minutes, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
+    \item  Écrire une fonction \verb+duree_trajet_coord+ qui prend en entrée une clé d'api, les coordonnées gps d'un premier lieu, et les coordonnées gps d'un second lieu. Cette fonction doit renvoyer la duree en minutes, en voiture, entre les deux lieux. Les coordonnées sont données sous la forme d'une chaine de caractères "longitude,latitude".
     \item Tester cette fonction pour calculer la durée en voiture de Villejean à Beaulieu.
     \item Modifier la fonction \verb+duree_trajet+ pour qu'elle prenne un attribut facultatif \verb+mode+, correspondant au mode de transport. Cet attribut vaut \verb+driving-car+ par défaut.
     
     \item Afficher la duree pour aller de Villejean à Beaulieu en voiture, en vélo, puis à pieds.
+    \item Écrire une fonction \verb+duree_trajet_adresse+ qui prend en entrée une clé d'api, l'adresse d'un premier lieu, l'adresse d'un second lieu et qui renvoie la durée  en minutes en voiture, entre les deux lieux. 
+    \item Tester cette fonction pour calculer la durée d'un trajet entre Rennes et Marseille.
     
 \end{enumerate}
 
