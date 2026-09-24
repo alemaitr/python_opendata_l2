@@ -20,24 +20,25 @@
 \titre{TD5 : Dénivelés de randonnées}
 \begin{document}
 
-Ce sujet est une synthèse des travaux avec GraphHopper et avec Json. 
+Ce sujet est une synthèse des travaux avec OpenRouteService et avec Json. 
 
-Le fichier mini-rando\_gps.json fournit des séries de positions GPS correspondant à des traces GPS de sorties randonnée de M. Toulemonde. On cherchera dans ce TD à écrire un programme calculant les dénivelés cumulés positif et négatif de chacune de ces randonnées. Pour cela, vous utiliserez l’API GraphHopper via le module Python graphh.
-On rappelle que la documentation de graphh est disponible à cette adresse : \url{https://graphh.readthedocs.io/en/latest/}.
+Le fichier mini-rando\_gps.json fournit des séries de positions GPS correspondant à des traces GPS de sorties randonnée de M. Toulemonde. On cherchera dans ce TD à écrire un programme calculant les dénivelés cumulés positif et négatif de chacune de ces randonnées. Pour cela, vous utiliserez l'outil Elevataion de l’API OpenRouteService.
+On rappelle que la documentation de OpenRouteService est disponible à cette adresse : \url{https://rtavenar.github.io/doc_openrouteservice/}.
 \section*{Préambule}
 \begin{itemize}
     \item Dans votre dossier PythonOpenData, créez un sous-répertoire TD5 dans lequel vous réaliserez l'ensemble des travaux.
-    \item Lancer l'éditeur Visual Studio Code.
-    \item Dans Visual Studio Code, ouvrir le dossier PythonOpenData/TD5. 
+    \item Lancer l'éditeur Visual Studio Code et ouvrir le dossier PythonOpenData/TD5. 
     \item Télécharger le fichier mini-rando\_gps.json dans le dossier PythonOpenData/TD5.
-  \item Copier le fichier credentials.json du TD1 dans le dossier PythonOpenData/TD5.
-  \item Créer un fichier td5.py dans lequel vous écrirez le code du TD. 
+  \item Télécharger le fichier source td5.py dans lequel vous écrirez le code du TD. 
+    \item Copier le fichier credentials.json du TD3 dans le dossier PythonOpenData/TD5.
+  
 \end{itemize}
 
-\section{Altitudes avec GraphHopper}
+\section{Altitudes avec OpenRouteService}
 \begin{enumerate}
-    \item Écrire une fonction qui prend en entrée un lieu et un client GraphHopper, et retourne l'altitude de ce lieu.  Tester en affichant l'altitude de Rennes, de Saint-Malo puis de Chamonix.
-    \item Ecrire une fonction qui prend en entrée une liste de positions GPS (chacune codée sous la forme d’un dictionnaire comme précisé plus bas) et un client GraphHopper et retourne une liste d’altitudes. Vous pourrez utiliser l’exemple suivant pour vos tests :
+    \item Écrire une fonction \verb+altitude_coord+ qui prend en entrée une clé d'APi, les coordonnées d'un lieu et retourne l'altitude de ce lieu.
+    \item En utilisant la fonction précédente, écrire une fonction \verb+altitude_adresse+ qui prend en entrée une clé d'API, l'adresse d'un lieu, et retourne l'altitude de ce lieu.  Tester en affichant l'altitude de Rennes, de Saint-Malo puis de Chamonix.
+    \item Ecrire une fonction \verb+altitudes_lst_coords+ qui prend en entrée une clé d'API, une liste de positions GPS (chacune codée sous la forme d’un dictionnaire comme précisé plus bas) et retourne une liste d’altitudes. Vous pourrez utiliser l’exemple suivant pour vos tests :
 \begin{verbatim}
     lst_gps = [
       {"lng": -1.426533, "lat": 48.005135},
@@ -51,39 +52,47 @@ On rappelle que la documentation de graphh est disponible à cette adresse : \ur
 \section{Dénivelés}
 
 En utilisant la fonction écrite à la question précédente, écrire
-une fonction qui prend en entrée une liste de positions GPS et un client GraphHopper et retourne la somme des dénivelés positifs (d’une part) et négatifs (d’autre part), entre les points GPS successifs. 
+une fonction qui prend en entrée une liste de positions GPS et une clé d'API et retourne la somme des dénivelés positifs (d’une part) et négatifs (d’autre part), entre les points GPS successifs. 
 
 Par exemple, en appelant cette fonction avec la liste de de coordonnées GPS précedente, on devrait obtenir la paire de dénivelé \verb+(29.07, 28.55)+.
 En effet, les altitudes des points GPS étant les suivantes :
-\verb+[35.29, 64.36, 48.78, 35.81]+,  la somme des dénivelés positife et négatifs donne \verb+(29.07, 28.55)+.
+\verb+[36, 68, 49, 35]+,  la somme des dénivelés positife et négatifs donne \verb+(32, 33)+.
 
 \section{Analyse de randonnées}
 
-En utilisant la fonction écrite à la question précédente, écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et un client GraphHopper et affiche, pour chaque randonnée, son nom (attribut "name") et la somme de ses dénivelés positifs (d’une part) et négatifs (d’autre part). 
+En utilisant la fonction écrite à la question précédente, écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et une clé d'API et affiche, pour chaque randonnée, son nom (attribut "name") et la somme de ses dénivelés positifs (d’une part) et négatifs (d’autre part). 
 
-Pour le fichier mini-mini-rando\_gps.json, on doit obtenir une sortie du type :
+Pour le fichier mini-rando\_gps.json, on doit obtenir une sortie du type :
 \begin{verbatim}
-TraceGPS Le long de la quincampoix - Pire-sur-Seiche 
-         - Dénivelé positif cumulé : 15.08
-         - Dénivelé négatif cumulé : 15.08
+TraceGPS Le lngg de la quincampoix - Pire-sur-Seiche 
+         - Dénivelé positif cumulé : 14
+         - Dénivelé négatif cumulé : 14
 TraceGPS Issued  Messac - CIRCUIT DU PORT 
-         - Dénivelé positif cumulé : 4.47
-         - Dénivelé négatif cumulé : 4.47
+         - Dénivelé positif cumulé : 13
+         - Dénivelé négatif cumulé : 13
+TraceGPS Issued  Coemes-Retiers  
+         - Dénivelé positif cumulé : 75
+         - Dénivelé négatif cumulé : 75
 \end{verbatim}
 \section{Fichier de synthèse des randonnées}
 
-Écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et un client GraphHopper, et écrit dans un nouveau fichier JSON (dont le nom sera passé en paramètre de la fonction) une liste de dictionnaires contenant le nom de la randonnée et les informations de dénivelés positif et négatif), soit quelque chose du type :
+Écrire une fonction qui prend en entrée un nom de fichier JSON (contenant des informations sur diverses randonnées) et une clé d'API, et écrit dans un nouveau fichier JSON (dont le nom sera passé en paramètre de la fonction) une liste de dictionnaires contenant le nom de la randonnée et les informations de dénivelés positif et négatif), soit quelque chose du type :
 \begin{verbatim}
 [
   {
-    "name": "TraceGPS Le long de la quincampoix - Pire-sur-Seiche",
-    "D+": 15.08,
-    "D-": 15.08
+    "name": "TraceGPS Le lngg de la quincampoix - Pire-sur-Seiche",
+    "D+": 14,
+    "D-": 14
   },
   {
     "name": "TraceGPS Issued  Messac - CIRCUIT DU PORT",
-    "D+": 4.47,
-    "D-": 4.47
+    "D+": 13,
+    "D-": 13
+  },
+  {
+    "name": "TraceGPS Issued  Coemes-Retiers ",
+    "D+": 75,
+    "D-": 75
   }
 ]
 \end{verbatim}
