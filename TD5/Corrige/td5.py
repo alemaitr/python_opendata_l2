@@ -1,31 +1,46 @@
 import os
 import json
-import graphh
+import requests
 
 def acces_cle_api():
     fp = open("credentials.json", "r", encoding="utf-8")
     data = json.load(fp)
-    return data["GraphHopper"]
+    return data["OpenRouteService"]
+
+def adresse_vers_gps(cle, adresse):
+    url = "https://api.openrouteservice.org/geocode/search"
+    dico_params = {"api_key": cle, "text": adresse}
+    reponse = requests.get(url,params=dico_params)
+    donnees = reponse.json()
+    longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
+    return f"{longitude},{latitude}"
 
 #Exercice 1
 # Question 1
-def altitude(lieu1, gh_client):
-    latlong_lieu1 = gh_client.address_to_latlong(lieu1)
+
+def altitude_coor(cle, coord):
+    url = "https://api.openrouteservice.org/elevation/point"
+    dico_params = {"api_key": cle, "geometry": coord}
+    reponse = requests.get(url,params=dico_params)
+    donnees = reponse.json()
+    return donnees["geometry"]["coordinates"][2]
+
+def altitude_adresse(cle, adresse):
+    coord = adresse_vers_gps(cle, adresse)
+    return altitude_coor(cle, coord)
     
-    return gh_client.elevation_point(latlong_lieu1)
 
 # Question 2
-def les_altitudes(liste_gps, gh_client):
+def altitudes_lst_coords(cle,liste_gps):
     alti = []
     for coor in liste_gps:
-        lat = coor["lat"]
-        lng = coor["lng"]
-        alti.append(gh_client.elevation_point((lat, lng)))
+        coor = f"{coor["lng"]},{coor["lat"]}"
+        alti.append(altitude_coor(cle,coor))
     return alti
 
-# Exercice 2
-def deniveles(liste_gps, gh_client):
-    liste_alti = les_altitudes(liste_gps, gh_client)
+# # Exercice 2
+def deniveles(liste_gps, cle):
+    liste_alti = altitudes_lst_coords(cle, liste_gps)
     deniv_pos = 0
     deniv_neg = 0
     for i in range(len(liste_alti) - 1):
@@ -36,53 +51,50 @@ def deniveles(liste_gps, gh_client):
             deniv_neg += -delta
     return (deniv_pos, deniv_neg)
 
-# Exercice 3
-# Nb : il est nécessaire de convertir le format de coordonnées
-def convertit_coords(lst_coords):
-    lst2 = []
-    for coor in lst_coords:
-        lst2.append({"lat": coor["lat"], "lng": coor["lon"]})
-    return lst2
+# # Exercice 3
 
-def les_randos(fichier, gh_client):
+def les_randos(fichier, cle):
     fp = open(fichier, "r")
     les_randos = json.load(fp)
     for rando in les_randos:
         nom = rando["name"]
-        coords = convertit_coords(rando["coords"])
-        deniv = deniveles(coords, gh_client)
-        print(f"{nom} \n \t - Dénivelé positif cumulé : {deniv[0]:.2f}\n \t - Dénivelé négatif cumulé : {deniv[1]:.2f}")
+        coords = rando["coords"]
+        deniv = deniveles(coords, cle)
+        print(f"{nom} \n \t - Dénivelé positif cumulé : {deniv[0]}\n \t - Dénivelé négatif cumulé : {deniv[1]}")
 
 # Exercice 4
-def ecrit_dico(fichier_in, gh_client, fichier_out):
-    fp = open(fichier_in, "r")
-    les_randos = json.load(fp)
+def ecrit_dico(fichier_in, cle, fichier_out):
+    with open(fichier_in, "r") as fp : 
+        les_randos = json.load(fp)
     liste_finale = []
     for rando in les_randos:
         rando_finale = {}
         rando_finale["name"] = rando["name"]
-        coords = convertit_coords(rando["coords"])
-        deniv = deniveles(coords, gh_client)
-        rando_finale["D+"] = round(deniv[0],2)
-        rando_finale["D-"] = round(deniv[1],2)
+        coords = rando["coords"]
+        deniv = deniveles(coords, cle)
+        rando_finale["D+"] = deniv[0]
+        rando_finale["D-"] = deniv[1]
         liste_finale.append(rando_finale)
-    fp2 = open(fichier_out, "w")
-    json.dump(liste_finale,fp2,indent=2)
+    
+    with open(fichier_out, "w") as fp2:
+        json.dump(liste_finale,fp2,indent=2)
 
+########################################################################
 #Début des tests
+########################################################################
 os.chdir("TD5/Corrige")
 
 cle_api = acces_cle_api()
-gh_client = graphh.GraphHopper(api_key=cle_api)
 
-#Exercice 1 :altitude
+
+#Exercice 1
 # Test Q1
-# print("Altitude de Rennes : ",altitude("Rennes",gh_client))
-# print("Altitude de Saint-Malo : ",altitude("Saint-Malo",gh_client))
-# print("Altitude de Chamonix : ",altitude("Chamonix",gh_client))
-# Altitude de Rennes :  41.08
-# Altitude de Saint-Malo :  26.13
-# Altitude de Chamonix :  1036.41
+# print("Altitude de Rennes : ",altitude_adresse(cle_api, "Rennes, France"))
+# print("Altitude de Saint-Malo : ",altitude_adresse(cle_api, "Saint-Malo"))
+# print("Altitude de Chamonix : ",altitude_adresse(cle_api, "Chamonix"))
+# Altitude de Rennes :  29
+# Altitude de Saint-Malo :  9
+# Altitude de Chamonix :  2208
 
 # Test Q2
 lst_gps = [
@@ -91,15 +103,15 @@ lst_gps = [
     {"lng": -1.427611, "lat": 47.989871},
     {"lng": -1.430202, "lat": 48.000354}
 ]
-# print(les_altitudes(lst_gps,gh_client))
-# [35.29, 64.36, 48.78, 35.81]
+# print(altitudes_lst_coords(cle_api, lst_gps))
+# [36, 68, 49, 35]
 
 # Exercice 2
-# print(deniveles(lst_gps,gh_client))
-# (29.07, 28.549999999999997)
+# print(deniveles(lst_gps,cle_api))
+# (32, 33)
 
 # Exercice 3
-# les_randos("../Donnees/mini-mini-rando_gps.json",gh_client)
+# les_randos("../Donnees/mini-rando_gps.json",cle_api)
 
 # Exercice 4
-ecrit_dico("../Donnees/mini-mini-rando_gps.json", gh_client, "randos_finales.json")
+ecrit_dico("../Donnees/mini-rando_gps.json", cle_api, "randos_finales.json")
