@@ -14,7 +14,7 @@ def acces_cle_api():
     return data["OpenRouteService"]
     
 def adresse_vers_gps(cle, adresse):
-    url = "https://api.openrouteservice.org/geocode/search"
+    url = "https://api.heigit.org/pelias/v1/search"
     dico_params = {"api_key": cle, "text": adresse}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -22,7 +22,7 @@ def adresse_vers_gps(cle, adresse):
     return f"{longitude},{latitude}"
 
 def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
-    url = "https://api.openrouteservice.org/v2/directions/driving-car"
+    url = "https://api.heigit.org/openrouteservice/v2/directions/driving-car"
     dico_params = {"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -31,7 +31,7 @@ def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
 
 
 def duree_trajet_coord(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
-    url = f"https://api.openrouteservice.org/v2/directions/{mode}"
+    url = f"https://api.heigit.org/openrouteservice/v2/directions/{mode}"
     dico_params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -65,7 +65,7 @@ liste_dicos = [
     {
         "nom": "Pauline",
         "sports": ["Tennis","Squash"],
-        "localisation": "Place du recteur Henri Le Moal, Rennes, France"
+        "localisation": "7, rue Barthélémy Pocquet, Rennes, France"
     },
     {
         "nom": "Ernest",
@@ -80,7 +80,7 @@ liste_dicos = [
     {
         "nom": "Sarah",
         "sports": ["Football","Squash", "Tennis"],
-        "localisation": "88, rue Alphone Guérin, Rennes, France"
+        "localisation": "23, av. Janvier, Rennes"
     },
     {
         "nom": "Ingrid",

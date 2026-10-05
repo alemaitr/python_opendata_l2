@@ -13,9 +13,9 @@ def acces_cle_api():
     fp = open("credentials.json", "r", encoding="utf-8")
     data = json.load(fp)
     return data["OpenRouteService"]
-    
+
 def adresse_vers_gps(cle, adresse):
-    url = "https://api.openrouteservice.org/geocode/search"
+    url = "https://api.heigit.org/pelias/v1/search"
     dico_params = {"api_key": cle, "text": adresse}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -23,7 +23,7 @@ def adresse_vers_gps(cle, adresse):
     return f"{longitude},{latitude}"
 
 def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
-    url = "https://api.openrouteservice.org/v2/directions/driving-car"
+    url = "https://api.heigit.org/openrouteservice/v2/directions/driving-car"
     dico_params = {"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -32,7 +32,7 @@ def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
 
 
 def duree_trajet_coord(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
-    url = f"https://api.openrouteservice.org/v2/directions/{mode}"
+    url = f"https://api.heigit.org/openrouteservice/v2/directions/{mode}"
     dico_params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -83,7 +83,7 @@ def plus_proche_partenaire(position, contacts, sport, cle):
         if sport in partenaire['sports'] :
             coord_partenaire = adresse_vers_gps(cle,partenaire['localisation'] )
             dist = distance_trajet_coord(cle ,coord_position,coord_partenaire)
-            print(f"Distance avec {partenaire['nom']} : {dist}")
+            print(f"Distance avec {partenaire['nom']} : {dist} (les coordonnées de {partenaire['localisation']} sont {coord_partenaire})")
             if dist < dist_min :
                 dist_min = dist
                 qui = partenaire["nom"]
@@ -94,10 +94,11 @@ def plus_proche_partenaire(position, contacts, sport, cle):
 #######################################################################
 #Tests et appels de fonctions
 #######################################################################
-os.chdir("TD4/Corrige")
+os.chdir("TD3/Corrige")
 #Exercice 1
 
 macle = acces_cle_api()
+print("Ma clé : ",macle)
 
 # ville = plus_court_covoit("Rennes","Marseille",["Paris 14ème arrondissement", "Lyon 1er arrondissement", "Bordeaux"],macle)
 # print(f"Il est plus court de passer par {ville}")
@@ -116,7 +117,7 @@ liste_dicos = [
     {
         "nom": "Pauline",
         "sports": ["Tennis","Squash"],
-        "localisation": "Place du recteur Henri Le Moal, Rennes, France"
+        "localisation": "7, rue Barthélémy Pocquet, Rennes, France"
     },
     {
         "nom": "Ernest",
@@ -131,7 +132,7 @@ liste_dicos = [
     {
         "nom": "Sarah",
         "sports": ["Football","Squash", "Tennis"],
-        "localisation": "88, rue Alphone Guérin, Rennes, France"
+        "localisation": "23, av. Janvier, Rennes"
     },
     {
         "nom": "Ingrid",

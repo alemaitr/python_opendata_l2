@@ -8,7 +8,7 @@ def acces_cle_api():
     return data["OpenRouteService"]
 
 def adresse_vers_gps(cle, adresse):
-    url = "https://api.openrouteservice.org/geocode/search"
+    url = "https://api.heigit.org/pelias/v1/search"
     dico_params = {"api_key": cle, "text": adresse}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
