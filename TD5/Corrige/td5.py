@@ -8,7 +8,7 @@ def acces_cle_api():
     return data["OpenRouteService"]
 
 def adresse_vers_gps(cle, adresse):
-    url = "https://api.openrouteservice.org/geocode/search"
+    url = "https://api.heigit.org/pelias/v1/search"
     dico_params = {"api_key": cle, "text": adresse}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -19,7 +19,7 @@ def adresse_vers_gps(cle, adresse):
 # Question 1
 
 def altitude_coor(cle, coord):
-    url = "https://api.openrouteservice.org/elevation/point"
+    url = "https://api.heigit.org/openelevationservice/v0/point"
     dico_params = {"api_key": cle, "geometry": coord}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -111,7 +111,7 @@ lst_gps = [
 # (32, 33)
 
 # Exercice 3
-# les_randos("../Donnees/mini-rando_gps.json",cle_api)
+les_randos("../Donnees/mini-rando_gps.json",cle_api)
 
 # Exercice 4
-ecrit_dico("../Donnees/mini-rando_gps.json", cle_api, "randos_finales.json")
+# ecrit_dico("../Donnees/mini-rando_gps.json", cle_api, "randos_finales.json")

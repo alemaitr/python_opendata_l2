@@ -13,7 +13,7 @@ def acces_cle_api():
     return data["OpenRouteService"]
     
 def adresse_vers_gps(cle, adresse):
-    url = "https://api.openrouteservice.org/geocode/search"
+    url = "https://api.heigit.org/pelias/v1/search"
     dico_params = {"api_key": cle, "text": adresse}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -21,7 +21,7 @@ def adresse_vers_gps(cle, adresse):
     return f"{longitude},{latitude}"
 
 def distance_trajet_coord(cle, coord_lieu1, coord_lieu2):
-    url = "https://api.openrouteservice.org/v2/directions/driving-car"
+    url = "https://api.heigit.org/openrouteservice/v2/directions/driving-car"
     dico_params = {"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -34,7 +34,7 @@ def distance_trajet_adresse(cle, adresse1, adresse2):
     return distance_trajet_coord(cle, coord1, coord2)
 
 def duree_trajet_coord(cle, coord_lieu1, coord_lieu2, mode="driving-car"):
-    url = f"https://api.openrouteservice.org/v2/directions/{mode}"
+    url = f"https://api.heigit.org/openrouteservice/v2/directions/{mode}"
     dico_params={"api_key": cle, "start": coord_lieu1, "end":coord_lieu2}
     reponse = requests.get(url,params=dico_params)
     donnees = reponse.json()
@@ -87,7 +87,7 @@ print(f"Ma clé d'API : {macle}")
 
 ## Test pour Rennes Beaulieu
 # adresse = "Rennes Beaulieu"
-# reponse = requests.get("https://api.openrouteservice.org/geocode/search", params={"api_key": macle, "text": adresse})
+# reponse = requests.get("https://api.heigit.org/pelias/v1/search", params={"api_key": macle, "text": adresse})
 # donnees = reponse.json()
 # longitude, latitude = donnees["features"][0]["geometry"]["coordinates"]
 # print(f"Latitude : {latitude}, Longitude : {longitude}")
@@ -101,29 +101,29 @@ print("Coordonnées de Beaulieu",coor_beaulieu)
 
 #Exercice 3
 
-# dist_villejean_beaulieu = distance_trajet_coord(macle,coor_villejean,coor_beaulieu)
-# print(f"Distance de Villejean à Beaulieu {dist_villejean_beaulieu}km")
+dist_villejean_beaulieu = distance_trajet_coord(macle,coor_villejean,coor_beaulieu)
+print(f"Distance de Villejean à Beaulieu {dist_villejean_beaulieu}km")
 
-# dist_beaulieu_villejean = distance_trajet_coord(macle, coor_beaulieu,coor_villejean)
-# print(f"Distance de Beaulieu à Villejean {dist_beaulieu_villejean}km")
+dist_beaulieu_villejean = distance_trajet_coord(macle, coor_beaulieu,coor_villejean)
+print(f"Distance de Beaulieu à Villejean {dist_beaulieu_villejean}km")
 
-# dist_Rennes_Brest = distance_trajet_adresse(macle, "Rennes, France", "Brest, France")
-# print(f"Distance de Rennes à Brest {dist_Rennes_Brest}km")
+dist_Rennes_Brest = distance_trajet_adresse(macle, "Rennes, France", "Brest, France")
+print(f"Distance de Rennes à Brest {dist_Rennes_Brest}km")
 
 
 #Exercice 4
 
-# duree_villejean_beaulieu_voit = duree_trajet_coord(macle,coor_villejean,coor_beaulieu)
-# print(f"Durée de Villejean à Beaulieu en voiture {duree_villejean_beaulieu_voit}min")
+duree_villejean_beaulieu_voit = duree_trajet_coord(macle,coor_villejean,coor_beaulieu)
+print(f"Durée de Villejean à Beaulieu en voiture {duree_villejean_beaulieu_voit}min")
 
-# duree_villejean_beaulieu_velo = duree_trajet_coord(macle,coor_villejean,coor_beaulieu,"cycling-regular")
-# print(f"Durée de Villejean à Beaulieu en vélo {duree_villejean_beaulieu_velo}min")
+duree_villejean_beaulieu_velo = duree_trajet_coord(macle,coor_villejean,coor_beaulieu,"cycling-regular")
+print(f"Durée de Villejean à Beaulieu en vélo {duree_villejean_beaulieu_velo}min")
 
-# duree_villejean_beaulieu_pied = duree_trajet_coord(macle,coor_villejean,coor_beaulieu,"foot-walking")
-# print(f"Durée de Villejean à Beaulieu à pied {duree_villejean_beaulieu_pied}min")
+duree_villejean_beaulieu_pied = duree_trajet_coord(macle,coor_villejean,coor_beaulieu,"foot-walking")
+print(f"Durée de Villejean à Beaulieu à pied {duree_villejean_beaulieu_pied}min")
 
-# duree_rennes_marseille = duree_trajet_adresse(macle, "Rennes, France", "Marseille, France")
-# print(f"Durée de Rennes à Marseille en voiture : {duree_rennes_marseille} minutes soit {duree_rennes_marseille//60} heures et {duree_rennes_marseille%60} minutes.")
+duree_rennes_marseille = duree_trajet_adresse(macle, "Rennes, France", "Marseille, France")
+print(f"Durée de Rennes à Marseille en voiture : {duree_rennes_marseille} minutes soit {duree_rennes_marseille//60} heures et {duree_rennes_marseille%60} minutes.")
 
 
 #Exercice 5
