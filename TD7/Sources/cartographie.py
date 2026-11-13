@@ -18,7 +18,7 @@ def creer_carte(Titre):
     TOOLTIPS = [("", "$name")]
     p = figure(x_axis_type="mercator", y_axis_type="mercator",tooltips=TOOLTIPS, title=Titre)
 
-    p.add_tile("CartoDB Positron")
+    p.add_tile("Esri.WorldStreetMap")
 
     return p
 
