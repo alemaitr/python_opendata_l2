@@ -23,23 +23,13 @@ def extrait_infos_passages(lst_brute):
 
 # #Q2.2 durée moyenne
 
-def duree_moyenne(lst_passages):
+def duree_moyenne_station(lst_passages):
     duree_cumulee = timedelta(0)
     for passage in lst_passages:
         duree = passage["depart"]-passage["arrivee"]
         duree_cumulee+=duree
     return duree_cumulee/len(lst_passages)
 
-# def a_venir(t, lespassages):
-#     passages_avenir = []
-
-#     for passage in lespassages :
-#         heuremetro = passage["depart"]
-#         maintenant = datetime.now(timezone("Europe/Paris"))
-#         if maintenant + timedelta(minutes=t)  > heuremetro and heuremetro> maintenant:
-#             passages_avenir.append(passage)
-
-#     return passages_avenir
 
 #Q3.1 Passages dans une station
 def passages_station(station, les_passages):
@@ -78,7 +68,7 @@ def affichage_station(station,lstpassages):
 if __name__=="__main__":
 
     # Q 1.6 Récupération des passages de métro
-    url = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records?limit=100&refine=precision%3A%22Temps%20r%C3%A9el%22"
+    url = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records/?lang=fr&limit=100&offset=0&refine=precision%3A%22Temps+r%C3%A9el%22"
     reponse = requests.get(url).json()
     # print(reponse)
 
@@ -90,7 +80,7 @@ if __name__=="__main__":
     # Q 1.8 Liste des passages
     liste_passages_bruts = reponse["results"]
     # Q 1.9 Complément avec Offset de 100
-    url2 = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records?offset=100&limit=100&refine=precision%3A%22Temps%20r%C3%A9el%22"
+    url2 = "https://data.explore.star.fr/api/explore/v2.1/catalog/datasets/tco-metro-circulation-passages-tr/records/?lang=fr&limit=100&offset=100&refine=precision%3A%22Temps+r%C3%A9el%22"
     reponse2 = requests.get(url2).json()
     print(f"Nombre de passages comptés dans la seconde requete : {len(reponse2['results'])}")
     liste_passages_bruts+=reponse2['results']
@@ -101,7 +91,7 @@ if __name__=="__main__":
     # pprint(liste_passages)
     print(f"Nombre de passages apres filtrage arrivee/depart non vide : {len(liste_passages)}")
 
-    moyenne = duree_moyenne(liste_passages)
+    moyenne = duree_moyenne_station(liste_passages)
     print(f"Temps moyen passé dans chaque station : {moyenne}")
 
     # Exercice 3

@@ -44,17 +44,19 @@ pprint(mon_joli_dictionnaire)
 \section{Accès aux données}
 
 \begin{enumerate}
-    \item Se rendre sur le site de la STAR, sur l'API qui indique les prochains passages de métro. (\url{https://data.explore.star.fr/explore/dataset/tco-metro-circulation-passages-tr/information/})
-    \item Parcourir le tableau pour comprendre les données disponibles. Combien de données sont disponibles avec une précision "Temps réel" ? 
-    \item Cliquer sur l'onglet "API" pour accéder aux options de requête.
+    \item Se rendre sur le site de la STAR, sur l'API qui indique les prochains passages de métro. (\url{https://data.explore.star.fr/explore/assets/tco-metro-circulation-passages-tr/view/})
+    \item Parcourir le tableau pour comprendre les données disponibles. Un passage correspond à la présence d'un métro dans une station. Le métro arrive dans la station (heure Arrivée), puis repart (heure Départ). 
+    
+    Combien de données sont disponibles avec une précision "Temps réel" ? 
+    \item En haut à droite, cliquer sur l'outil \verb+{ }+ (Utiliser la console d'API) pour accéder aux options de requête.
     \item En utilisant l'interface d'édition de requêtes de l'API de la STAR, composer une requête pour 
     \begin{itemize}
         \item ne conserver que les passages pour lesquels l'attribut \verb+precision+ vaut \verb+Temps réel+ (valeur à spécifier dans la catégorie \emph{refine})
-        \item retourner les 100 prochains passages.
+        \item retourner les 100 prochains passages (qui est le maximum autorisé).
     \end{itemize}
     \item Copier l'URL générée.
     \item En python, écrire le code permettant d'accéder aux passages de métro renvoyés par cette URL, au format json. 
-    \item Combien de passages de métro sont renvoyés ? Comparer le nombre d'enregistrements présents dans \verb+results+ et le nombre \verb+total_counts+ annoncé en début de requête.
+    \item Combien de passages de métro sont renvoyés ? Comparer le nombre d'enregistrements présents dans \verb+results+ et le nombre \verb+total_count+ annoncé en début de requête.
     \item Stocker la liste des passages (clé \verb+results+) dans une variable \verb+liste_passages_bruts+.
     \item Il manque quelques passage au dessus de 100 dans la liste \verb+liste_passages_bruts+. La limite de requête est 100, mais il est possible d'indiquer un offset (décalage) sur les résultats. En s'aidant de l'interface d'API, réaliser une requête supplémentaire en Python, pour compléter la liste \verb+liste_passages_bruts+ avec le nombre total de métros en temps réel.
 \end{enumerate}
@@ -64,27 +66,29 @@ pprint(mon_joli_dictionnaire)
 Les horaires fournis par la STAR sont fournis avec précision du fuseau horaire (timezone). Curieusement, les horaires ne sont pas homogènes entre l'arrivée et le départ.
 Ainsi, un passage peut être défini avec les horaires suivants : 
 \begin{description}
-    \item[depart] \verb'2024-11-17T07:47:09+00:00' : il s'agit d'une heure au format ISO, avec précision du fuseau horaire (timezone). Ici, elle est exprimée dans le fuseau horaire avec UTC+0 (\verb'+00:00'), ce qui correspond à 8h47 et 9 secondes en France.
-    \item[arrivee] \verb'2024-11-17 08:46:58+0100' : il s'agit d'une heure \emph{presque} au format ISO puisqu'il manque le caractère T pour séparer la date et l'heure. Ici, elle est exprimée dans le fuseau horaire avec UTC+1 (\verb'+0100'), ce qui correspond à 8h46 et 58 secondes en France.
+    \item[arrivee] \verb'2026-11-19 08:59:02+0100' : il s'agit d'une heure \emph{presque} au format ISO puisqu'il manque le caractère T pour séparer la date et l'heure. Ici, elle est exprimée dans le fuseau horaire avec UTC+1 (\verb'+0100'), ce qui correspond à 8h59 et 2 secondes en France.
+    \item[depart] \verb'2026-11-19T07:57:37+00:00' : il s'agit d'une heure au format ISO, avec précision du fuseau horaire (timezone). Ici, elle est exprimée dans le fuseau horaire avec UTC+0 (\verb'+00:00'), ce qui correspond à 8h57 et 37 secondes en France.
+
 \end{description}
 
 
 \begin{enumerate}
-    \item Écrire une fonction \verb+extrait_infos_passages()+ qui prend en entrée une liste de type \verb+liste_passages_bruts+ et qui renvoie une liste de \emph{passages de métros}. Chaque \emph{passage de métro} sera représenté par un dictionnaire disposant des clés suivantes : 
+    \item Écrire une fonction \verb+extrait_infos_passages+ qui prend en entrée une liste de type \verb+liste_passages_bruts+ et qui renvoie une liste de \emph{passages de métros}. Chaque \emph{passage de métro} sera représenté par un dictionnaire disposant des clés suivantes : 
     
     \begin{itemize}
         \item \verb+destination+ contenant la destination,
         \item \verb+nomarret+ contenant le nom de l'arret,
         \item \verb+ligne+ contenant le nom court de la ligne.
-        \item \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), 
         \item \verb+arrivee+ (contenant l'heure de départ au format \verb+datetime+), 
+        \item \verb+depart+ (contenant l'heure de départ au format \verb+datetime+), 
+        
     \end{itemize}
-        \textbf{Attention} : pour certains passages, l'attribut \verb+"depart"+ ou \verb+"arrivee"+ n'existe pas ou la valeur associée est None: ces passages doivent donc être ignorés.
+        \textbf{Note 1} : Pour certains passages, l'attribut \verb+"depart"+ ou \verb+"arrivee"+ est renseigné avec la valeur None: ces passages doivent être ignorés.
 
-        \textbf{Note} : on choisira probablement une méthode de création de datetime différente pour l'arrivée et le départ. Dans un format, \verb+%z+ représente la timezone.
+        \textbf{Note 2} : le constructeur \verb+fromisoformat+ de \verb+datetime+ accepte de lire les deux formats de dates.
     
         Tester cette fonction.
-    \item Écrire une fonction qui prend en entrée une liste de passages telle que celle créée par la question 
+    \item Écrire une fonction \verb+duree_moyenne_station+ qui prend en entrée une liste de passages telle que celle créée par la question 
     précédente et calcule le temps moyen passé dans la station pour chaque passage de métro entre le départ et l'arrivée.  Tester cette fonction (le résultat attendu est de l'ordre d'une vingtaine de secondes).
 \end{enumerate}
 
@@ -100,8 +104,10 @@ On souhaite renseigner un panneau d'affichage en entrée d'une station de métro
     \item Écrire une fonction qui prend en entrée une liste de passages dans une station, telle que retournée ci-dessus, et qui recherche pour chaque ligne de métro, et chaque direction l'heure du prochain départ à venir. 
     
     Les données seront retournées sous la forme d'un dictionnaire dans lequel les clés sont des tuples \verb+(ligne, destination)+ et les valeurs la date du premier prochain départ au format datetime. 
-    
-    \textbf{Note :} les objets Datetime de Python qui intègrent la connaissance de la timezone sont dits "aware", par opposition aux dates sans timezone qui sont "naïve". Il n'est pas possible d'effectuer des opérations (comparaisons, différences) entre une date naïve et une date aware. Par exemple, pour comparer une date aware avec la date actuelle, il faudra créer une version aware de datetime.now(), avec : 
+
+    \textbf{Note 1 :} attention, l'API renvoie aussi des horaires passés, il est donc nécessaire de comparer avec l'heure actuelle pour vérifier que l'horaire du passage n'est pas encore passé.
+
+    \textbf{Note 2 :} les objets Datetime de Python qui intègrent la connaissance de la timezone sont dits "aware", par opposition aux dates sans timezone qui sont "naïve". Il n'est pas possible d'effectuer des opérations (comparaisons, différences) entre une date naïve et une date aware. Par exemple, pour comparer une date aware avec la date actuelle, il faudra créer une version aware de datetime.now(), avec : 
 \begin{verbatim}
     from pytz import timezone
     datetime.now(timezone('Europe/Paris'))
